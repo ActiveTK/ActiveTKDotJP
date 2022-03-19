@@ -1,0 +1,34 @@
+<div id="question"></div>
+<input type="text" id="user-input">
+<button id="answer-button">回答!</button>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script type="text/javascript" async await>
+    (async () => {
+        const awaitForClick = target => {
+            return new Promise(resolve => {
+                const listener = resolve;
+                target.addEventListener("click", listener, { once: true });
+            });
+        };
+
+        const quiz = [
+            { question: "日本で一番北に位置する都道府県は？", answer: "北海道", },
+            { question: "日本の通貨は「円」。では、中国は？", answer: "元", },
+            { question: "与えても無駄という意味のことわざ「豚に○○」。○○とは？", answer: "真珠", },
+        ];
+
+        let points = 0;
+        for (const { question, answer } of quiz) {
+            $("#question").text(question);
+            await awaitForClick($("#answer-button")[0]);
+            const input = $("#user-input").val();
+            if (!input || input !== answer) {
+                alert(`残念！答えは${answer}でした！`);
+            } else {
+                points++;
+                alert("正解です！");
+            }
+        }
+        alert(`あなたの点数は${quiz.length}点中、${points}点でした！`);
+    })();
+</script>

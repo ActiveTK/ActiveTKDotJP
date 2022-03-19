@@ -1,0 +1,57 @@
+# Set Error Page
+ErrorDocument 400 /Error/400/index.php
+ErrorDocument 403 /Error/403/index.php
+ErrorDocument 404 /Error/404/index.php
+
+RewriteEngine on
+
+# Redirect To No WWW
+RewriteCond %{HTTP_HOST} ^activetk\.jp$
+RewriteRule ^(.*)$ https://www.activetk.jp/$1 [R=301,L]
+
+# Req Change
+
+# SSL
+RewriteEngine on
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+# RewriteCond %{REQUEST_URI} ![&]
+# RewriteCond %{REQUEST_URI} !/$
+# RewriteCond %{REQUEST_URI} !\.[^/\.]+$
+# RewriteRule .* %{REQUEST_URI}/ [L,R]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule (.*) index.php/?%{QUERY_STRING}&request=$1 [L]
+
+RewriteCond %{THE_REQUEST} ^GET\ !-f
+RewriteRule ^(.*)index.php/?(.*)$ https://www.activetk.jp/$1$2 [R=301,L,NE]
+
+# AccessControl Extension
+<Files ~ "^(\.)">
+deny from all
+</Files>
+<Files ~ "(\.old)$">
+deny from all
+</Files>
+
+# Charset
+AddDefaultCharset UTF-8
+
+# iframe deny
+Header always append X-Frame-Options DENY
+
+# HSTS
+Header always set Strict-Transport-Security "max-age=63072000; includeSubdomains; preload"
+
+# X-XSS
+Header always set X-XSS-Protection "1; mode=block"
+
+# Check Content-Type
+Header always set X-Content-Type-Options "nosniff"
+
+# Deny Adobe Acrobat/FlashPlayer
+Header always set X-Permitted-Cross-Domain-Policies none
+
+# Referrer
+Header always set Referrer-Policy "same-origin"
