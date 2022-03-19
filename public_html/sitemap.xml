@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://www.activetk.jp/</loc>
+  <lastmod>2022-03-19T09:30:02+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://www.activetk.jp/home</loc>
+  <lastmod>2022-03-19T09:30:02+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.activetk.jp/about</loc>
+  <lastmod>2022-03-19T09:30:02+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.activetk.jp/license</loc>
+  <lastmod>2022-03-19T09:30:02+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.activetk.jp/privacy</loc>
+  <lastmod>2022-03-19T09:30:02+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.activetk.jp/contact</loc>
+  <lastmod>2022-03-19T09:30:02+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.activetk.jp/tools/urlmin</loc>
+  <lastmod>2022-03-19T09:30:02+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.activetk.jp/tools/justclock</loc>
+  <lastmod>2022-03-19T09:30:02+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.activetk.jp/tools/qrcode</loc>
+  <lastmod>2022-03-19T09:30:02+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.activetk.jp/tools/time</loc>
+  <lastmod>2022-03-19T09:30:02+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.activetk.jp/tools/image</loc>
+  <lastmod>2022-03-19T09:30:02+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.activetk.jp/tools/rand</loc>
+  <lastmod>2022-03-19T09:30:02+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.activetk.jp/tools/url-encode</loc>
+  <lastmod>2022-03-19T09:30:02+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.activetk.jp/tools/url-decode</loc>
+  <lastmod>2022-03-19T09:30:02+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.activetk.jp/tools/base64-encode</loc>
+  <lastmod>2022-03-19T09:30:02+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.activetk.jp/tools/base64-decode</loc>
+  <lastmod>2022-03-19T09:30:02+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.activetk.jp/tools/english2leet</loc>
+  <lastmod>2022-03-19T09:30:02+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.activetk.jp/tools/leet2english</loc>
+  <lastmod>2022-03-19T09:30:02+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+
+</urlset>

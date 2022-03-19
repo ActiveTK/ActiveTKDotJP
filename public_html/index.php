@@ -57,6 +57,8 @@
       require_once( "./about.php" );
     else if ( request_path == "license" )
       require_once( "./license.php" );
+    else if ( request_path == "privacy" )
+      require_once( "./privacy.php" );
     else if ( request_path == "contact" )
       require_once( "./contact.php" );
     else if ( request_path == "report" )
@@ -117,6 +119,9 @@
                 <a class="nav-link active p-index__nav_item" href="/license">License - 利用規約</a>
               </li>
               <li class="nav-item">
+                <a class="nav-link active p-index__nav_item" href="/privacy">Privacy - プライバシーに関する声明</a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link active p-index__nav_item" href="/contact">Contact - 管理者について</a>
               </li>
             </ul>
@@ -135,7 +140,7 @@
   function Get_Last() {
   ?>
 
-    <p><a href="/home" style="color:#00ff00 !important;">ホーム</a>・<a href="/about" style="color:#0403f9 !important;">本サイトについて</a>・<a href="/license" style="color:#ffa500 !important;">利用規約</a> (c) 2022 ActiveTK.</p>
+    <p><a href="/home" style="color:#00ff00 !important;">ホーム</a>・<a href="/about" style="color:#0403f9 !important;">本サイトについて</a>・<a href="/license" style="color:#ffa500 !important;">利用規約</a>・<a href="/privacy" style="color:#ff00ff !important;">プライバシーに関する声明</a> (c) 2022 ActiveTK.</p>
 
   <?php
   }

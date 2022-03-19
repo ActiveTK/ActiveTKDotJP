@@ -1,6 +1,6 @@
 <?php
 
-  define( "Title", "管理者について" );
+  define( "Title", "プライバシーに関する声明" );
 
 ?>
 
@@ -51,18 +51,30 @@
     <?=Get_Header()?>
     <div align="center" class="mainobject" style="position:fixed;overflow:scroll;color:#000000;z-index:1;top:12%;left:0px;width:100%;height:88%;">
       <br>
-      <h1>管理者 - ActiveTK.jp</h1>
-      <br>
-      <hr>
-	  <h2>
-        <img style="width:40px;height:40px;" src="https://www.activetk.jp/icon/activetk.png">
-        ActiveTK.
-      </h2>
-      <h4>ダークウェブの実情に詳しい学生。</h4>
-      <h4>得意な言語はC#、PHP、JavaScript。</h4>
-      <p><a href="https://twitter.com/ActiveTK5929" target="_blank">Twitter</a> ・ <a href="https://blog.activetk.jp/"target="_blank">ブログ</a> ・ <a href="https://github.com/ActiveTK"target="_blank">GitHub</a> ・ <a href="https://rinu.cf/pgp"target="_blank">PGP署名</a></p>
-      <hr>
-      <?=Get_Last()?>
+      <h1>プライバシーに関する声明 - ActiveTK.jp</h1>
+      <pre align="right">制定 2022年03月19日</pre>
+      <hr size="1" color="#7fffd4">
+      <div align="left" style="width:70%;overflow-x:hidden;overflow-y:visible;">
+        <h3>第一章 本サービスで収集する情報</h3>
+	    第一条 サービスの提供に伴ってサーバーへアップロードされる情報<br>
+        サービスの提供に伴い、ユーザーが入力したテキストや選択したファイルをサーバーへアップロードして、処理を行う事がございます。<br><br>
+        第二条 Google アナリティクス<br>
+        本サイトでは、サービスの運営状況の確認や改善を目的に、Google社の提供する、Google アナリティクスを利用しています。<br>
+        Google アナリティクスは、アクセス情報の収集のためにCookieを使用しています。<br>
+        また、この情報は匿名で収集されており、個人を特定するものではありません。<br>
+        詳しい内容については、Google アナリティクスの<a href="https://marketingplatform.google.com/about/analytics/terms/jp/" target="_blank">利用規約</a>並びに<a href="https://policies.google.com/privacy?hl=ja" target="_blank">プライバシーポリシー</a>をご覧ください。<br><br>
+        <h3>第二章 情報の漏洩防止</h3>
+        第三条 Cookieの不使用の宣言<br>
+        本サービスは、第二条の規定「Google アナリティクス」によるCookieを省いた、一切のCookieを使用しません。<br><br>
+        第四条 サービスの提供に伴ってサーバーへアップロードされる情報の不保持の宣言<br>
+        本サービスは、第一条に定めるサービスの提供に伴ってサーバーへアップロードされる情報に関して、処理及びユーザーへのサービスの提供が終了した時点で、完全に削除する事を約束します。<br><br>
+        <h3>第三条 ユーザーの意思に基づいた情報の削除</h3>
+        第五条 削除の申し立て<br>
+        ユーザーは、管理者に対し、サーバーからアクセスログを省いた自らがアップロードした全てのデータの削除を申し立てる事ができるものとします。<br>
+        <br>
+        <br>
+        日本時間 2022年03月19日 制定
+      </div>
     </div>
     <script nonce="<?=nonce?>" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script nonce="<?=nonce?>">function collapse_handler(e){let t=document.getElementById("navbar-collapse");new bootstrap.Collapse(t,{toggle:!0})}document.addEventListener("DOMContentLoaded",()=>{document.getElementById("toggler-button").addEventListener("click",collapse_handler,!1)});</script>
