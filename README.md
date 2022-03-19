@@ -63,3 +63,7 @@
 ## 利用規約
 
 利用規約は、[こちら](https://www.activetk.jp/license)で公開されています。
+
+## プライバシーに関する声明
+
+プライバシーに関する声明は、[こちら](https://www.activetk.jp/privacy)で公開されています。
