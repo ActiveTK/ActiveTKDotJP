@@ -74,12 +74,14 @@
       <?=ViewTool( "簡易現在時刻ビュワー", "https://www.activetk.jp/tools/time", "画面に大きく現在時刻を表示します。スクリーンセーバーにいかがでしょうか？" )?>
       <?=ViewTool( "画像形式変換ツール", "https://www.activetk.jp/tools/image", "画像の形式を、「png」から「jpg」のように変更する事ができます。" )?>
       <?=ViewTool( "擬似乱数生成ツール", "https://www.activetk.jp/tools/rand", "暗号学的に安全なランダムなパスワード用の文字列を生成できます。" )?>
+      <?=ViewTool( "著作物利用許可申請書作成ツール", "https://www.activetk.jp/tools/copyright", "ネット上での著作権侵害が問題になっています。そこで、このツールを作成しました。<br>このツールを使えば3分で著作権の利用許可を申請するテキストを作れます。" )?>
       <?=ViewTool( "URLエンコーダー", "https://www.activetk.jp/tools/url-encode", "指定した文字列をURLエンコードします。サーバーにアップロードされず、JavaScriptで処理するので安全です。" )?>
       <?=ViewTool( "URLデコーダー", "https://www.activetk.jp/tools/url-decode", "指定した文字列をURLデコードします。サーバーにアップロードされず、JavaScriptで処理するので安全です。" )?>
       <?=ViewTool( "Base64エンコーダー", "https://www.activetk.jp/tools/base64-encode", "指定した文字列をbase64エンコードします。サーバーにアップロードされず、JavaScriptで処理するので安全です。" )?>
       <?=ViewTool( "Base64デコーダー", "https://www.activetk.jp/tools/base64-decode", "指定した文字列をbase64デコードします。サーバーにアップロードされず、JavaScriptで処理するので安全です。" )?>
       <?=ViewTool( "English2Leet", "https://www.activetk.jp/tools/english2leet", "英語の文字列を、Leetと呼ばれる「ハッカー語」に変換するツールです。" )?>
       <?=ViewTool( "Leet2English", "https://www.activetk.jp/tools/leet2english", "Leetと呼ばれる「ハッカー語」の文字列を英語に変換するツールです。" )?>
+      <?=ViewTool( "ペイントWeb", "https://www.activetk.jp/tools/paintweb", "ページ上で絵を描くことができます。" )?>
       <?=Get_Last()?>
     </div>
     <script nonce="<?=nonce?>" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

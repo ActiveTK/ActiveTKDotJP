@@ -46,6 +46,12 @@
       require_once( "./Tools/urlmin.php" );
       exit();
     }
+    else if ( request_path == "tools/copyright" )
+    {
+      define( "nonce", "" );
+      require_once( "./Tools/copyright/index.php" );
+      exit();
+    }
 
     // nonce生成
     CreateNonce();
@@ -85,6 +91,8 @@
       require_once( "./Tools/english2leet.php" );
     else if ( request_path == "tools/leet2english" )
       require_once( "./Tools/leet2english.php" );
+    else if ( request_path == "tools/paintweb" )
+      require_once( "./Tools/paintweb.php" );
     else
       require_once( "./Error/404/index.php" );
   }
