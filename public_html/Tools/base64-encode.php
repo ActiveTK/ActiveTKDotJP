@@ -1,8 +1,8 @@
 <?php
-  $title = "URLエンコーダー - ActiveTK.CF";
-  $dec = "URLエンコーダーです。";
-  $root = "https://www.activetk.cf/";
-  $url = "{$root}tools/base64-encode.php";
+  $title = "base64エンコーダー | ActiveTK.jp";
+  $dec = "base64エンコーダーです。";
+  $root = "https://www.activetk.jp/";
+  $url = "{$root}tools/url-encode";
 ?>
 <!DOCTYPE html>
 <html lang="ja" itemscope="" itemtype="http://schema.org/WebPage" dir="ltr">
@@ -10,7 +10,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="keywords" content="NextChat,nextchat">
     <title><?php echo $title; ?></title>
     <base href="<?php echo $url; ?>">
     <meta name="robots" content="All">
@@ -38,13 +37,14 @@
     <link rel="shortcut icon" href="<?=$root?>icon/index_64_64.ico" sizes="64x64">
     <link rel="shortcut icon" href="<?=$root?>icon/index_192_192.ico" sizes="192x192">
     <link rel="apple-touch-icon-precomposed" href="<?=$root?>icon/index_150_150.ico">
-    <script src="https://code.activetk.cf/ActiveTK.min.js" type="text/javascript" charset="UTF-8"></script>
-    <script type="text/javascript">onload=function(){_("copy").onclick=function(){atk.copy(_("savek").value),_("copyk").innerHTML="コピーしました！"};_("clear").onclick=function(){_("save").value=""};_("td").onsubmit=function(){try{_('savek').value=btoa(String.fromCharCode.apply(null, new TextEncoder().encode(_('save').value)));}catch(e){console.log(e);}return false};}</script>
+    <script src="https://code.activetk.jp/ActiveTK.min.js" type="text/javascript" charset="UTF-8" nonce="<?=$nonce?>"></script>
+    <script type="text/javascript" nonce="<?=$nonce?>">window.onload=function(){_("copy").onclick=function(){atk.copy(_("savek").value),_("copyk").innerHTML="コピーしました！"};_("clear").onclick=function(){_("save").value=""};_("td").onsubmit=function(){_('savek').value=btoa(_('save').value);return false};}</script>
+    <?=Get_Default()?>
   </head>
   <body style="background-color:#6495ed;color:#080808;overflow-x:hidden;overflow-y:visible;">
     <noscript><div title="NO SCRIPT ERROR" style="background-color:#404ff0;" align="center"><font color="#ff4500"><h1>No JavaScript Error.</h1></font></div></noscript>
     <div align="center" id="home">
-        <h2>Base64エンコード - ActiveTK.CF</h2>
+        <h1>base64エンコーダー | ActiveTK.jp</h1>
         <form action="" method="POST" id="td">
           <textarea rows="14" id="save" style="margin: 0px; height: 140px; width: 542px;"></textarea>
           <br>
@@ -59,7 +59,7 @@
     </div>
     <br>
     <hr size="1" color="#7fffd4">
-    <div align="center"><font style="background-color:#06f5f3;">Copyright &copy; 2021 ActiveTK. All rights reserved.</font></div>
+    <div align="center"><?=Get_Last()?></div>
     <br>
   </body>
 </html>

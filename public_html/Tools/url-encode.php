@@ -39,6 +39,7 @@
     <link rel="apple-touch-icon-precomposed" href="<?=$root?>icon/index_150_150.ico">
     <script src="https://code.activetk.jp/ActiveTK.min.js" type="text/javascript" charset="UTF-8" nonce="<?=$nonce?>"></script>
     <script type="text/javascript" nonce="<?=$nonce?>">window.onload=function(){_("copy").onclick=function(){atk.copy(_("savek").value),_("copyk").innerHTML="コピーしました！"};_("clear").onclick=function(){_("save").value=""};_("td").onsubmit=function(){_('savek').value=atk.encode(_('save').value);return false};}</script>
+    <?=Get_Default()?>
   </head>
   <body style="background-color:#6495ed;color:#080808;overflow-x:hidden;overflow-y:visible;">
     <noscript><div title="NO SCRIPT ERROR" style="background-color:#404ff0;" align="center"><font color="#ff4500"><h1>No JavaScript Error.</h1></font></div></noscript>

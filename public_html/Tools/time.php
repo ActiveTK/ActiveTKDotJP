@@ -35,6 +35,7 @@
     <link rel="shortcut icon" href="https://www.activetk.jp/icon/index_192_192.ico" sizes="192x192">
     <link rel="apple-touch-icon-precomposed" href="https://www.activetk.jp/icon/index_150_150.ico">
     <style>a{color: #00ff00;position: relative;display: inline-block;transition: .3s;}a::after {position: absolute;bottom: 0;left: 50%;content: '';width: 0;height: 2px;background-color: #31aae2;transition: .3s;transform: translateX(-50%);}a:hover::after{width: 100%;}</style>
+    <?=Get_Default()?>
     <script type="text/javascript" nonce="<?=$nonce?>">function clock(){document.getElementById("view_clock").innerHTML=getNow()} function getNow(){var e=new Date;return"現在時刻:<span style='color:#33bbff;'>"+e.getFullYear()+"年"+(e.getMonth()+1)+"月"+e.getDate()+"日"+e.getHours()+"時"+e.getMinutes()+"分"+e.getSeconds()+"秒</span>"} setInterval("clock()",100)</script>
   </head>
   <body style="background-color:#e6e6fa;text:#363636;">

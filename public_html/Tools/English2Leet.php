@@ -1,8 +1,8 @@
 <?php
 
-  $title = "English2Leet - ActiveTK.CF";
+  $title = "English2Leet - ActiveTK.jp";
   $dec = "英語の文字列を、Leetと呼ばれる「ハッカー語」に変換するツールです。";
-  $root = "https://www.activetk.cf/";
+  $root = "https://www.activetk.jp/";
   $url = "{$root}tools/English2Leet.php";
   
   if (isset($_POST["English"]) && isset($_POST["instr"]))
@@ -78,8 +78,8 @@
     <link rel="shortcut icon" href="<?=$root?>icon/index_64_64.ico" sizes="64x64">
     <link rel="shortcut icon" href="<?=$root?>icon/index_192_192.ico" sizes="192x192">
     <link rel="apple-touch-icon-precomposed" href="<?=$root?>icon/index_150_150.ico">
-    <script src="https://code.activetk.cf/ActiveTK.min.js" type="text/javascript" charset="UTF-8"></script>
-    <script type="text/javascript">
+    <script src="https://code.activetk.jp/ActiveTK.min.js" nonce="<?=nonce?>" type="text/javascript" charset="UTF-8"></script>
+    <script type="text/javascript" nonce="<?=nonce?>">
     
       window.onload = function() {
         _("copy").onclick = function() {
@@ -124,12 +124,13 @@
       }
       
     </script>
+    <?=Get_Default()?>
   </head>
   <body style="background-color:#6495ed;color:#080808;overflow-x:hidden;overflow-y:visible;">
     <noscript><div title="NO SCRIPT ERROR" style="background-color:#404ff0;" align="center"><font color="#ff4500"><h1>No JavaScript Error.</h1></font></div></noscript>
     <div align="center" id="home">
-        <h1>English2Leet - ActiveTK.CF</h1>
-        <a href="./Leet2English.php">&lt; Leet解除はこちらです！</a>
+        <h1>English2Leet - ActiveTK.jp</h1>
+        <a href="./leet2english">&lt; Leet解除はこちらです！</a>
         <div title="leetとは？">
           Leetを知らない方はこちらをご高覧ください: <a href="https://ja.wikipedia.org/wiki/Leet" target="_blank">https://ja.wikipedia.org/wiki/Leet</a>
         </div>
@@ -148,7 +149,7 @@
     </div>
     <br>
     <hr size="1" color="#7fffd4">
-    <div align="center"><font style="background-color:#06f5f3;">Copyright &copy; 2021 ActiveTK. All rights reserved.</font></div>
+    <div align="center"><?=Get_Last()?></div>
     <br>
   </body>
 </html>

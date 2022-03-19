@@ -33,6 +33,20 @@
   {
     define( "request_path", strtolower( $_GET["request"]) );
 
+    // nonce無しのURIだけ処理
+    if ( request_path == "tools/justclock" )
+    {
+      define( "nonce", "" );
+      require_once( "./Tools/justclock.php" );
+      exit();
+    }
+    else if ( request_path == "tools/urlmin" )
+    {
+      define( "nonce", "" );
+      require_once( "./Tools/urlmin.php" );
+      exit();
+    }
+
     // nonce生成
     CreateNonce();
     $nonce = nonce;
@@ -43,6 +57,12 @@
       require_once( "./about.php" );
     else if ( request_path == "license" )
       require_once( "./license.php" );
+    else if ( request_path == "contact" )
+      require_once( "./contact.php" );
+    else if ( request_path == "report" )
+    {
+
+    }
     else if ( request_path == "tools/qrcode" )
       require_once( "./Tools/qrcode.php" );
     else if ( request_path == "tools/time" )
@@ -59,11 +79,20 @@
       require_once( "./Tools/base64-encode.php" );
     else if ( request_path == "tools/base64-decode" )
       require_once( "./Tools/base64-decode.php" );
+    else if ( request_path == "tools/english2leet" )
+      require_once( "./Tools/english2leet.php" );
+    else if ( request_path == "tools/leet2english" )
+      require_once( "./Tools/leet2english.php" );
     else
       require_once( "./Error/404/index.php" );
   }
   else
+  {
+    // nonce生成
+    CreateNonce();
+    $nonce = nonce;
     require_once( "./welcome.php" );
+  }
 
   // ヘッダー描写
   function Get_Header() {
@@ -72,7 +101,7 @@
     <div align="left" style="background-color:#6495ed;color:#080808;">
       <nav class="navbar navbar-expand-lg p-nextchatcolor" style="background-color:#6495ed;color:#080808;z-index:5;position:fixed;top:0px;left:0px;width:100%;height:12% !important;">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#" title="WebTools">ActiveTK.jp</a>
+          <span class="navbar-brand" href="#" title="WebTools">ActiveTK.jp</span>
           <button class="navbar-toggler" id="toggler-button" type="button" data-bs-toggle="collapse" data-bs-target="navbar-toggler" aria-controls="navbar-toggler" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -109,4 +138,12 @@
     <p><a href="/home" style="color:#00ff00 !important;">ホーム</a>・<a href="/about" style="color:#0403f9 !important;">本サイトについて</a>・<a href="/license" style="color:#ffa500 !important;">利用規約</a> (c) 2022 ActiveTK.</p>
 
   <?php
+  }
+
+  // 共通コード取得
+  function Get_Default() {
+    ?>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-V1CPYP07HP" nonce="<?=nonce?>"></script>
+    <script nonce="<?=nonce?>">window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-V1CPYP07HP');</script>
+    <?php
   }

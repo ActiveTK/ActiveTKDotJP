@@ -33,7 +33,6 @@
     <meta property="og:image" content="https://www.activetk.jp/icon/index.jpg">
     <meta property="og:image:width" content="1280">
     <meta property="og:image:height" content="720">
-    <link rel="canonical" href="https://www.activetk.jp/">
     <link rel="shortcut icon" href="https://www.activetk.jp/icon/index_16_16.ico" sizes="16x16">
     <link rel="shortcut icon" href="https://www.activetk.jp/icon/index_32_32.ico" sizes="32x32">
     <link rel="shortcut icon" href="https://www.activetk.jp/icon/index_64_64.ico" sizes="64x64">
@@ -46,6 +45,7 @@
     <script defer src="https://rinu.cf/pv/index.php?token=activetkcfhome&callback=cotrld" nonce="<?=nonce?>"></script>
     <link href="https://www.activetk.jp/css/index.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <?=Get_Default()?>
   </head>
   <body style="background-color:#e6e6fa;">
     <noscript>

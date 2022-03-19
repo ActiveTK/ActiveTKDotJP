@@ -1,9 +1,9 @@
 <?php
 
-  $title = "Leet2English - ActiveTK.CF";
+  $title = "Leet2English - ActiveTK.jp";
   $dec = "Leetと呼ばれる「ハッカー語」の文字列を英語に変換するツールです。";
-  $root = "https://www.activetk.cf/";
-  $url = "{$root}tools/Leet2English.php";
+  $root = "https://www.activetk.jp/";
+  $url = "{$root}tools/leet2english";
   
   if (isset($_POST["English"]))
   {
@@ -78,8 +78,8 @@
     <link rel="shortcut icon" href="<?=$root?>icon/index_64_64.ico" sizes="64x64">
     <link rel="shortcut icon" href="<?=$root?>icon/index_192_192.ico" sizes="192x192">
     <link rel="apple-touch-icon-precomposed" href="<?=$root?>icon/index_150_150.ico">
-    <script src="https://code.activetk.cf/ActiveTK.min.js" type="text/javascript" charset="UTF-8"></script>
-    <script type="text/javascript">
+    <script src="https://code.activetk.jp/ActiveTK.min.js" type="text/javascript" charset="UTF-8" nonce="<?=nonce?>"></script>
+    <script type="text/javascript" nonce="<?=nonce?>">
     
       window.onload = function() {
         _("copy").onclick = function() {
@@ -123,12 +123,13 @@
       }
       
     </script>
+    <?=Get_Default()?>
   </head>
   <body style="background-color:#6495ed;color:#080808;overflow-x:hidden;overflow-y:visible;">
     <noscript><div title="NO SCRIPT ERROR" style="background-color:#404ff0;" align="center"><font color="#ff4500"><h1>No JavaScript Error.</h1></font></div></noscript>
     <div align="center" id="home">
-        <h1>Leet2English - ActiveTK.CF</h1>
-        <a href="./English2Leet.php">&gt; Leet化はこちらです！</a>
+        <h1>Leet2English - ActiveTK.jp</h1>
+        <a href="./english2leet">&gt; Leet化はこちらです！</a>
         <div title="leetとは？">
           Leetを知らない方はこちらをご高覧ください: <a href="https://ja.wikipedia.org/wiki/Leet" target="_blank">https://ja.wikipedia.org/wiki/Leet</a>
         </div>
@@ -146,7 +147,7 @@
     </div>
     <br>
     <hr size="1" color="#7fffd4">
-    <div align="center"><font style="background-color:#06f5f3;">Copyright &copy; 2021 ActiveTK. All rights reserved.</font></div>
+    <div align="center"><?=Get_Last()?></div>
     <br>
   </body>
 </html>
