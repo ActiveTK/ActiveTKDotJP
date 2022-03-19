@@ -63,18 +63,22 @@
         Google アナリティクスは、アクセス情報の収集のためにCookieを使用しています。<br>
         また、この情報は匿名で収集されており、個人を特定するものではありません。<br>
         詳しい内容については、Google アナリティクスの<a href="https://marketingplatform.google.com/about/analytics/terms/jp/" target="_blank">利用規約</a>並びに<a href="https://policies.google.com/privacy?hl=ja" target="_blank">プライバシーポリシー</a>をご覧ください。<br><br>
+        第三条 アクセス数カウンター<br>
+        本サイトでは、アクセス数カウンターを設置しています。<br>
+        これにより、アクセス数のカウントを目的としてユーザーのIPアドレス及びアクセス回数の情報がサーバーに保存されますが、これは個人の特定に利用されるものではありません。<br><br>
         <h3>第二章 情報の漏洩防止</h3>
-        第三条 Cookieの不使用の宣言<br>
+        第四条 Cookieの不使用の宣言<br>
         本サービスは、第二条の規定「Google アナリティクス」によるCookieを省いた、一切のCookieを使用しません。<br><br>
-        第四条 サービスの提供に伴ってサーバーへアップロードされる情報の不保持の宣言<br>
+        第五条 サービスの提供に伴ってサーバーへアップロードされる情報の不保持の宣言<br>
         本サービスは、第一条に定めるサービスの提供に伴ってサーバーへアップロードされる情報に関して、処理及びユーザーへのサービスの提供が終了した時点で、完全に削除する事を約束します。<br><br>
         <h3>第三条 ユーザーの意思に基づいた情報の削除</h3>
-        第五条 削除の申し立て<br>
+        第六条 削除の申し立て<br>
         ユーザーは、管理者に対し、サーバーからアクセスログを省いた自らがアップロードした全てのデータの削除を申し立てる事ができるものとします。<br>
         <br>
         <br>
         日本時間 2022年03月19日 制定
       </div>
+      <div align="center"><?=Get_Last()?></div>
     </div>
     <script nonce="<?=nonce?>" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script nonce="<?=nonce?>">function collapse_handler(e){let t=document.getElementById("navbar-collapse");new bootstrap.Collapse(t,{toggle:!0})}document.addEventListener("DOMContentLoaded",()=>{document.getElementById("toggler-button").addEventListener("click",collapse_handler,!1)});</script>
