@@ -161,6 +161,8 @@
       require_once( "./Tools/paintweb.php" );
     else if ( request_path == "tools/download" )
       require_once( "./Tools/download.php" );
+    else if ( request_path == "tools/encrypt" )
+      require_once( "./Tools/encrypt.php" );
     else
       require_once( "./Error/404/index.php" );
   }

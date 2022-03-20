@@ -59,7 +59,7 @@
         <input type="text" size="45" name="text" value="<?php if (isset($_POST["text"])) echo htmlspecialchars($_POST["text"]); ?>" placeholder="テキスト又はURLを入力してください。" title="QLコードにしたいテキスト"><br>
         横幅:<input type="text" size="3" name="tate" value="256" placeholder="256" title="横幅"><br>
         高さ:<input type="text" size="3" name="yoko" value="256" placeholder="256" title="高さ"><br>
-        <input type="submit" value="QRコードを作成"><br>
+        <input type="submit" value="QRコードを作成" style="height:60px;width:140px;"><br>
       </form>
     </div>
     <hr size="1" color="#7fffd4">

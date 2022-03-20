@@ -74,6 +74,7 @@
       <?=ViewTool( "HackAll", "https://hackall.cipher.jp/", "ハッキングデモサイトです。我こそは伝説のハッカーだ!という方は是非挑戦してみてください。" )?>
       <?=ViewTool( "画像形式変換ツール", "https://www.activetk.jp/tools/image", "画像の形式を、「png」から「jpg」のように変更する事ができます。" )?>
       <?=ViewTool( "擬似乱数生成ツール", "https://www.activetk.jp/tools/rand", "暗号学的に安全なランダムなパスワード用の文字列を生成できます。" )?>
+      <?=ViewTool( "ファイル暗号化・複合化ツール", "https://www.activetk.jp/tools/encrypt", "たった一回のクリックで簡単にファイルを暗号化・複合化できます。<br>アルゴリズムには強度の高いAESの256bit(CBCモード)を使用しているので安心してお使いいただけます！" )?>
       <?=ViewTool( "著作物利用許可申請書作成ツール", "https://www.activetk.jp/tools/copyright", "ネット上での著作権侵害が問題になっています。そこで、このツールを作成しました。<br>このツールを使えば3分で著作権の利用許可を申請するテキストを作れます。" )?>
       <?=ViewTool( "URLエンコーダー", "https://www.activetk.jp/tools/url-encode", "指定した文字列をURLエンコードします。サーバーにアップロードされず、JavaScriptで処理するので安全です。" )?>
       <?=ViewTool( "URLデコーダー", "https://www.activetk.jp/tools/url-decode", "指定した文字列をURLデコードします。サーバーにアップロードされず、JavaScriptで処理するので安全です。" )?>
@@ -86,7 +87,6 @@
       <?=ViewTool( "Windows Update", "https://www.activetk.jp/tools/windowsupdate", "WindowsUpdate風のスクリーンセーバーです。" )?>
       <?=ViewTool( "URLダウンロードツール", "https://www.activetk.jp/tools/download", "iPadやスマホなどで、ファイルを「プレビューせずに」ダウンロードする事が出来ます。" )?>
       <?=Get_Last()?>
-      <!-- <a href="#top" id="gotop" style="position:fixed;bottom:30px;right:20px;z-index:2;" title="上へ"><img src="/icon/top.jpg" width="84" height="80"></a> -->
     </div>
     <script nonce="<?=nonce?>" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script nonce="<?=nonce?>">function collapse_handler(e){let t=document.getElementById("navbar-collapse");new bootstrap.Collapse(t,{toggle:!0})}document.addEventListener("DOMContentLoaded",()=>{document.getElementById("toggler-button").addEventListener("click",collapse_handler,!1)});</script>

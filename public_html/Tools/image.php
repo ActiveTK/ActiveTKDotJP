@@ -159,7 +159,7 @@
           <option value="jpg">JPEG (.jpg)</option>
           <option value="gif">GIF (.gif)</option>
         </select></p><br>
-        <input type="submit" name="change" value="変換">
+        <input type="submit" name="change" value="変換する！" style="height:60px;width:140px;">
       </form>
     </div>
     <hr size="1" color="#7fffd4">

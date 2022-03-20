@@ -63,7 +63,7 @@
       ?>
       <form action="" method="POST">
         桁数: <input type="number" size="3" name="len" value="24" placeholder="桁数" title="桁数"><br>
-        <input type="submit" value="安全な疑似乱数を生成"><br>
+        <input type="submit" value="安全な疑似乱数を生成" style="height:60px;width:200px;"><br>
       </form>
       <hr size="1" color="#7fffd4">
       <p align="center"><a href="https://github.com/ActiveTK/ActiveTKDotJP/blob/main/public_html/Tools/rand.php" target="_blank">アルゴリズム(PHP)</a></p>

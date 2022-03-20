@@ -58,7 +58,7 @@
 	$ob = ob_get_contents();
 	ob_end_clean();
 
-        $LogFile = "/home/activetk/data/rinu.cf/unsafe.log";
+        $LogFile = "/home/activetk/data/RINU.CF/unsafe.log";
 
         $debuginfo = array();
 
@@ -155,9 +155,9 @@
     <div align='center'>
       <h2>危険なURLは短縮できません</h2><br>
       <hr color="#363636" size="2">
-      <p><a href="https://www.activetk.jp/tools/urlmin/" target="_blank" rel="noopener noreferrer">URL短縮サービス</a>をご利用頂き、誠にありがとうございます。</p>
+      <p><a href="https://www.activetk.jp/tools/urlmin" target="_blank" rel="noopener noreferrer">URL短縮サービス</a>をご利用頂き、誠にありがとうございます。</p>
       <p>あなたが短縮しようとしたURLは Google Safe Browsing によって、安全では無いと判断されました。</p>
-      <a href="https://www.activetk.jp/tools/urlmin/" rel="noopener noreferrer"><input type="button" value="戻る"></a>
+      <a href="https://www.activetk.jp/tools/urlmin" rel="noopener noreferrer"><input type="button" value="戻る"></a>
       <hr color="#363636" size="2">
       <pre>URL : <?=$url?></pre>
       <pre align="center" style="width:30%;text-align:left;">詳細 : <?=$anz?></pre>
@@ -225,29 +225,35 @@
   <body style="background-color:#e6e6fa;text:#363636;">
     <br>
     <div align='center'>
-      <h2>安全危険判定機能付き！URL短縮サービス</h2><br>
+      <h1>安全危険判定機能付き！URL短縮サービス</h1>
+      <p>下のテキストボックスにURLを入力して、「短縮！」を押すと簡単にURLを短くする事ができます。</p>
+      <p>Google社の提供するGoogle セーフブラウジングに対応しており、シンプルなUIで簡単にURLを短縮できるのが特徴です！</p>
+      <br>
       <hr color="#363636" size="2">
       <form action='' method='POST'>
-        <input type='text' name='q' size='40' placeholder='ここにURLを入力してください'>
+        <input type='text' name='q' style="height:20px;width:500px;" placeholder='ここにURLを入力してください'>
         <?php if (isset($_GET["admin-url"]) && $_GET["admin-url"] == "777759297777") { ?>
         <br>
         <input type='text' name='foradminmojiretu' size='20' placeholder='文字列'>
         <br>
         <?php } ?>
-        <input type='submit' value='短縮'>
+        <input type='submit' value='短縮！' style="height:60px;width:140px;">
       </form>
       <hr color="#363636" size="2">
       <div id="kekka">
+
       <?php if (isset($_POST["q"]) || isset($_GET["q"])) { ?>
-      短縮に成功しました!<br>
+      短縮に成功しました!<?php $oldlen = strlen($_POST["q"]); $newlen = strlen($kekka); echo "(<b>{$oldlen}</b>文字 -> <b>{$newlen}</b>文字、<b>" . ($newlen / $oldlen * 100) . "</b>%の長さです！)"; ?><br>
       <input type='text' size='34' id='kekkatext' value='<?=$kekka?>'>
-      <a href='javascript:window.open(_("kekkatext").value,"_blank");'><input type='button' value='開く'></a>
-      <a href='javascript:atk.copy(_("kekkatext").value);alert("コピーしました！");'><input type='button' value='コピー'></a>
+      <a href='javascript:void(window.open(_("kekkatext").value, "_blank"))'><input type='button' value='開く' style="height:30px;width:70px;"></a><br>
+      <a href='javascript:void(atk.copy(_("kekkatext").value),_("beforecopy").innerText=" コピーしました！");'><input type='button' value='コピー' style="height:30px;width:200px;"></a><span id="beforecopy"></span>
       <hr color="#363636" size="2">
       <?php } ?>
+
       </div>
       <p>Thank you for using!</p>
       <br>
+      <div align="center"><?=Get_Last()?></div>
     </div>
   </body>
 </html>

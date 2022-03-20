@@ -48,13 +48,13 @@
         <form action="" method="POST" id="td">
           <textarea rows="14" id="save" style="margin: 0px; height: 140px; width: 542px;"></textarea>
           <br>
-          <input type="submit" value="デコード">
-          <input type="button" value="クリア" id="clear">
+          <input type="submit" style="height:60px;width:140px;" value="デコード">
+          <input type="button" style="height:60px;width:140px;" value="クリア" id="clear">
           <hr size="1" color="#7fffd4">
           ↓↓結果↓↓<br>
           <textarea rows="14" id="savek" style="margin: 0px; height: 140px; width: 542px;"></textarea>
           <br>
-          <input type="button" value="コピー" id="copy"><span id="copyk"></span>
+          <input type="button" value="コピー" id="copy" style="height:60px;width:140px;"><span id="copyk"></span>
         </form>
     </div>
     <br>
