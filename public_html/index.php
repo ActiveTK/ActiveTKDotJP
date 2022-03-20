@@ -8,6 +8,22 @@
   // 設定ファイル読み込み
   require "/home/activetk/require/Config.php";
 
+  // ヘッダー処理
+  if ( empty( $_SERVER['HTTPS'] ) ) {
+    header( "Location: https://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}" );
+    die();
+  }
+  header( "Strict-Transport-Security: max-age=63072000; includeSubdomains; preload" );
+  if ($_SERVER['HTTP_HOST'] == "activetk.jp") {
+    header( "Location: https://www.activetk.jp{$_SERVER['REQUEST_URI']}" );
+    die();
+  }
+  header( "X-Frame-Options: deny" );
+  header( "X-XSS-Protection: 1; mode=block" );
+  header( "X-Content-Type-Options: nosniff" );
+  header( "X-Permitted-Cross-Domain-Policies: none" );
+  header( "Referrer-Policy: same-origin" );
+
   // スクリプト用のNonce生成関数
   function CreateNonce() {
     $bytes = openssl_random_pseudo_bytes( 18 );
@@ -52,6 +68,18 @@
       require_once( "./Tools/copyright/index.php" );
       exit();
     }
+    else if ( request_path == "tools/iframe" )
+    {
+      define( "nonce", "" );
+      require_once( "./Tools/iframe.php" );
+      exit();
+    }
+    else if ( request_path == "tools/windowsupdate" )
+    {
+      define( "nonce", "" );
+      require_once( "./Tools/windowsupdate.php" );
+      exit();
+    }
 
     // nonce生成
     CreateNonce();
@@ -69,6 +97,44 @@
       require_once( "./contact.php" );
     else if ( request_path == "report" )
     {
+      if ( isset( $_GET["fin"] ) )
+      {
+        ?>
+          <meta name="robots" content="noindex, nofollow">
+          <body style="background-color:#e6e6fa;">
+            <h1>報告を受け付けました。</h1>
+            <p><b>エラー(バグ)をご報告いただき、ありがとうございました。<br>このデータは、<a href="/privacy">プライバシーに関する声明</a>に基づき、サービスの改善に使用させていただきます。</b></p>
+            <h3><a href="/home">ホームへ戻る</a></h3>
+          </body>
+      <?php
+        exit();
+
+      }
+
+      if ( !isset( $_GET["data"] ) || empty( $_GET["data"] ) )
+        die( "<meta name='robots' content='noindex, nofollow'>エラー報告画面で、エラーが発生しました。 -> (HTTP)GET[\"data\"]　が定義されていない、又はnullです。" );
+
+      $LogFile = "/home/activetk/data/ActiveTKDotJP/UserReport.log";
+
+      $debuginfo = array();
+
+      $debuginfo["Time"] = date("Y/m/d - M (D) H:i:s");
+      $debuginfo["Time_Unix"] = microtime(true);
+
+      if ( isset( $_SERVER['REMOTE_ADDR'] ) )
+        $debuginfo["IP"] = $_SERVER['REMOTE_ADDR'];
+
+      if ( isset( $_SERVER['HTTP_USER_AGENT'] ) )
+        $debuginfo["UserAgent"] = $_SERVER['HTTP_USER_AGENT'];
+
+      $debuginfo["Error"] = $_GET["data"];
+
+      $a = fopen($LogFile, "a");
+      @fwrite( $a, json_encode( $debuginfo ) . "\n" );
+      fclose( $a );
+
+      header("Location: /report?fin");
+      exit();
 
     }
     else if ( request_path == "tools/qrcode" )
@@ -93,6 +159,8 @@
       require_once( "./Tools/leet2english.php" );
     else if ( request_path == "tools/paintweb" )
       require_once( "./Tools/paintweb.php" );
+    else if ( request_path == "tools/download" )
+      require_once( "./Tools/download.php" );
     else
       require_once( "./Error/404/index.php" );
   }
@@ -118,19 +186,19 @@
           <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="background-color:#6495ed;color:#080808;">
               <li class="nav-item">
-                <a class="nav-link active p-index__nav_item" aria-current="page" href="/home">Get Started - 使ってみる</a>
+                <a class="nav-link active p-index__nav_item" aria-current="page" href="/home">Get Started</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active p-index__nav_item" aria-current="page" href="/about">Learn More - 本サイトについて</a>
+                <a class="nav-link active p-index__nav_item" aria-current="page" href="/about">Learn More</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active p-index__nav_item" href="/license">License - 利用規約</a>
+                <a class="nav-link active p-index__nav_item" href="/license">License</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active p-index__nav_item" href="/privacy">Privacy - プライバシーに関する声明</a>
+                <a class="nav-link active p-index__nav_item" href="/privacy">Privacy</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active p-index__nav_item" href="/contact">Contact - 管理者について</a>
+                <a class="nav-link active p-index__nav_item" href="/contact">Contact</a>
               </li>
             </ul>
           </div>
@@ -158,5 +226,6 @@
     ?>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-V1CPYP07HP" nonce="<?=nonce?>"></script>
     <script nonce="<?=nonce?>">window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-V1CPYP07HP');</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2629549044897718" crossorigin="anonymous" nonce="<?=nonce?>"></script>
     <?php
   }

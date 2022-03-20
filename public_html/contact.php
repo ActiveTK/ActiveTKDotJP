@@ -60,7 +60,7 @@
       </h2>
       <h4>ダークウェブの実情に詳しい学生。</h4>
       <h4>得意な言語はC#、PHP、JavaScript。</h4>
-      <p><a href="https://twitter.com/ActiveTK5929" target="_blank">Twitter</a> ・ <a href="https://blog.activetk.jp/"target="_blank">ブログ</a> ・ <a href="https://github.com/ActiveTK"target="_blank">GitHub</a> ・ <a href="https://rinu.cf/pgp"target="_blank">PGP署名</a></p>
+      <p><a href="https://twitter.com/ActiveTK5929" target="_blank">Twitter</a> ・ <a href="https://www.youtube.com/c/ActiveTK" target="_blank">YouTube</a> ・ <a href="https://blog.activetk.jp/"target="_blank">ブログ</a> ・ <a href="https://github.com/ActiveTK"target="_blank">GitHub</a> ・ <a href="https://rinu.cf/pgp"target="_blank">PGP署名</a></p>
       <hr>
       <?=Get_Last()?>
     </div>

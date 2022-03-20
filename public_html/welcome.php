@@ -39,7 +39,6 @@
     <link rel="shortcut icon" href="https://www.activetk.jp/icon/index_192_192.ico" sizes="192x192">
     <link rel="apple-touch-icon-precomposed" href="https://www.activetk.jp/icon/index_150_150.ico">
     <script type="application/ld+json" nonce="<?=nonce?>">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Welcome","item":"https://www.activetk.jp/"}]}</script>
-    <script type="text/javascript" nonce="<?=nonce?>">var Ease={easeInOut:e=>e<.5?4*e*e*e:(e-1)*(2*e-2)*(2*e-2)+1},duration=500;addEventListener("DOMContentLoaded",()=>{document.querySelectorAll('a[href^="#"]').forEach(function(e){e.addEventListener("click",function(t){var n=e.getAttribute("href"),o=document.documentElement.scrollTop||document.body.scrollTop,r=document.getElementById(n.replace("#",""));if(r){t.preventDefault(),t.stopPropagation();var a=pageYOffset+r.getBoundingClientRect().top-115,i=performance.now(),d=function(e){var t=(e-i)/duration;t<1?(scrollTo(0,o+(a-o)*Ease.easeInOut(t)),requestAnimationFrame(d)):window.scrollTo(0,a)};requestAnimationFrame(d)}})})});</script>
     <script type="text/javascript" nonce="<?=nonce?>" src="https://code.activetk.jp/ActiveTK.min.js" charset="UTF-8"></script>
     <?php if ($issumaho) { ?><script src="https://www.activetk.jp/js/cotrld_76907q706306a0jpa6s9f7m39a8ba02ar6d5254je89ep9c4.js" nonce="<?=nonce?>"></script><?php } else {  ?><script src="https://www.activetk.jp/js/cotrld.js" nonce="<?=nonce?>"></script><?php } ?>
     <script defer src="https://rinu.cf/pv/index.php?token=activetkcfhome&callback=cotrld" nonce="<?=nonce?>"></script>
@@ -55,8 +54,7 @@
     </noscript>
     <?=Get_Header()?>
     <div align="center" class="mainobject" style="position:fixed;color:#000000;z-index:1;top:12%;left:0px;width:100%;">
-      <br>
-      <h1>ActiveTK.jpへようこそ！</h1>
+      <br><h1>ActiveTK.jpへようこそ！</h1>
       <div title="アクセスカウンター v2" id="pv"></div>
       <br>
       <h3>あなたの暮らしをチョコっと便利に。</h3>
@@ -64,7 +62,7 @@
       <br>
       <div>
         <a href="https://www.activetk.jp/home" class="btn btn--blue btn--border-double">
-          <h3 style="color:#212529;">&gt; Get Started - 使ってみる！</h3>
+          <h3 style="color:#212529;">&gt; Get Started</h3>
         </a>
       </div>
       <br>
