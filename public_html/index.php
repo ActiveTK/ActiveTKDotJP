@@ -181,7 +181,7 @@
     <div align="left" style="background-color:#6495ed;color:#080808;">
       <nav class="navbar navbar-expand-lg p-nextchatcolor" style="background-color:#6495ed;color:#080808;z-index:5;position:fixed;top:0px;left:0px;width:100%;height:12% !important;">
         <div class="container-fluid">
-          <span class="navbar-brand" href="#" title="WebTools">ActiveTK.jp</span>
+          <span class="navbar-brand" title="WebTools">ActiveTK.jp</span>
           <button class="navbar-toggler" id="toggler-button" type="button" data-bs-toggle="collapse" data-bs-target="navbar-toggler" aria-controls="navbar-toggler" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>

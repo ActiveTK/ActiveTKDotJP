@@ -60,7 +60,8 @@
       </h2>
       <h4>ダークウェブの実情に詳しい学生。</h4>
       <h4>得意な言語はC#、PHP、JavaScript。</h4>
-      <p><a href="https://twitter.com/ActiveTK5929" target="_blank">Twitter</a> ・ <a href="https://www.youtube.com/c/ActiveTK" target="_blank">YouTube</a> ・ <a href="https://blog.activetk.jp/"target="_blank">ブログ</a> ・ <a href="https://github.com/ActiveTK"target="_blank">GitHub</a> ・ <a href="https://rinu.cf/pgp"target="_blank">PGP署名</a></p>
+      <p><a href="https://twitter.com/ActiveTK5929" target="_blank">Twitter</a> ・ <a href="https://www.youtube.com/c/ActiveTK" target="_blank">YouTube</a> ・ <a href="https://blog.activetk.jp/"target="_blank">ブログ</a> ・ <a href="https://github.com/ActiveTK"target="_blank">GitHub</a> ・ <a href="m&#97;i&#108;t&#111;:w&#101;&#98;ma&#115;&#116;&#101;&#114;&#64;&#97;&#99;&#116;&#105;v&#101;&#116;k&#46;&#106;&#112;"target="_blank">メール</a> ・ <a href="https://rinu.cf/pgp"target="_blank">PGP署名</a></p>
+      <pre>※PGP暗号化されていないメールは返信しかねます。ご了承ください。</pre>
       <hr>
       <?=Get_Last()?>
     </div>
