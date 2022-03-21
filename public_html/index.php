@@ -34,6 +34,38 @@
     header( "Content-Security-Policy: script-src 'nonce-" . nonce . "' 'strict-dynamic' 'unsafe-eval';" );
   }
 
+  // 管理者への通知
+  function NotificationAdmin( string $title = "", string $str = "" ) {
+    try{
+      $body = '<body style="background-color:#e6e6fa;text:#363636;"><div align="center"><p>【' . htmlspecialchars($title) . '】</p><hr color="#363636" size="2">'. $str .
+      '<br><hr color="#363636" size="2"><font style="background-color:#06f5f3;">Copyright &copy; 2022 ActiveTK. All rights reserved.</font></div></body>';
+      mb_language("Japanese");
+      mb_internal_encoding("UTF-8");
+      define( "MAIL_SUBJECT", $title);
+      define( "MAIL_BODY", $body);
+      define( "MAIL_FROM_ADDRESS", "no-reply@activetk.jp");
+      define( "MAIL_FROM_NAME", "no-reply@activetk.jp");
+      define( "MAIL_HEADER",
+        "Content-Type: text/html; charset=UTF-8 \n".
+        "From: " . MAIL_FROM_NAME . "\n".
+        "Sender: " . MAIL_FROM_ADDRESS ." \n".
+        "Return-Path: " . MAIL_FROM_ADDRESS . " \n".
+        "Reply-To: " . MAIL_FROM_ADDRESS . " \n".
+        "Content-Transfer-Encoding: BASE64\n");
+      @mb_send_mail( ADMIN_MAIL_ADDRESS, MAIL_SUBJECT, MAIL_BODY, MAIL_HEADER, "-f ".MAIL_FROM_ADDRESS );
+    }
+    catch (Exception $e) { }
+  }
+
+  // var_dumpを取得する関数
+  function get_vardump($data) {
+    ob_start();
+    var_dump($data);
+    $str = ob_get_contents();
+    ob_end_clean();
+    return $str;
+  }
+
   // スマホ判定
   if (
       !preg_match( '/' . implode( '|', array( 'Android' ) ) . '/i', $_SERVER['HTTP_USER_AGENT']) &&
@@ -123,17 +155,22 @@
       $debuginfo["Time"] = date("Y/m/d - M (D) H:i:s");
       $debuginfo["Time_Unix"] = microtime(true);
 
-      if ( isset( $_SERVER['REMOTE_ADDR'] ) )
-        $debuginfo["IP"] = $_SERVER['REMOTE_ADDR'];
+      $debuginfo["IP"] = $_SERVER['REMOTE_ADDR'];
 
       if ( isset( $_SERVER['HTTP_USER_AGENT'] ) )
         $debuginfo["UserAgent"] = $_SERVER['HTTP_USER_AGENT'];
+      else
+        $debuginfo["UserAgent"] = "";
 
       $debuginfo["Error"] = $_GET["data"];
 
       $a = fopen($LogFile, "a");
       @fwrite( $a, json_encode( $debuginfo ) . "\n" );
       fclose( $a );
+
+      NotificationAdmin("エラーページの報告",
+      "<p>送信時刻: " . date("Y/m/d - M (D) H:i:s") . "</p><p>IPアドレス: " . $_SERVER['REMOTE_ADDR'] . "</p><p>UserAgent: " . $debuginfo["UserAgent"] . "</p>" .
+      "<hr color='#363636' size='2'><pre>" . htmlspecialchars(get_vardump(json_decode($_GET["data"]))) . "</pre><br>");
 
       header("Location: /report?fin");
       exit();
@@ -165,6 +202,10 @@
       require_once( "./Tools/download.php" );
     else if ( request_path == "tools/encrypt" )
       require_once( "./Tools/encrypt.php" );
+    else if ( request_path == "tools/info" )
+      require_once( "./Tools/info.php" );
+    else if ( request_path == "tools/tokutei" )
+      require_once( "./Tools/tokutei.php" );
     else if ( request_path == "400" )
       require_once( "./Error/400/index.php" );
     else if ( request_path == "403" )

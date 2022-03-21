@@ -2,7 +2,7 @@
 
   // 共通変数
   define( "Title", "Home" );
-  $dec = "無料で使える、様々なWEBツールをご提供させていただきます。[メモブログ|位置情報特定ツール|HackAll|URL短縮|ファイル解析|QRコード作成|..etc]";
+  $dec = "URL短縮、QRコード作成、位置情報特定、NextIP、画像形式変換、ファイル暗号化、URLエンコード、Base64エンコードなどの、無料で使える便利ツールを提供させていただきます。";
 
   // ツール表示
   function ViewTool( $ToolName, $ToolURL, $ToolDec ) {
@@ -68,6 +68,7 @@
       <h1>Home - ActiveTK.jp</h1>
       <br>
       <?=ViewTool( "URL短縮ツール「rinu.cf」", "https://www.activetk.jp/tools/urlmin", "URLを貼り付け、「短縮」を押すだけで簡単にURLを短縮できます。<br>Googleセーフブラウジングを用いた安全危険判定機能付きです。" )?>
+      <?=ViewTool( "位置情報特定ツール", "https://www.activetk.jp/tools/tokutei", "相手にリンクを開かせる事でIPアドレスなどを取得できるツールです。<br>スマホを盗まれた場合や、詐欺にあった場合などに使用してみてください。" )?>
       <?=ViewTool( "JustClock", "https://www.activetk.jp/tools/justclock", "日時を指定すると、その時刻に音を鳴らします。予定管理などに使用してみてください。" )?>
       <?=ViewTool( "QRコード作成ツール", "https://www.activetk.jp/tools/qrcode", "好きな文字列やURLを指定して2次元QRコードを作成できます。" )?>
       <?=ViewTool( "簡易現在時刻ビュワー", "https://www.activetk.jp/tools/time", "画面に大きく現在時刻を表示します。スクリーンセーバーにいかがでしょうか？" )?>
@@ -80,6 +81,7 @@
       <?=ViewTool( "URLデコーダー", "https://www.activetk.jp/tools/url-decode", "指定した文字列をURLデコードします。サーバーにアップロードされず、JavaScriptで処理するので安全です。" )?>
       <?=ViewTool( "Base64エンコーダー", "https://www.activetk.jp/tools/base64-encode", "指定した文字列をbase64エンコードします。サーバーにアップロードされず、JavaScriptで処理するので安全です。" )?>
       <?=ViewTool( "Base64デコーダー", "https://www.activetk.jp/tools/base64-decode", "指定した文字列をbase64デコードします。サーバーにアップロードされず、JavaScriptで処理するので安全です。" )?>
+      <?=ViewTool( "HTTP情報ビュワー", "https://www.activetk.jp/tools/info", "HTTPヘッダーなどの情報を確認できます。" )?>
       <?=ViewTool( "English2Leet", "https://www.activetk.jp/tools/english2leet", "英語の文字列を、Leetと呼ばれる「ハッカー語」に変換するツールです。" )?>
       <?=ViewTool( "Leet2English", "https://www.activetk.jp/tools/leet2english", "Leetと呼ばれる「ハッカー語」の文字列を英語に変換するツールです。" )?>
       <?=ViewTool( "ペイントWeb", "https://www.activetk.jp/tools/paintweb", "ページ上で絵を描くことができます。" )?>

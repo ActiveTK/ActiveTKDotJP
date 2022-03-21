@@ -7,7 +7,7 @@
     $dec = $_POST["contact_dec"];
     $name = $_POST["contact_name"];
     $mail = $_POST["contact_mail"];
-    $data = $_POST["contact_data"];
+    $datax = $_POST["contact_data"];
 
     $url = 'https://www.google.com/recaptcha/api/siteverify';
     $data = array(
@@ -35,21 +35,26 @@
     $debuginfo["Time"] = date("Y/m/d - M (D) H:i:s");
     $debuginfo["Time_Unix"] = microtime(true);
 
-    if ( isset( $_SERVER['REMOTE_ADDR'] ) )
-      $debuginfo["IP"] = $_SERVER['REMOTE_ADDR'];
+    $debuginfo["IP"] = $_SERVER['REMOTE_ADDR'];
       
     if ( isset( $_SERVER['HTTP_USER_AGENT'] ) )
       $debuginfo["UserAgent"] = $_SERVER['HTTP_USER_AGENT'];
+    else
+      $debuginfo["UserAgent"] = "";
 
     $debuginfo["Dec"] = $dec;
     $debuginfo["Name"] = $name;
     $debuginfo["Mail"] = $mail;
-    $debuginfo["Data"] = $data;
+    $debuginfo["Data"] = $datax;
 
     $a = fopen($LogFile, "a");
     @fwrite( $a, json_encode( $debuginfo ) . "\n" );
     fclose( $a );
 
+    NotificationAdmin("お問い合わせ: " . htmlspecialchars($dec),
+      "<p>送信時刻: " . date("Y/m/d - M (D) H:i:s") . "</p><p>IPアドレス: " . $_SERVER['REMOTE_ADDR'] . "</p><p>UserAgent: " . $debuginfo["UserAgent"] . "</p>" .
+      "<hr color='#363636' size='2'><p>名前: " . htmlspecialchars($name) . "</p><p>返信先メールアドレス: " . htmlspecialchars($mail) . "</p><p>内容</p><pre>" . htmlspecialchars($datax) . "</pre><br>");
+    
     ?>
         <meta name="robots" content="noindex, nofollow">
         <body style="background-color:#e6e6fa;">

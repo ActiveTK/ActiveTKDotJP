@@ -1,7 +1,7 @@
 <?php
 
   // 共通変数
-  $dec = "無料で使える、様々なWEBツールをご提供させていただきます。[メモブログ|位置情報特定ツール|HackAll|URL短縮|ファイル解析|QRコード作成|..etc]";
+  $dec = "あなたの暮らしをチョコっと便利に。無料で簡単に使える、様々なWEBツールをご提供させていただきます。安全安心の全オープンソースです！";
 
 ?>
 
@@ -10,7 +10,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="keywords" content="ActiveTK,activetk.jp,WEBツール,HackAll,位置情報特定ツール,IPアドレス特定博士">
+    <meta name="keywords" content="ActiveTK,activetk.jp,WEBツール,HackAll,位置情報特定ツール,URL短縮ツール">
     <title>Welcome | ActiveTK.jp</title>
     <meta name="author" content="ActiveTK.">
     <meta name="robots" content="All">
@@ -39,7 +39,7 @@
     <link rel="shortcut icon" href="https://www.activetk.jp/icon/index_192_192.ico" sizes="192x192">
     <link rel="apple-touch-icon-precomposed" href="https://www.activetk.jp/icon/index_150_150.ico">
     <script type="application/ld+json" nonce="<?=nonce?>">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Welcome","item":"https://www.activetk.jp/"}]}</script>
-    <script type="text/javascript" nonce="<?=nonce?>" src="https://code.activetk.jp/ActiveTK.min.js" charset="UTF-8"></script>
+    <script type="text/javascript" nonce="<?=nonce?>" src="https://code.activetk.jp/ActiveTK.only.min.js" charset="UTF-8"></script>
     <?php if ($issumaho) { ?><script src="https://www.activetk.jp/js/cotrld_76907q706306a0jpa6s9f7m39a8ba02ar6d5254je89ep9c4.js" nonce="<?=nonce?>"></script><?php } else {  ?><script src="https://www.activetk.jp/js/cotrld.js" nonce="<?=nonce?>"></script><?php } ?>
     <script defer src="https://rinu.cf/pv/index.php?token=activetkcfhome&callback=cotrld" nonce="<?=nonce?>"></script>
     <link href="https://www.activetk.jp/css/index.min.css" rel="stylesheet">
@@ -58,7 +58,7 @@
       <div title="アクセスカウンター v2" id="pv"></div>
       <br>
       <h3>あなたの暮らしをチョコっと便利に。</h3>
-      <h3>ActiveTK.jpでは、<b>様々な便利ツール</b>を全て無料で使用する事ができます。</h3>
+      <h4>ActiveTK.jpでは、<b>無料</b>で<b>簡単に使える</b>様々な<b>WEBツール</b>をご提供させていただきます。<br>安全安心の<b>全オープンソース</b>です！</h4>
       <br>
       <div>
         <a href="https://www.activetk.jp/home" class="btn btn--blue btn--border-double">
