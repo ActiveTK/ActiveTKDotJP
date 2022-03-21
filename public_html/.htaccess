@@ -1,5 +1,9 @@
 
+ErrorDocument 400 /Error/400/index.php
+ErrorDocument 403 /Error/403/index.php
 ErrorDocument 404 /Error/404/index.php
+ErrorDocument 413 /Error/413/index.php
+ErrorDocument 500 /Error/500/index.php
 
 RewriteEngine on
 

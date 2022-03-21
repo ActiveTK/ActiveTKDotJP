@@ -1,6 +1,65 @@
 <?php
 
-  define( "Title", "管理者について" );
+  define( "Title", "お問い合わせ" );
+
+  if (isset($_POST["license_readme"]) && $_POST["license_readme"] == "ok" && isset($_POST[ 'g-recaptcha-response' ]) && isset($_POST["contact_dec"]) && isset($_POST["contact_name"]) && isset($_POST["contact_mail"]) && isset($_POST["contact_data"]))
+  {
+    $dec = $_POST["contact_dec"];
+    $name = $_POST["contact_name"];
+    $mail = $_POST["contact_mail"];
+    $data = $_POST["contact_data"];
+
+    $url = 'https://www.google.com/recaptcha/api/siteverify';
+    $data = array(
+      'secret' => Google_ReCap_ACTIVETKDOTJP_SecretKey,
+      'response' => $_POST[ 'g-recaptcha-response' ]
+    );
+    $context = array(
+      'http' => array(
+        'method'  => 'POST',
+        'header'  => implode("\r\n", array('Content-Type: application/x-www-form-urlencoded',)),
+        'content' => http_build_query($data)
+      )
+    );
+    $api_response = file_get_contents($url, false, stream_context_create($context));
+    $result = json_decode( $api_response );
+    if ( $result->success ) {}
+    else {
+      die("<p>私はロボットではありませんにチェックを入れてください。</p>");
+    }
+
+    $LogFile = "/home/activetk/data/ActiveTKDotJP/Contact.log";
+
+    $debuginfo = array();
+
+    $debuginfo["Time"] = date("Y/m/d - M (D) H:i:s");
+    $debuginfo["Time_Unix"] = microtime(true);
+
+    if ( isset( $_SERVER['REMOTE_ADDR'] ) )
+      $debuginfo["IP"] = $_SERVER['REMOTE_ADDR'];
+      
+    if ( isset( $_SERVER['HTTP_USER_AGENT'] ) )
+      $debuginfo["UserAgent"] = $_SERVER['HTTP_USER_AGENT'];
+
+    $debuginfo["Dec"] = $dec;
+    $debuginfo["Name"] = $name;
+    $debuginfo["Mail"] = $mail;
+    $debuginfo["Data"] = $data;
+
+    $a = fopen($LogFile, "a");
+    @fwrite( $a, json_encode( $debuginfo ) . "\n" );
+    fclose( $a );
+
+    ?>
+        <meta name="robots" content="noindex, nofollow">
+        <body style="background-color:#e6e6fa;">
+          <h1>お問い合わせを受け付けました。</h1>
+          <p><b>指定されたメールアドレスに返信をお返しすると共に、このデータは、<a href="/privacy">プライバシーに関する声明</a>に基づき、サービスの改善に使用させていただきます。<br>また、返信は一週間程度の時間を要する場合がございますので、ご了承ください。</b></p>
+          <h3><a href="/home">ホームへ戻る</a></h3>
+        </body>
+      <?php
+    exit();
+  }
 
 ?>
 
@@ -41,6 +100,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <style>a{color:#00ff00;position:relative;display:inline-block;transition:.3s;}a::after{position:absolute;bottom:0;left:50%;content:'';width:0;height:2px;background-color:#31aae2;transition:.3s;transform:translateX(-50%);}a:hover::after{width:100%;}</style>
     <?=Get_Default()?>
+    <script src="https://www.google.com/recaptcha/api.js" nonce="<?=$nonce?>"></script>
   </head>
   <body style="background-color:#e6e6fa;">
     <noscript>
@@ -51,17 +111,31 @@
     <?=Get_Header()?>
     <div align="center" class="mainobject" style="position:fixed;overflow:scroll;color:#000000;z-index:1;top:12%;left:0px;width:100%;height:88%;">
       <br>
-      <h1>管理者 - ActiveTK.jp</h1>
+      <h1>お問い合わせ - ActiveTK.jp</h1>
+      <p>本サイトに関する質問・要望・バグの報告などは、以下のフォームから行えます。</p>
       <br>
       <hr>
-	  <h2>
-        <img style="width:40px;height:40px;" src="https://www.activetk.jp/icon/activetk.png">
-        ActiveTK.
-      </h2>
-      <h4>ダークウェブの実情に詳しい学生。</h4>
-      <h4>得意な言語はC#、PHP、JavaScript。</h4>
-      <p><a href="https://twitter.com/ActiveTK5929" target="_blank">Twitter</a> ・ <a href="https://www.youtube.com/c/ActiveTK" target="_blank">YouTube</a> ・ <a href="https://blog.activetk.jp/"target="_blank">ブログ</a> ・ <a href="https://github.com/ActiveTK"target="_blank">GitHub</a> ・ <a href="m&#97;i&#108;t&#111;:w&#101;&#98;ma&#115;&#116;&#101;&#114;&#64;&#97;&#99;&#116;&#105;v&#101;&#116;k&#46;&#106;&#112;"target="_blank">メール</a> ・ <a href="https://rinu.cf/pgp"target="_blank">PGP署名</a></p>
-      <pre>※PGP暗号化されていないメールは返信しかねます。ご了承ください。</pre>
+	  <form action='' method='POST' id="contact">
+        お問い合わせの種類:
+        <select name="contact_dec" id="contact_dec" required>
+          <option value="ツールに関する質問">ツールに関する質問</option>
+          <option value="ツールの追加の要望">ツールの追加の要望</option>
+          <option value="バグの報告">バグの報告</option>
+          <option value="その他">その他</option>
+        </select>(必須)<br><br>
+        お名前又はニックネーム: <input type='text' name='contact_name' style="height:20px;width:200px;" placeholder='お名前' required>(必須)<br>
+        ご連絡先のメールアドレス: <input type='email' name='contact_mail' style="height:20px;width:200px;" placeholder='メールアドレス' pattern=".+\.[a-zA-Z0-9][a-zA-Z0-9-]{0,61}[a-zA-Z0-9]" required>(必須)<br><br>
+        【お問い合わせ内容】<br>
+        <textarea name="contact_data" placeholder="内容をこちらへ入力してください"  style="height:200px;width:320px;"></textarea><br>
+        <pre>※本フォーム内に、個人情報を入力しないでください。</pre>
+        <br>
+        <label><input type="checkbox" name="license_readme" value="ok" style="height:20px;width:20px;" required> 私は、本サイトの<a href="/license" target="_blank">利用規約</a>並びに<a href="/privacy" target="_blank">プライバシーに関する声明</a>を読み、理解しました。(必須)</label><br><br>
+        <div class="g-recaptcha" data-sitekey="6Lf4_PgeAAAAACJZqNQYnXLHo2n1lO2MBQoOD81M"></div><br>
+        <input type="submit" style="height:60px;width:140px;" value="送信">
+        <br>
+        報告された情報は<a href="/privacy" target="_blank">プライバシーに関する声明</a>に従って処理され、サービスの改善に使用させていただきます。<br>
+        また、入力されたメールアドレスが本件お問い合わせ以外に使用される事は絶対にありません。
+      </form>
       <hr>
       <?=Get_Last()?>
     </div>

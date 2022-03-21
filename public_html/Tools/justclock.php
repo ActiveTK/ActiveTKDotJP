@@ -30,7 +30,7 @@
         _("Data").innerHTML = "";
         for (var i = 0, length = localStorage.length; i < length; ++i) {
           var unixtime = localStorage.key(i);
-          if (unixtime == "JUSTCLOCK_ALERT")
+          if (isNaN(unixtime))
             continue;
           var info = localStorage.getItem(unixtime);
           var date = new Date(unixtime * 1000);
@@ -130,13 +130,13 @@
       <form action='' method='POST' onsubmit='window.justtime.onsubmit2AddData();return false;' align="center">
         <h3>通知する予定を追加</h3>
         日時: <br>
-        <input type="number" style="width:60px;" id="year" value="2022">年
-        <input type="number" style="width:40px;" id="mon" value="03">月
-        <input type="number" style="width:40px;" id="day" value="19">日
+        <input type="number" style="width:60px;" id="year" value="<?=date("Y")?>">年
+        <input type="number" style="width:40px;" id="mon" value="<?=date("m")?>">月
+        <input type="number" style="width:40px;" id="day" value="<?=date("d")?>">日
         <br>
-        <input type="number" style="width:40px;" id="hour" value="16">時
-        <input type="number" style="width:40px;" id="min" value="52">分
-        <input type="number" style="width:40px;" id="sec" value="19">秒
+        <input type="number" style="width:40px;" id="hour" value="<?=date("H")?>">時
+        <input type="number" style="width:40px;" id="min" value="<?=date("i")?>">分
+        <input type="number" style="width:40px;" id="sec" value="<?=date("s")?>">秒
         <br><br>
         予定の詳細: <input type="text" size="60" id="info">
         <br><br>

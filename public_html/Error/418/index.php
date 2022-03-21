@@ -1,14 +1,14 @@
 <?php
 
   /*!
-   * HTTPステータスコード 404 を表示します。
+   * HTTPステータスコード 418 を表示します。
    */
 
-  http_response_code( 404 );
-  header( "HTTP/1.1 404 Not Found" );
+  http_response_code( 418 );
+  header( "HTTP/1.1 418 I am a teapot." );
   header( "Content-Type: text/html;charset=UTF-8" );
 
-  $title = "【404】Not Found - ページが見つかりませんでした。";
+  $title = "【418】I’m a teapot.";
 
   $ErrorInfo = array();
   $ErrorInfo["Type"] = "HTTP.ERR_NOT_FOUND";
@@ -40,14 +40,14 @@
       <br>
       <div align="center">
         <span style="background-color:#e6e6fa;text:#363636;text-align:center;vertical-align:middle;">
-          <h1>【404】お探しのページが見つかりませんでした。</h1>
+          <h1>【418】I’m a teapot.</h1>
         </span>
       </div>
       <div align="center" style="width:95%;">
         <hr size="1" color="#7fffd4">
         <div align="center" style="width:70%;vertical-align:middle;text-align:center;">
           <b>ご迷惑をおかけしてしまい、申し訳ございません。</b><br>
-          <b>このエラーは、お探しのページが存在しない、又は既に削除されている場合に発生します。</b><br><br>
+          <b>このエラーは、<a href="https://ja.wikipedia.org/wiki/Hyper_Text_Coffee_Pot_Control_Protocol" target="_blank">HTCPCP</a>のページへHTTPリクエストを受け付けた場合に発生します。</b><br><br>
           <a href="/home" class="btn btn--lime btn--cubic btn--shadow">ホームへ戻る</a>
           <a href="/report?data=<?=rawurlencode(json_encode($ErrorInfo))?>" class="btn btn--orange btn--cubic btn--shadow">エラーを報告</a>
         </div>

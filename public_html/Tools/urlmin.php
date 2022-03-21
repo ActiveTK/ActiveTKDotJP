@@ -227,7 +227,7 @@
     <div align='center'>
       <h1>安全危険判定機能付き！URL短縮サービス</h1>
       <p>下のテキストボックスにURLを入力して、「短縮！」を押すと簡単にURLを短くする事ができます。</p>
-      <p>Google社の提供するGoogle セーフブラウジングに対応しており、シンプルなUIで簡単にURLを短縮できるのが特徴です！</p>
+      <p>Google社の提供するGoogle セーフブラウジングに対応しており、シンプルなUIで簡単かつ安全にURLを短縮できるのが特徴です！</p>
       <br>
       <hr color="#363636" size="2">
       <form action='' method='POST'>

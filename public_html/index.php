@@ -95,6 +95,8 @@
       require_once( "./privacy.php" );
     else if ( request_path == "contact" )
       require_once( "./contact.php" );
+    else if ( request_path == "developer" )
+      require_once( "./developer.php" );
     else if ( request_path == "report" )
     {
       if ( isset( $_GET["fin"] ) )
@@ -163,6 +165,16 @@
       require_once( "./Tools/download.php" );
     else if ( request_path == "tools/encrypt" )
       require_once( "./Tools/encrypt.php" );
+    else if ( request_path == "400" )
+      require_once( "./Error/400/index.php" );
+    else if ( request_path == "403" )
+      require_once( "./Error/403/index.php" );
+    else if ( request_path == "404" )
+      require_once( "./Error/404/index.php" );
+    else if ( request_path == "418" )
+      require_once( "./Error/418/index.php" );
+    else if ( request_path == "500" )
+      require_once( "./Error/500/index.php" );
     else
       require_once( "./Error/404/index.php" );
   }
@@ -198,6 +210,9 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link active p-index__nav_item" href="/privacy">Privacy</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active p-index__nav_item" href="/developer">Developer</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link active p-index__nav_item" href="/contact">Contact</a>
