@@ -88,6 +88,7 @@
       <?=ViewTool( "Iframe君", "https://www.activetk.jp/tools/iframe", "指定されたページをiframeで表示します。" )?>
       <?=ViewTool( "Windows Update", "https://www.activetk.jp/tools/windowsupdate", "WindowsUpdate風のスクリーンセーバーです。" )?>
       <?=ViewTool( "URLダウンロードツール", "https://www.activetk.jp/tools/download", "iPadやスマホなどで、ファイルを「プレビューせずに」ダウンロードする事が出来ます。" )?>
+      <?=ViewTool( "ハッシュ(md5、sha256、sha364、sha512)計算ツール", "https://www.activetk.jp/tools/hash", "オンラインで様々な種類のハッシュを計算します。<br>JavaScriptで処理されるのでサーバーにアップロードする必要が無く、安全です。" )?>
       <?=Get_Last()?>
     </div>
     <script nonce="<?=nonce?>" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

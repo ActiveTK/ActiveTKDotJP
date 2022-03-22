@@ -206,6 +206,10 @@
       require_once( "./Tools/info.php" );
     else if ( request_path == "tools/tokutei" )
       require_once( "./Tools/tokutei.php" );
+    else if ( request_path == "tools/speedtest" )
+      require_once( "./Tools/speedtest.php" );
+    else if ( request_path == "tools/hash" )
+      require_once( "./Tools/hash.php" );
     else if ( request_path == "400" )
       require_once( "./Error/400/index.php" );
     else if ( request_path == "403" )
