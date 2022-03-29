@@ -1,5 +1,7 @@
 <?php
 
+  header("Location: https://profile.activetk.jp/", true, 301);
+  exit();
   define( "Title", "管理者について" );
 
 ?>

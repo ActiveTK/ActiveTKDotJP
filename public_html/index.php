@@ -9,11 +9,12 @@
   require "/home/activetk/require/Config.php";
 
   // ヘッダー処理
-  if ( empty( $_SERVER['HTTPS'] ) ) {
+  if ( empty( $_SERVER['HTTPS'] ) && !isset( $_GET["no-ssl"] ) ) {
     header( "Location: https://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}" );
     die();
   }
-  header( "Strict-Transport-Security: max-age=63072000; includeSubdomains; preload" );
+  else if ( !isset( $_GET["no-ssl"] ) )
+    header( "Strict-Transport-Security: max-age=63072000; includeSubdomains; preload" );
   if ($_SERVER['HTTP_HOST'] == "activetk.jp") {
     header( "Location: https://www.activetk.jp{$_SERVER['REQUEST_URI']}" );
     die();
@@ -210,6 +211,10 @@
       require_once( "./Tools/speedtest.php" );
     else if ( request_path == "tools/hash" )
       require_once( "./Tools/hash.php" );
+    else if ( request_path == "tools/ruijyou" )
+      require_once( "./Tools/ruijyou.php" );
+    else if ( request_path == "tools/downchecker" )
+      require_once( "./Tools/downchecker.php" );
     else if ( request_path == "400" )
       require_once( "./Error/400/index.php" );
     else if ( request_path == "403" )
