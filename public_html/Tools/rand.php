@@ -29,10 +29,10 @@
     <meta name="thumbnail" content="https://www.activetk.jp/icon/index.jpg">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="【パスワード用】疑似乱数生成ツール - ActiveTK.jp">
-    <meta name="twitter:description" content="QLコード作成ツールです。">
+    <meta name="twitter:description" content="パスワード用途にも安心して使える、疑似乱数生成ツールです。">
     <meta name="twitter:image:src" content="https://www.activetk.jp/icon/index.jpg">
     <meta property="og:title" content="【パスワード用】疑似乱数生成ツール - ActiveTK.jp">
-    <meta property="og:description" content="QLコード作成ツールです。">
+    <meta property="og:description" content="パスワード用途にも安心して使える、疑似乱数生成ツールです。">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.activetk.jp/tools/QL-MAKE.php">
     <meta property="og:site_name" content="【パスワード用】疑似乱数生成ツール - ActiveTK.jp">

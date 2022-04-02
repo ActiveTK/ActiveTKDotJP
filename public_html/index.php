@@ -80,7 +80,14 @@
   // リクエスト処理
   if ( isset( $_GET["request"] ) && $_GET["request"] != "")
   {
-    define( "request_path", strtolower( $_GET["request"]) );
+
+    if ( substr( $_GET["request"] , -1) == "/" )
+    {
+      header( "Location: https://www.activetk.jp/" . strtolower( substr( $_GET["request"], 0, -1 ) ), true, 301 );
+      exit();
+    }
+    else
+      define( "request_path", strtolower( $_GET["request"]) );
 
     // nonce無しのURIだけ処理
     if ( request_path == "tools/justclock" )
@@ -215,6 +222,8 @@
       require_once( "./Tools/ruijyou.php" );
     else if ( request_path == "tools/downchecker" )
       require_once( "./Tools/downchecker.php" );
+    else if ( request_path == "tools/learn" )
+      require_once( "./Tools/learn.php" );
     else if ( request_path == "400" )
       require_once( "./Error/400/index.php" );
     else if ( request_path == "403" )
@@ -240,7 +249,7 @@
   function Get_Header() {
   ?>
 
-    <div align="left" style="background-color:#6495ed;color:#080808;">
+    <div align="left" style="background-color:#6495ed;color:#080808;" id="headtitles">
       <nav class="navbar navbar-expand-lg p-nextchatcolor" style="background-color:#6495ed;color:#080808;z-index:5;position:fixed;top:0px;left:0px;width:100%;height:12% !important;">
         <div class="container-fluid">
           <span class="navbar-brand" title="WebTools">ActiveTK.jp</span>

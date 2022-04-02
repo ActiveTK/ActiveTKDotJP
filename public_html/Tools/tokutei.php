@@ -53,7 +53,7 @@
     <noscript><div title="NO SCRIPT ERROR" style="background-color:#404ff0;" align="center"><font color="#ff4500"><h1>No JavaScript Error.</h1></font></div></noscript>
     <div align="center">
       <h1>位置情報特定ツール v2</h1>
-      <div title="アクセスカウンター" id="pv"></div>
+      <div title="アクセスカウンター" id="pv" style="display:none;"></div>
       <p>本ツールは、相手にリンクを開かせる事でIPアドレスなどを取得できるツールです。<br>
       スマホを盗まれた場合や、詐欺にあった場合などに使用してみてください。</p>
       <?php /* <p>本ツールの使い方については、<a href="https://tokutei.cf/admin/thankyou.php" target="_blank">こちら</a>をご覧ください。</p> */ ?>
