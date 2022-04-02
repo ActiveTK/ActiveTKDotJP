@@ -43,6 +43,36 @@
     echo json_encode($quesarr);
     exit();
   }
+  else if (isset($_GET["publish"]))
+  {
+    $dataarr = explode("\n", str_replace(array("\r\n","\r"), "\n", $_POST["quesdata"]));
+    $quesarr = array('Title'=>htmlspecialchars($_POST["title"]), 'CreateTime'=>time(), 'CreateUserName'=>htmlspecialchars($_POST["createuser"]));
+    $quesarr['Data'] = array();
+    foreach($dataarr as $value)
+    {
+      if ($value == "")
+        continue;
+      $value = htmlspecialchars(trim($value));
+      $datas = explode(':', $value);
+      $ques = $datas[0];
+      $ans = $datas[1];
+      $quesarr['Data'][$ques] = $ans;
+    }
+
+    $json = json_encode($quesarr);
+
+    if ( isset( $_SERVER['HTTP_USER_AGENT'] ) )
+      $UserAgent = $_SERVER['HTTP_USER_AGENT'];
+    else
+      $UserAgent = "";
+
+    NotificationAdmin("公開暗記ファイル一覧への追加の申請",
+      "<p>送信時刻: " . date("Y/m/d - M (D) H:i:s") . "</p><p>IPアドレス: " . $_SERVER['REMOTE_ADDR'] . "</p><p>UserAgent: " . htmlspecialchars($UserAgent) . "</p>" .
+      "<hr color='#363636' size='2'><p>タイトル: " . htmlspecialchars($_POST["title"]) . "</p><p>ユーザー名: " . htmlspecialchars($_POST["createuser"]) . "</p>" . 
+      "<hr color='#363636' size='2'><br><pre>" . htmlspecialchars($_POST["quesdata"]) . "</pre><br><hr color='#363636' size='2'><br><pre>" . $json . "</pre><br>");
+
+    exit();
+  }
   else if (isset($_GET["create-new"]) && $_GET["create-new"] == "true")
   {
       $title = "暗記ファイルを作成 | " . $title;
@@ -116,6 +146,24 @@
         _("returnback").onclick = function() {
           window.location.href = "?";
         }
+        _("publishreq").onclick = function() {
+          if (!confirm("この暗記ファイルを公開暗記ファイル一覧へ追加してもよろしいでしょうか？\nなお、公開が認められた場合には誰にでもファイルを閲覧できるようになります。"))
+            return;
+          $.ajax({
+            url: "?publish",
+            type: "POST",
+            data: new FormData($("#getnew").get(0)),
+            cache: !1,
+            contentType: !1,
+            processData: !1,
+            dataType: "html",
+            timeout: 5000,
+          })
+          .done(function(data) {
+            alert("公開暗記ファイル一覧への追加を申請しました！\n取り消しは「お問い合わせ」から行ってください。");
+          })
+          .fail(function() { alert("通信に失敗しました。。。"); });
+        }
       }
 
     </script>
@@ -138,6 +186,8 @@
         <textarea rows="14" id="jsondata" style="margin:0px;height:140px;width:542px;"></textarea>
         <br>
         <input type="button" value="ダウンロード" id="download" style="height:60px;width:140px;">
+        <input type="button" value="公開暗記ファイル一覧への追加を申請" id="publishreq" style="height:60px;width:340px;">
+        <br><br>
         <input type="button" value="メインページに戻る" id="returnback" style="height:60px;width:140px;">
       </form>
     </div>
@@ -399,10 +449,12 @@
       <hr size="1" color="#7fffd4">
       <h2>暗記ファイルを作成は<a href="?create-new=true">[こちら]</a>から行えます(^///^)</h2>
       <hr size="1" color="#7fffd4">
-      <h2>【暗記ファイル一覧】</h2>
+      <h2>【公開暗記ファイル一覧】</h2>
       <p>算数・数学</p>
       <li><a href="?download=math_10-20_ruijyou.learn.json">10～20の累乗</a></li>
       <li><a href="?download=math_pi-50len.learn.json">円周率50桁</a></li>
+      <p>その他 ゲーム・アニメ・娯楽など</p>
+      <li><a href="?download=enjoy_stpr_members.learn.json">すとぷりメンバー当てクイズ！</a></li>
     </div>
     <br>
     <hr size="1" color="#7fffd4">
