@@ -11,7 +11,9 @@
   if (isset($_GET["download"]))
   {
     $pPath = "/home/activetk/activetk.jp/uploads/".basename($_GET["download"]);
-    if (!is_readable($pPath)) { exit("ファイルを読み込めませんでした。注意:一度ダウンロードされたファイルは削除されます。"); }
+    if (!is_readable($pPath) ||
+      empty($p) || $p == "/" // 利用者様のご指摘で追加させていただきました。
+    ) { exit("ファイルを読み込めませんでした。注意:一度ダウンロードされたファイルは削除されます。"); }
     if (preg_match('/MSIE (\d{1,2})\.\d;/', getenv('HTTP_USER_AGENT'), $matchAry))
     {
       header('X-Download-Options: noopen');
