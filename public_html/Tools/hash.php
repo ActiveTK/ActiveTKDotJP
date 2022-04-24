@@ -1,5 +1,5 @@
 <?php
-  $title = "ハッシュ(md5、sha256、sha364、sha512)計算ツール | ActiveTK.jp";
+  $title = "ハッシュ(md5、sha1、sha256、sha364、sha512)計算ツール | ActiveTK.jp";
   $dec = "オンラインで様々な種類のハッシュを計算します。JavaScriptで処理されるのでサーバーにアップロードする必要が無く、安全です。";
   $root = "https://www.activetk.jp/";
   $url = "{$root}tools/hash";

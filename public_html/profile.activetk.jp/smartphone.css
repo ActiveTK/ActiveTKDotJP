@@ -1,0 +1,55 @@
+.main {
+        text-align: center;
+        height: 100%;
+        width: 100%;
+        top: 0px;
+        left: 0px;
+        position: relative;
+      }
+      .dec {
+        position: absolute;
+        top: 100%;
+        left: 0px;
+        height: 100%;
+        width: 100%;
+        text-align: center;
+      }
+      .history {
+        position: absolute;
+        top: 200%;
+        left: 0px;
+        height: 100%;
+        width: 100%;
+        text-align: center;
+      }
+      .links {
+        position: absolute;
+        top: 300%;
+        left: 0px;
+        height: 100%;
+        width: 100%;
+        text-align: center;
+      }
+      .superbig {
+        font-size: 4rem;
+      }
+      .big {
+        font-size: 2.5rem;
+      }
+      .littlebig {
+        font-size: 1.5rem;
+      }
+      .superlittlebig {
+        font-size: 1rem;
+      }
+      .command {
+        background-color: #000000;
+        color: #008800;
+      }
+      .underline {
+        background: linear-gradient(transparent 70%, #66CCFF 0%);
+      }
+      .welcomemsg {
+        background: linear-gradient(to right, Magenta, yellow, Cyan, Magenta) 0% center/200%;
+        animation: .welcomemsg 2s linear infinite;
+      }

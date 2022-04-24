@@ -6,12 +6,10 @@ ErrorDocument 413 /Error/413/index.php
 ErrorDocument 500 /Error/500/index.php
 
 RewriteEngine on
-
 RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{HTTP_HOST} ^www\.activetk\.jp$ [OR]
+RewriteCond %{HTTP_HOST} ^activetk\.jp$
 RewriteRule (.*) index.php/?%{QUERY_STRING}&request=$1 [L]
-
-RewriteCond %{THE_REQUEST} ^GET\ !-f
-RewriteRule ^(.*)index.php/?(.*)$ https://www.activetk.jp/$1$2 [R=301,L,NE]
 
 <Files ~ "^(\.)">
 deny from all

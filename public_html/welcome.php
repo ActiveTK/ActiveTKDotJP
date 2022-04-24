@@ -40,6 +40,30 @@
     <link rel="apple-touch-icon-precomposed" href="https://www.activetk.jp/icon/index_150_150.ico">
     <script type="application/ld+json" nonce="<?=nonce?>">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Welcome","item":"https://www.activetk.jp/"}]}</script>
     <script type="text/javascript" nonce="<?=nonce?>" src="https://code.activetk.jp/ActiveTK.only.min.js" charset="UTF-8"></script>
+    <script type="text/javascript" nonce="<?=nonce?>">
+    /*
+      document.addEventListener("DOMContentLoaded", function() { 
+      
+        _("mainobject").style.display = 'none';
+        _("headtitles").style.display = 'none';
+        _("staticobj").style.display = 'block';
+
+        window.textsize = 1;
+        window.bebigger = setInterval(() => {
+          window.textsize += 0.1;
+          _("bigtext").style = "font-size:" + window.textsize + "rem;";
+          if (window.textsize > 3)
+          {
+            _("mainobject").style.display = 'block';
+            _("headtitles").style.display = 'block';
+            _("staticobj").style.display = 'none';
+            clearInterval(window.bebigger);
+          }
+        }, 80);
+
+      });
+    */
+    </script>
     <?php if ($issumaho) { ?><script src="https://www.activetk.jp/js/cotrld_76907q706306a0jpa6s9f7m39a8ba02ar6d5254je89ep9c4.js" nonce="<?=nonce?>"></script><?php } else {  ?><script src="https://www.activetk.jp/js/cotrld.js" nonce="<?=nonce?>"></script><?php } ?>
     <script defer src="https://rinu.cf/pv/index.php?token=activetkcfhome&callback=cotrld" nonce="<?=nonce?>"></script>
     <link href="https://www.activetk.jp/css/index.min.css" rel="stylesheet">
@@ -52,10 +76,15 @@
         <h1>No JavaScript Error.</h1>
       </div>
     </noscript>
+    <div align="center" style="position:fixed;color:#000000;z-index:1;top:0%;left:0px;width:100%;height:100%;display:none;" id="staticobj">
+      <br><br><br><br><br><br>
+      <h1 id="bigtext">Welcome</h1>
+      <br>
+    </div>
     <?=Get_Header()?>
-    <div align="center" class="mainobject" style="position:fixed;color:#000000;z-index:1;top:12%;left:0px;width:100%;">
+    <div align="center" class="mainobject" style="position:fixed;color:#000000;z-index:1;top:12%;left:0px;width:100%;" id="mainobject">
       <br><h1>ActiveTK.jpへようこそ！</h1>
-      <div title="アクセスカウンター v2" id="pv"></div>
+      <div title="アクセスカウンター v2" id="pv" style="display:none;"></div>
       <br>
       <h3>あなたの暮らしをチョコっと便利に。</h3>
       <h4>ActiveTK.jpでは、<b>無料</b>で<b>簡単に使える</b>様々な<b>WEBツール</b>をご提供させていただきます。<br>安全安心の<b>全オープンソース</b>です！</h4>

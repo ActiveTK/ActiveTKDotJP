@@ -122,11 +122,11 @@
               $fn = pathinfo($oldfilename)['filename'] . "." . $nexttype;
               $fnt = "/home/activetk/activetk.jp/uploads/" . basename(pathinfo($oldfilename)['filename']) . "." . $nexttype;
               if ($_POST["totype"] == "png")
-                imagepng($image, $fnt, 90);
+                imagepng($image, $fnt, 9);
               else if ($_POST["totype"] == "jpg")
-                imagejpeg($image, $fnt, 90);
+                imagejpeg($image, $fnt, 9);
               else if ($_POST["totype"] == "gif")
-                imagegif($image, $fnt, 90);
+                imagegif($image, $fnt, 9);
               $memory = convert(Memory_get_usage()).", ".Memory_get_usage()."Byte";
               }
               @imagedestroy($image);

@@ -126,6 +126,7 @@
           <option value="ツールに関する質問">ツールに関する質問</option>
           <option value="ツールの追加の要望">ツールの追加の要望</option>
           <option value="バグの報告">バグの報告</option>
+          <option value="法的なご相談">法的なご相談</option>
           <option value="その他">その他</option>
         </select>(必須)<br><br>
         お名前又はニックネーム: <input type='text' name='contact_name' style="height:20px;width:200px;" placeholder='お名前' required>(必須)<br>

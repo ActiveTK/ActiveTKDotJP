@@ -200,9 +200,16 @@
     <?php
       exit();
 
-  } else if (isset($_FILES['learnfile']) && is_uploaded_file($_FILES['learnfile']['tmp_name'])) {
+  } else if (
+    (isset($_FILES['learnfile']) && is_uploaded_file($_FILES['learnfile']['tmp_name'])) ||
+    (isset($_GET["runas"]) && file_exists("/home/activetk/activetk.jp/public_html/Tools/learn_samples/" . basename($_GET["runas"])))
+  ) {
 
-    $data = json_decode(file_get_contents($_FILES['learnfile']['tmp_name']), true);
+    if (isset($_GET["runas"]))
+      $data = json_decode(file_get_contents("/home/activetk/activetk.jp/public_html/Tools/learn_samples/" . basename($_GET["runas"])), true);
+    else
+      $data = json_decode(file_get_contents($_FILES['learnfile']['tmp_name']), true);
+
     $title = htmlspecialchars($data["Title"]) . " | " . $title;
 
       ?>
@@ -214,7 +221,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
     <title><?php echo $title; ?></title>
     <base href="<?php echo $url; ?>">
-    <meta name="robots" content="noindex, nofollow">
+    <meta name="robots" content="<?php if (isset($_GET["runas"])) echo "All"; else echo "noindex, nofollow"; ?>">
     <meta name="favicon" content="<?=$root?>icon/index_32_32.ico">
     <meta http-equiv="Content-Style-Type" content="text/css">
     <meta http-equiv="Content-Script-Type" content="text/javascript">
@@ -257,8 +264,8 @@
         _("kernel").style.display = "none";
         _("status").style.display = "block";
         _("correctcount").innerText = window.CorrectAnsCount + "問";
-        _("queslen").innerText = window.Questions.length + "問";
-        _("correctpercent").innerText = (window.CorrectAnsCount / window.Questions.length * 100) + "%";
+        _("queslen").innerText = (window.Questions.length - 1) + "問";
+        _("correctpercent").innerText = (window.CorrectAnsCount / (window.Questions.length - 1) * 100) + "%";
       }
 
       window.onload = function() {
@@ -329,6 +336,7 @@
             _("viewnext").value = "結果を表示";
           else
             _("viewnext").value = "この問題をスキップする";
+          _("ans").focus();
         }
 
         _("retrythis").onclick = function() {
@@ -343,7 +351,10 @@
         }
 
         _("reload").onclick = function() {
-          window.location.href = window.location.href;
+          window.location.href = "?";
+        }
+        _("reload2").onclick = function() {
+          window.location.href = "?";
         }
 
         _("retrythisfile").onclick = function() {
@@ -379,12 +390,15 @@
         <span id="status_correct" class="correctans"></span><span id="status_notcorrect"></span>
         <input type="button" value="この問題をスキップする" style="height:60px;width:200px;" id="viewnext">
         <input type="button" value="この問題をやり直す" style="height:60px;width:140px;" id="retrythis" disabled>
+        <br>
+        <hr size="1" color="#7fffd4">
+        <input type="button" value="メインページへ戻る" style="height:60px;width:200px;" id="reload">
       </div>
       <div id="status" style="display:none;">
         <h2><span id="queslen" class="correctans"></span>中、<span id="correctcount" class="correctans"></span>正解でした！</h2>
         <h2>正答率は <span id="correctpercent" class="correctans"></span> です。</h2>
         <hr size="1" color="#7fffd4">
-        <input type="button" value="別の問題にチャレンジ！" style="height:60px;width:200px;" id="reload">
+        <input type="button" value="別の問題にチャレンジ！" style="height:60px;width:200px;" id="reload2">
         <input type="button" value="このファイルをやり直す" style="height:60px;width:200px;" id="retrythisfile">
       </div>
     </div>
@@ -433,6 +447,7 @@
     <link rel="shortcut icon" href="<?=$root?>icon/index_192_192.ico" sizes="192x192">
     <link rel="apple-touch-icon-precomposed" href="<?=$root?>icon/index_150_150.ico">
     <?=Get_Default()?>
+    <style>a{position:relative;display:inline-block}a,a:after{transition:.3s}a:after{position:absolute;bottom:0;left:50%;content:'';width:0;height:2px;background-color:#31aae2;transform:translateX(-50%)}a:hover:after{width:100%}</style>
   </head>
   <body style="background-color:#6495ed;color:#080808;overflow-x:hidden;overflow-y:visible;">
     <noscript><div title="NO SCRIPT ERROR" style="background-color:#404ff0;" align="center"><font color="#ff4500"><h1>No JavaScript Error.</h1></font></div></noscript>
@@ -447,14 +462,15 @@
         <input type="submit" value="学習開始！" style="height:60px;width:140px;">
       </form>
       <hr size="1" color="#7fffd4">
-      <h2>暗記ファイルを作成は<a href="?create-new=true">[こちら]</a>から行えます(^///^)</h2>
+      <h2>暗記ファイルの作成は<a href="?create-new=true" target="_blank">[こちら]</a>から行えます(^///^)</h2>
       <hr size="1" color="#7fffd4">
       <h2>【公開暗記ファイル一覧】</h2>
       <p>算数・数学</p>
-      <li><a href="?download=math_10-20_ruijyou.learn.json">10～20の累乗</a></li>
-      <li><a href="?download=math_pi-50len.learn.json">円周率50桁</a></li>
-      <p>その他 ゲーム・アニメ・娯楽など</p>
-      <li><a href="?download=enjoy_stpr_members.learn.json">すとぷりメンバー当てクイズ！</a></li>
+      <li><a href="?runas=math_10-20_ruijyou.learn.json" target="_blank">10～20の累乗</a></li>
+      <li><a href="?runas=math_pi-50len.learn.json" target="_blank">円周率50桁</a></li>
+      <p>その他「ゲーム」「アニメ」「娯楽」「趣味」など</p>
+       <li><a href="?runas=enjoy_law_shortname.learn.json" target="_blank">法律名略語クイズ</a></li>
+      <li><a href="?runas=enjoy_stpr_members.learn.json" target="_blank">すとぷりメンバー当てクイズ！</a></li>
     </div>
     <br>
     <hr size="1" color="#7fffd4">

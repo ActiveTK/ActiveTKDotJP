@@ -137,6 +137,8 @@
       require_once( "./contact.php" );
     else if ( request_path == "developer" )
       require_once( "./developer.php" );
+    else if ( request_path == "donate" )
+      require_once( "./donate.php" );
     else if ( request_path == "report" )
     {
       if ( isset( $_GET["fin"] ) )
@@ -259,22 +261,25 @@
           <div class="collapse navbar-collapse" id="navbar-collapse">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="background-color:#6495ed;color:#080808;">
               <li class="nav-item">
-                <a class="nav-link active p-index__nav_item" aria-current="page" href="/home">Get Started</a>
+                <a class="nav-link active p-index__nav_item" aria-current="page" href="/home">ホーム</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active p-index__nav_item" aria-current="page" href="/about">Learn More</a>
+                <a class="nav-link active p-index__nav_item" aria-current="page" href="/about">サービス概要</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active p-index__nav_item" href="/license">License</a>
+                <a class="nav-link active p-index__nav_item" href="/license">利用規約</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active p-index__nav_item" href="/privacy">Privacy</a>
+                <a class="nav-link active p-index__nav_item" href="/privacy">プライバシー</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active p-index__nav_item" href="/developer">Developer</a>
+                <a class="nav-link active p-index__nav_item" href="/donate">寄付</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active p-index__nav_item" href="/contact">Contact</a>
+                <a class="nav-link active p-index__nav_item" href="/developer">開発者</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active p-index__nav_item" href="/contact">お問い合わせ</a>
               </li>
             </ul>
           </div>
@@ -292,7 +297,15 @@
   function Get_Last() {
   ?>
 
-    <p><a href="/home" style="color:#00ff00 !important;">ホーム</a>・<a href="/about" style="color:#0403f9 !important;">本サイトについて</a>・<a href="/license" style="color:#ffa500 !important;">利用規約</a>・<a href="/privacy" style="color:#ff00ff !important;">プライバシーに関する声明</a> (c) 2022 ActiveTK.</p>
+    <p>
+      <a href="/home" style="color:#00ff00 !important;">ホーム</a>・
+      <a href="/about" style="color:#0403f9 !important;">本サイトについて</a>・
+      <a href="/license" style="color:#ffa500 !important;">利用規約</a>・
+      <a href="/privacy" style="color:#ff00ff !important;">プライバシーに関する声明</a>・
+      <a href="/donate" style="color:#4169e1 !important;">寄付</a>
+      (c) 2022 ActiveTK.</p>
+
+    <p>Onion Mirror: http://apzjiwz4762353egpdpyyg7nyv5gmifv46bwkc6gdvp3ei2e74ejidyd.onion/</p>
 
   <?php
   }
@@ -302,6 +315,7 @@
     ?>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-V1CPYP07HP" nonce="<?=nonce?>"></script>
     <script nonce="<?=nonce?>">window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-V1CPYP07HP');</script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2629549044897718" crossorigin="anonymous" nonce="<?=nonce?>"></script>
     <?php
   }
+
+  /*     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2629549044897718" crossorigin="anonymous" nonce="<?=nonce?>"></script> */

@@ -64,7 +64,6 @@
         本サイトでは、サービスの運営状況の確認や改善を目的に、Google社の提供する、Google アナリティクスを利用しています。<br>
         Google アナリティクスは、アクセス情報の収集のためにCookieを使用しています。<br>
         また、この情報は匿名で収集されており、個人を特定するものではありません。<br>
-        このCookieは、Google社の<a href="https://adssettings.google.com/authenticated" target="_blank">広告設定ページ</a>から選択若しくは削除する事ができます。<br>
         詳しい内容については、Google アナリティクスの<a href="https://marketingplatform.google.com/about/analytics/terms/jp/" target="_blank">利用規約</a>並びに<a href="https://policies.google.com/privacy?hl=ja" target="_blank">プライバシーポリシー</a>をご覧ください。<br><br>
         
         <b>第三条 Google社のサービス「AdSense」</b><br>

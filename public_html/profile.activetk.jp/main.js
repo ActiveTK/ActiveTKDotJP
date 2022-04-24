@@ -1,4 +1,5 @@
-window.onload = function() {
+
+      window.onload = function () {
 
         window.scroll({top: 0, behavior: 'smooth'});
 
@@ -11,9 +12,11 @@ window.onload = function() {
         window.MyHistory_2019 = "2019年:　自分のPCを持ち、C言語とHTMLを勉強。また、ダークウェブの存在を知った。";
         window.MyHistory_2020 = "2020年:　C#、JavaScriptを勉強。初めて自分のウェブサイトを公開。";
         window.MyHistory_2021 = "2021年:　PHP、MySQLを勉強。匿名集団アノニマスに興味を持った。";
+        window.MyHistory_2022 = "2022年:　本サイト「ActiveTK.jp」を作成。";
         window.MyHistory_2019_status = -1;
         window.MyHistory_2020_status = -1;
         window.MyHistory_2021_status = -1;
+        window.MyHistory_2022_status = -1;
         window.WelcomeMsg = "welCOME_to_My_Website!";
         window.WelcomeMsg_status = -1;
         setInterval(() => {
@@ -83,28 +86,39 @@ window.onload = function() {
                               }
                               else if (window.MyHistory_2021_status == window.MyHistory_2021.length + 7)
                               {
-                                let position3 = $("#links").offset().top;
-                                $("html, body").animate({scrollTop:position3}, 500, "swing");
                                 setInterval(() => {
-                                  window.WelcomeMsg_status++;
-                                  if (window.WelcomeMsg_status < window.WelcomeMsg.length)
+                                  window.MyHistory_2022_status++;
+                                  if (window.MyHistory_2022_status < window.MyHistory_2022.length)
                                   {
-                                    console.log("(interval) Window.WelcomeMsg:: Length=" + window.WelcomeMsg.length + ", Status=" + window.WelcomeMsg_status + ", New-Char=" + window.WelcomeMsg.charAt(window.WelcomeMsg_status));
-                                    _("welcome").innerText += window.WelcomeMsg.charAt(window.WelcomeMsg_status);
-                                    _("welcome").innerHTML = _("welcome").innerText.replace("_", "&nbsp;");
+                                    console.log("(interval) Window.MyHistory_2022:: Length=" + window.MyHistory_2022.length + ", Status=" + window.MyHistory_2022_status + ", New-Char=" + window.MyHistory_2022.charAt(window.MyHistory_2022_status));
+                                    _("history2022").innerText += window.MyHistory_2022.charAt(window.MyHistory_2022_status);
                                   }
-                                }, 140);
+                                  else if (window.MyHistory_2022_status == window.MyHistory_2022.length + 7)
+                                  {
+                                    let position3 = $("#links").offset().top;
+                                    $("html, body").animate({scrollTop:position3}, 500, "swing");
+                                    setInterval(() => {
+                                      window.WelcomeMsg_status++;
+                                      if (window.WelcomeMsg_status < window.WelcomeMsg.length)
+                                      {
+                                        console.log("(interval) Window.WelcomeMsg:: Length=" + window.WelcomeMsg.length + ", Status=" + window.WelcomeMsg_status + ", New-Char=" + window.WelcomeMsg.charAt(window.WelcomeMsg_status));
+                                        _("welcome").innerText += window.WelcomeMsg.charAt(window.WelcomeMsg_status);
+                                        _("welcome").innerHTML = _("welcome").innerText.replace("_", "&nbsp;");
+                                      }
+                                    }, 140);
+                                  }
+                                }, 40);
                               }
-                            }, 70);
+                            }, 40);
                           }
-                        }, 70);
+                        }, 40);
                       }
-                    }, 70);
+                    }, 40);
                   }
-                }, 140);
+                }, 90);
               }
-            }, 140);
+            }, 90);
           }
-        }, 140);
+        }, 80);
 
       }

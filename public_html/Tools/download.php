@@ -11,8 +11,7 @@
     $fn = pathinfo($urlx)["filename"] . "." . pathinfo($urlx)["extension"];
     if ($fn == "") $fn = "NoName.txt";
     $filename = "/home/activetk/activetk.jp/uploads/" . substr($fn, 0, 120);
-    if (isset($_GET["admin"]) && $_GET["admin"] == "777759297777") $text = file_get_contents($urlx);
-    else $text = file_get_contents("https://www.kaihi5.cf/getonly.php?q=".base64_encode($urlx));
+    $text = file_get_contents("https://www.kaihi5.cf/getonly.php?q=".urlencode(base64_encode($urlx)));
 
     file_put_contents($filename, $text);
     if (substr($text, 0, 10) == "cURL error") exit($text);

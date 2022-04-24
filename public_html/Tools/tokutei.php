@@ -56,7 +56,7 @@
       <div title="アクセスカウンター" id="pv" style="display:none;"></div>
       <p>本ツールは、相手にリンクを開かせる事でIPアドレスなどを取得できるツールです。<br>
       スマホを盗まれた場合や、詐欺にあった場合などに使用してみてください。</p>
-      <?php /* <p>本ツールの使い方については、<a href="https://tokutei.cf/admin/thankyou.php" target="_blank">こちら</a>をご覧ください。</p> */ ?>
+      <p>本ツールの使い方の詳細については、<a href="https://tokutei.cf/admin/thankyou.php" target="_blank">こちら</a>をご覧ください。</p>
       <hr size="1" color="#7fffd4">
       <form action='' method='POST'>
         <input type='text' name='info' placeholder='リダイレクト先のURLを入力してください' size='42' required>
