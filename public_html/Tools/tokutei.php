@@ -7,7 +7,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
     <title><?=$title?> - ActiveTK.jp</title>
     <meta name="ROBOTS" content="All">
     <meta name="favicon" content="https://www.activetk.jp/icon/index_32_32.ico">
@@ -54,8 +54,7 @@
     <div align="center">
       <h1>位置情報特定ツール v2</h1>
       <div title="アクセスカウンター" id="pv" style="display:none;"></div>
-      <p>本ツールは、相手にリンクを開かせる事でIPアドレスなどを取得できるツールです。<br>
-      スマホを盗まれた場合や、詐欺にあった場合などに使用してみてください。</p>
+      <p>相手にリンクを開かせる事でIPアドレスなどを取得できるツールです。スマホを盗まれた場合や、詐欺にあった場合などに使用してみてください。</p>
       <p>本ツールの使い方の詳細については、<a href="https://tokutei.cf/admin/thankyou.php" target="_blank">こちら</a>をご覧ください。</p>
       <hr size="1" color="#7fffd4">
       <form action='' method='POST'>
@@ -81,11 +80,13 @@
             rawurlencode(rawurlencode($_POST['info'])) . "%26flg%3D" . htmlspecialchars($flg) . "&makefrom=" . $_SERVER['REMOTE_ADDR'], false, stream_context_create($options));
       ?>
 	  <h4><font color="#ffd700">使用方法 - How to use</font></h4>
-      1. <a href="https://tokutei.cf/license.php" target="_blank" rel="noopener noreferrer"><font style="background-color:#228b22;color:#7fffd4;">[位置情報特定ツールの利用規約]</font></a>に全て同意してください。(悪用対策)<br><br>
+      1. <a href="https://tokutei.cf/license.php" target="_blank" rel="noopener noreferrer"><font style="background-color:#228b22;color:#7fffd4;">[本ツールの利用規約]</font></a>に全て同意してください。(悪用対策)<br><br>
       2. 相手を <a href="<?=$aitenourl?>" target="_blank" rel="noopener noreferrer" id="tokuteiurl"><font style="background-color:#228b22;color:#7fffd4;">[ここ]</font></a> にアクセスさせます。<input value='URLをコピー' type='button' id="copyurl"><br><br>
       3. <a href="https://tokutei.cf/view?q=<?=$flg?>" target="_blank" rel="noopener noreferrer"><font style="background-color:#228b22;color:#7fffd4;">[ここ]</font></a>にアクセスします。<br>
       <br>
-	  <?php } ?>
+      <hr size="1" color="#7fffd4">
+      <?php GetAdHere(); ?>
+      <?php } ?>
     </div>
     <hr size="1" color="#7fffd4">
     <div align="center"><?=Get_Last()?></div>

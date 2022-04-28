@@ -72,6 +72,7 @@
       <?=ViewTool( "【学習用】暗記ツール", "https://www.activetk.jp/tools/learn", "受験生必見！覚えたい単語などを質問と回答のセットで保存し、何度も繰り返し解くことができるツールです。" )?>
       <?=ViewTool( "JustClock", "https://www.activetk.jp/tools/justclock", "日時を指定すると、その時刻に音を鳴らします。予定管理などに使用してみてください。" )?>
       <?=ViewTool( "QRコード作成ツール", "https://www.activetk.jp/tools/qrcode", "好きな文字列やURLを指定して2次元QRコードを作成できます。" )?>
+      <?=ViewTool( "NextIP v6", "https://www.activetk.jp/tools/nextip", "NextIPは、Web上で動作するプライバシー重視のプロキシツールです。<br>指定されたウェブサイトへユーザーに代わってHTTPリクエストを送ります。" )?>
       <?=ViewTool( "簡易現在時刻ビュワー", "https://www.activetk.jp/tools/time", "画面に大きく現在時刻を表示します。スクリーンセーバーにいかがでしょうか？" )?>
       <?=ViewTool( "HackAll", "https://hackall.cipher.jp/", "ハッキングデモサイトです。我こそは伝説のハッカーだ!という方は是非挑戦してみてください。" )?>
       <?=ViewTool( "画像形式変換ツール", "https://www.activetk.jp/tools/image", "画像の形式を、「png」から「jpg」のように変更する事ができます。" )?>

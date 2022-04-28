@@ -53,35 +53,35 @@
       <br>
       <h1>サービス概要 - ActiveTK.jp</h1>
       <br>
-	  <div align="left" style="width:70%;overflow-x:hidden;overflow-y:visible;">
-        <div title="概要" style="background-color:#90ee90;">
+	  <div align="center" style="width:70%;overflow-x:hidden;overflow-y:visible;">
+        <div title="概要" style="background-color:#90ee90;border-radius:30px;text-align:center;">
           <h3>概要</h3>
         </div>
         <p>本サイト「activetk.jp」では、<b>簡単に、安全で、無料で使える便利なツール</b>を提供する事を目標としています。<br>
         本サイト内の全てのツールは、特に指定が無い場合、全て<b>無料</b>でご利用いただけます。<br>
         また、本サイトは全て<b>安全安心のオープンソース</b>です。ソースコードは<a href="https://github.com/ActiveTK/ActiveTKDotJP" target="_blank">[こちら]</a>からご覧いただけます。</p>
-        <div title="沿革" style="background-color:#90ee90;">
+        <div title="沿革" style="background-color:#90ee90;border-radius:30px;text-align:center;">
           <h3>沿革</h3>
         </div>
-        <b>2020.10.24</b> 本サイトを作成、xfreeを使用してactivetk.cfで公開。<br>
-        <b>2020.11.07</b> SNS用のmetaタグを作成。<br>
-        <b>2020.11.21</b> 全てのURLをa-tk.cfに短縮。<br>
-        <b>2020.12.05</b> nonceを有効化。<br>
-        <b>2020.12.07</b> 感想フォームを設置。<br>
-        <b>2020.12.26</b> スパムコメント対策を作成。<br>
-        <b>2021.01.02</b> PHPのバージョンを [PHP7.0.x] から [PHP7.1.x] に変更。<br>
-        <b>2021.01.04</b> スパムメール収集用のコンテンツを作成。<br>
-        <b>2021.01.08</b> はてなブックマークのリンクを作成。<br>
-        <b>2021.03.02</b> a-tk.jpの短縮リンクを削除。<br>
-        <b>2021.03.23</b> StarServer(ライト)に移行。https化。<br>
-        <b>2021.04.27</b> Tor拒否を無効化。感想書き込み時は有効のまま。<br>
-        <b>2021.05.03</b> 一部のリンクをrinu.cfに短縮。<br>
-        <b>2021.06.10</b> コメントをSQLで管理するようにした。<br>
-        <b>2021.07.31</b> PHPのバージョンを [PHP8.x](現在8.07)に変更。<br>
-        <b>2021.12.27</b> DDOS攻撃に伴い、アクセスカウンターの方式を変更。<br>
-        <b>2022.01.06</b> サイトのデザインをかなり変更。<br>
-        <b>2022.03.18</b> activetk.jpへ移動。UIの大幅な変更。OSS化。<br>
-        <b>2022.04.16</b> Onion版の「ActiveTK.jp#Onion」を作成。<br>
+        <div align="left" style="width:50%;overflow-x:visible;overflow-y:visible;">
+          <b>2020/10/24</b> 本サイトを作成、xfreeを使用してactivetk.cfで公開。<br>
+          <b>2020/11/07</b> SNS用のmetaタグを作成。<br>
+          <b>2020/11/21</b> 全てのURLをa-tk.cfに短縮。<br>
+          <b>2020/12/05</b> nonceを有効化。<br>
+          <b>2020/12/07</b> 感想フォームを設置。<br>
+          <b>2020/12/26</b> スパムコメント対策を作成。<br>
+          <b>2021/01/08</b> はてなブックマークのリンクを作成。<br>
+          <b>2021/03/02</b> a-tk.jpの短縮リンクを削除。<br>
+          <b>2021/03/23</b> StarServer(ライト)に移行。https化。<br>
+          <b>2021/04/27</b> Tor拒否を無効化。感想書き込み時は有効のまま。<br>
+          <b>2021/05/03</b> 一部のリンクをrinu.cfに短縮。<br>
+          <b>2021/06/10</b> コメントをSQLで管理するように変更。<br>
+          <b>2021/12/27</b> DDOS攻撃に伴い、アクセスカウンターの方式を変更。<br>
+          <b>2022/01/06</b> サイトのデザインをかなり変更。<br>
+          <b>2022/03/18</b> activetk.jpへ移動。UIの大幅な変更。OSS化。<br>
+          <b>2022/04/16</b> Onion版の「ActiveTK.jp#Onion」を作成。<br>
+        </div>
+        <hr>
       </div>
       <?=Get_Last()?>
     </div>

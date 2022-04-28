@@ -91,7 +91,7 @@
       <br>
       <div>
         <a href="https://www.activetk.jp/home" class="btn btn--blue btn--border-double">
-          <h3 style="color:#212529;">&gt; Get Started</h3>
+          <h3 style="color:#212529;">Get Started</h3>
         </a>
       </div>
       <br>
