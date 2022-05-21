@@ -17,97 +17,9 @@
     if ($resd == false) return false;
     else return true;
   }
-  function is_safe_browse($url)
-  {
-    if (strpos($url, 'unsafe.activetk.jp') !== false) return "UnSafeTest - unsafe.activetk.jp";
-    try
-    {
-
-      $safe_browsing_api_key = "AIzaSyDcQ_L0dnDH3OAJzzC84Sg4Y9cKJydkYfg";
-      $safe_browsing_api_url = "https://safebrowsing.googleapis.com/v4/threatMatches:find?key=AIzaSyChMmcSDQiBfT3hHbuDJ6zAuLq4nRqIRq8";
-      $safe_browsing_api_body = array(
-        "client" => array(
-          "clientId" => "BitLinker",
-          "clientVersion" => "4.0.0"
-        ),
-        "threatInfo" => array(
-          "threatTypes" => array("MALWARE", "SOCIAL_ENGINEERING", "UNWANTED_SOFTWARE", "POTENTIALLY_HARMFUL_APPLICATION"),
-          "platformTypes" => array("ANY_PLATFORM"),
-          "threatEntryTypes" => array("URL"),
-          "threatEntries" => array(
-            array(
-              "url" => $url
-            )
-          )
-        )
-      );
-
-      $ch = curl_init();
-      curl_setopt($ch, CURLOPT_URL, $safe_browsing_api_url);
-      curl_setopt($ch, CURLOPT_POST, true);
-      curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-      curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($safe_browsing_api_body));
-      curl_setopt($ch, CURLOPT_HTTPHEADER, array( 'Content-Type: application/json' ));
-      $ks = curl_exec($ch);
-      curl_close($ch);
-      $k = json_decode($ks, true);
-
-      if (isset($k["matches"])) {
-        ob_start();
-        var_dump($k["matches"]);
-	$ob = ob_get_contents();
-	ob_end_clean();
-
-        $LogFile = "/home/activetk/data/RINU.CF/unsafe.log";
-
-        $debuginfo = array();
-
-        $debuginfo["Time"] = date("Y/m/d - M (D) H:i:s");
-        $debuginfo["Time_Unix"] = microtime(true);
-        $debuginfo["IP"] = $_SERVER['REMOTE_ADDR'];
-        $debuginfo["URL"] = $url;
-        $debuginfo["GoogleSafeBrowsing"] = json_encode($k);
-
-        if ( isset( $_SERVER['REQUEST_URI'] ) )
-          $debuginfo["PATH"] = $_SERVER['REQUEST_URI'];
-
-        if ( isset( $_GET ) )
-          $debuginfo["GET"] = json_encode($_GET);
-
-        if ( isset( $_POST ) )
-          $debuginfo["POST"] = json_encode($_POST);
-
-        if ( isset( $_SERVER['HTTP_USER_AGENT'] ) )
-          $debuginfo["UserAgent"] = $_SERVER['HTTP_USER_AGENT'];
-
-        if ( isset( $_SERVER['HTTP_REFERER'] ) )
-          $debuginfo["Referer"] = $_SERVER['HTTP_REFERER'];
-
-        $a = fopen($LogFile, "a");
-        @fwrite($a, json_encode($debuginfo) . "\n");
-        fclose($a);
-
-        return "GoogleSafeBrowsing\n" . $ob;;
-      }
-      else if (isset($k["error"])) {
-        ob_start();
-        var_dump($k["error"]);
-	$ob = ob_get_contents();
-	ob_end_clean();
-        return "GoogleSafeBrowsing - Error\n" . $ob;;
-      }
-      else return "None";
-
-    } catch(Exception $e) {
-      report($e);
-      return "Curl - Unknown Error";
-    }
-    return "None";
-  }
   if ((isset($_POST["q"]) && $_POST["q"] != "") || (isset($_GET["addurlbyphp"]) && $_GET["addurlbyphp"] != ""))
   {
     $code = substr(base_convert(md5(uniqid()), 16, 36), 0, 12);
-    if (isset($_POST["foradminmojiretu"])) $code = $_POST["foradminmojiretu"];
     if (isset($_POST["q"])) $url = $_POST["q"];
     else $url = $_GET["addurlbyphp"];
     $url = str_replace("\n", "", $url);
@@ -138,7 +50,7 @@
       ]);
       $kekka = "https://rinu.cf/" . $code;
       $anz = is_safe_browse($url);
-      if ($anz != "None" && !isset($_POST["foradminmojiretu"]))
+      if ($anz != "None")
       { ?>
 <!DOCTYPE html>
 <html lang="ja" itemscope="" itemtype="http://schema.org/WebPage" dir="ltr">
@@ -232,11 +144,6 @@
       <hr color="#363636" size="2">
       <form action='' method='POST'>
         <input type='text' name='q' style="height:20px;width:500px;" placeholder='ここにURLを入力してください'>
-        <?php if (isset($_GET["admin-url"]) && $_GET["admin-url"] == "777759297777") { ?>
-        <br>
-        <input type='text' name='foradminmojiretu' size='20' placeholder='文字列'>
-        <br>
-        <?php } ?>
         <input type='submit' value='短縮！' style="height:60px;width:140px;">
       </form>
       <hr color="#363636" size="2">
@@ -251,8 +158,28 @@
       <?php } ?>
 
       </div>
-      <p>Thank you for using!</p>
-      <br>
+
+      <div>
+        <h3>Google セーフブラウジングとは？</h3>
+        <p><b>Google セーフブラウジング</b>は、Google社が提供する、URLが安全か危険かを判定できるAPIです。</p>
+        <p>本サイトではこのAPIを利用しているため、Google社により「危険」と判断されたURLは短縮する事ができず、「以前は安全だったものの、今は危険に変わってしまったページ」へアクセスする際には警告を表示します。</p>
+      </div>
+
+      <div>
+        <h3>URLを短縮するメリットとは？</h3>
+        <p>日本語を含むURLを表記しようとすると、URLエンコードと呼ばれる非常に長いURLになってしまう事があります。</p>
+        <p>例えば、<a href="https://ja.wikipedia.org/wiki/%E7%89%B9%E5%AE%9A%E9%9B%BB%E6%B0%97%E9%80%9A%E4%BF%A1%E5%BD%B9%E5%8B%99%E6%8F%90%E4%BE%9B%E8%80%85%E3%81%AE%E6%90%8D%E5%AE%B3%E8%B3%A0%E5%84%9F%E8%B2%AC%E4%BB%BB%E3%81%AE%E5%88%B6%E9%99%90%E5%8F%8A%E3%81%B3%E7%99%BA%E4%BF%A1%E8%80%85%E6%83%85%E5%A0%B1%E3%81%AE%E9%96%8B%E7%A4%BA%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E6%B3%95%E5%BE%8B" target="_blank">Wikipediaの「特定電気通信役務提供者の損害賠償責任の制限及び発信者情報の開示に関する法律」</a>という項目のURLを表記すると、</p>
+        <code style="overflow-wrap:break-word;word-break:break-word;">https://ja.wikipedia.org/wiki/%E7%89%B9%E5%AE%9A%E9%9B%BB%E6%B0%97%E9%80%9A%E4%BF%A1%E5%BD%B9%E5%8B%99%E6%8F%90%E4%BE%9B%E8%80%85%E3%81%AE%E6%90%8D%E5%AE%B3%E8%B3%A0%E5%84%9F%E8%B2%AC%E4%BB%BB%E3%81%AE%E5%88%B6%E9%99%90%E5%8F%8A%E3%81%B3%E7%99%BA%E4%BF%A1%E8%80%85%E6%83%85%E5%A0%B1%E3%81%AE%E9%96%8B%E7%A4%BA%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E6%B3%95%E5%BE%8B</code>
+        <p>という長い文字列になってしまい、「%」あたりがかなり怪しげな雰囲気になってしまいます。</p>
+        <p>そこで、このURL短縮サービスを利用してURLを短縮すると、次のようになります。</p>
+        <code>https://rinu.cf/9dmlrn1z190c</code>
+        <p>この短いURLであれば、先ほどの冗長なURLよりも安心感があり、クリック率の向上が期待できます。</p>
+      </div>
+
+      <hr color="#363636" size="2">
+
+      <?=GetAdHere()?>
+      <hr color="#363636" size="2">
       <div align="center"><?=Get_Last()?></div>
     </div>
   </body>

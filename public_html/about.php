@@ -80,6 +80,7 @@
           <b>2022/01/06</b> サイトのデザインをかなり変更。<br>
           <b>2022/03/18</b> activetk.jpへ移動。UIの大幅な変更。OSS化。<br>
           <b>2022/04/16</b> Onion版の「ActiveTK.jp#Onion」を作成。<br>
+          <b>2022/04/30</b> 「ActiveTK.jp」がGoogle アドセンスに合格。<br>
         </div>
         <hr>
       </div>

@@ -8,7 +8,7 @@
   /////////////////////////////////////////////////
 
   // 設定
-  $meurl = (((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ) ? "https://" : "http://").$_SERVER['HTTP_HOST']."/";
+  $meurl = (((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ) ? "https://" : "http://").$_SERVER['HTTP_HOST']."/tools/nextip";
   $starttitle = "NextIP v6";
   $decp = "NextIP v6です。フィルタリング回避ができます。システム的にはWeb上で動作するプライバシー重視のプロキシツールです。やり方は簡単！アクセスしたいURLを貼るだけです！！是非使用してみてください！";
   $startua = "Mozilla/5.0 (Linux; AccessBot 6.0; PHP; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121";
@@ -45,6 +45,15 @@
     else
       $url = base64_decode(urldecode($_GET["q"]));
 
+    // クローラー禁止
+    header("X-Robots-Tag: noindex,nofollow,noarchive");
+
+    if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], 'bot') !== false || strpos($_SERVER['HTTP_USER_AGENT'], 'Bot') !== false))
+    {
+      header("HTTP/1.1 403 For Hidden");
+      exit();
+    }
+
     // ユーザーエージェント
 
     // 指定されている場合
@@ -60,22 +69,59 @@
       $url = "https://" . $url;
     else if (isset($_POST["htt"]) && $_POST["htt"] == "https")
       $url = "https://" . $url;
-    else if (isset($_POST["htt"]) && $_POST["htt"] == "ftp")
-      $url = "ftp://" . $url;
 
     // セキュリティチェック
-    if (!filter_var($url, FILTER_VALIDATE_URL))
+    if (!filter_var($url, FILTER_VALIDATE_URL) || !preg_match('|^https?://.*$|', $url))
     {
       header("HTTP/1.1 404 Not Found");
       die("セキュリティエラーが発生しました。");
     }
 
+    // Googleセーフブラウジングの検証
+    $anz = is_safe_browse($url);
+    if ($anz != "None")
+    {
+      ?>
+<!DOCTYPE html>
+<html lang="ja" itemscope="" itemtype="http://schema.org/WebPage" dir="ltr">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <title>エラー - NextIP</title>
+    <meta name="robots" content="noindex">
+    <meta name="favicon" content="https://www.activetk.jp/icon/index_32_32.ico">
+    <style>a{color: #00ff00;position: relative;display: inline-block;transition: .3s;}a::after {position: absolute;bottom: 0;left: 50%;content: '';width: 0;height: 2px;background-color: #31aae2;transition: .3s;transform: translateX(-50%);}a:hover::after{width: 100%;}</style>
+  </head>
+  <body style="background-color:#e6e6fa;text:#363636;">
+    <br>
+    <div align='center'>
+      <h2>危険なURLへアクセスできません</h2><br>
+      <hr color="#363636" size="2">
+      <p>NextIPをご利用頂き、誠にありがとうございます。</p>
+      <p>指定されたURLは Google Safe Browsing によって、安全では無いと判断されました。</p>
+      <a href="https://www.activetk.jp/tools/nextip" rel="noopener noreferrer"><input type="button" value="戻る"></a>
+      <hr color="#363636" size="2">
+      <pre>URL : <?=$url?></pre>
+      <pre align="center" style="width:30%;text-align:left;">詳細 : <?=$anz?></pre>
+      <hr color="#363636" size="2">
+      <p>Powered by Google Safe Browsing</p>
+      <br>
+    </div>
+  </body>
+</html>
+        <?php
+      exit();
+    }
+
     // js無効化
-    if (isset($_POST["js"]) && $_POST["js"] == "false" || mb_substr(strtoupper($url), 0, 37) == "HTTPS://DATAIL.CHIEBUKURO.YAHOO.CO.JP")
+    if (isset($_POST["js"]) && $_POST["js"] == "false" || strpos(strtoupper($url), 'CHIEBUKURO.YAHOO.CO.JP') !== false)
     {
       // nonceを有効化する
       header("Content-Security-Policy: script-src 'nonce-{$nonce}' 'strict-dynamic'");
     }
+
+    // yahoo知恵袋は改造
+    echo "<script nonce='".$nonce."'>window.onload=function(){document.getElementById('msthdtp').style='display:none;';}</script>";
 
     // curlオブジェクト作成
     $curl = curl_init($url);
@@ -172,6 +218,7 @@
         </body>
       </html>
       <?php
+        die();
     }
     else {
 
@@ -190,7 +237,43 @@
       {
         $videocode = substr(strstr($url, 'watch?v='), 8);
         if (strpos($videocode, '&') !== false) $videocode = substr($videocode, 0, strcspn($videocode, '&'));
-        exit('<script defer src="https://rinu.cf/pv/index.php?token=kaihi5cfuseyoutube&callback=console.log" nonce="'.$nonce.'"></script><div align="center"><p>プライバシー保護モードYouTube</p><iframe width="85%" height="90%" src="https://www.youtube-nocookie.com/embed/'.$videocode.'" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>');
+
+?>
+
+  <html>
+
+    <head>
+      <meta charset="UTF-8">
+      <title>プライバシー強化モードYouTube</title>
+      <script defer src="https://rinu.cf/pv/index.php?token=kaihi5cfuseyoutube&callback=console.log" nonce="<?=$nonce?>"></script>
+      <?=Get_Default()?>
+    </head>
+
+    <body style="background-color:#6495ed;color:#080808;">
+
+      <div align="center">
+
+        <h1>プライバシー強化版YouTube - ActiveTK.jp</h1>
+        <p>プライバシー強化版のYouTube「YouTube-NoCookie」を利用して動画を表示するページです。</p>
+
+        <?=GetAdHere(1)?>
+
+        <br>
+
+        <iframe width="85%" height="90%" src="https://www.youtube-nocookie.com/embed/<?=$videocode?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+
+      <br><br><br>
+
+      <hr size="1" color="#7fffd4">
+      <div align="center"><?=Get_Last()?></div>
+
+    </body>
+
+  </html>
+
+<?php
+        exit();
       }
     ?>
 <base href="<?=$url?>">
@@ -262,16 +345,15 @@
     <br>
     <div align='center'>
       <h1>NextIP v6 - ActiveTK.jp</h1><br>
-      <p>NextIPは、Web上で動作するプライバシー重視のプロキシツールです。<br>ユーザーが指定したウェブサイトへユーザーに代わってHTTPリクエストを送ります。</p>
+      <p>NextIPは、Web上で動作するプライバシー重視のプロキシツールです。<br>YouTubeやTwitter、Yahoo知恵袋なども閲覧できます。</p>
       <form action='' method='POST'>
-        <select name="htt">
+        <select name="htt" style="height:24px;">
           <option value="none">(None)</option>
           <option value="http">http://</option>
           <option value="https">https://</option>
-          <option value="ftp">ftp://</option>
         </select>
-        <input type='text' name='q' size='40' placeholder='ここにURLを入力してください'>
-        <input type='submit' value='アクセス'>
+        <input type='text' name='q' placeholder='ここにURLを入力してください' style="height:20px;width:500px;"><br><br>
+        <input type='submit' value='アクセス' style="height:60px;width:140px;">
         <br><br>
           プレビュー形式 : <select name="mode">
             <option value="html">HTML</option>

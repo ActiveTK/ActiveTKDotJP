@@ -52,7 +52,7 @@
     <div align="center" class="mainobject" style="position:fixed;overflow:scroll;color:#000000;z-index:1;top:12%;left:0px;width:100%;height:88%;">
       <br>
       <h1>プライバシーに関する声明 - ActiveTK.jp</h1>
-      <pre align="right">制定 2022年03月20日 / 改定 2022年04月28日</pre>
+      <pre align="right">制定 2022年03月20日 / 改定 2022年05月03日</pre>
       <hr size="1" color="#7fffd4">
       <div align="left" style="width:70%;overflow-x:hidden;overflow-y:visible;">
         <h3>第一章 本サービスで収集する情報</h3>
@@ -70,9 +70,10 @@
         また、この情報は匿名で収集されており、個人を特定するものではありません。<br>
         詳しい内容については、Google アナリティクスの<a href="https://marketingplatform.google.com/about/analytics/terms/jp/" target="_blank">利用規約</a>並びに<a href="https://policies.google.com/privacy?hl=ja" target="_blank">プライバシーポリシー</a>をご覧ください。<br><br>
         
-        <b>第四条 株式会社もしも社のサービス「もしもアフェリエイト」</b><br>
-        本サイトでは、株式会社もしも社の広告サービス「もしもアフェリエイト」を利用しています。<br>
-        これにより、株式会社もしも社並びに第三者配信事業者がCookieを使用すると共に、アクセスした際の情報に基づいて広告を配信・本サイト上に表示されます。<br><br>
+        <b>第四条 広告</b><br>
+        本サイトでは、Google社の広告サービス「Google アドセンス」を利用しています。<br>
+        これにより、Google社などの第三者配信事業者や広告ネットワークがCookieを使用し、アクセス情報などに基づいて広告を配信する場合があります。<br>
+        また、これらのパーソナライズ広告はGoogle社の広告設定より無効化する事が可能です。<br><br>
 
         <b>第五条 アクセス数カウンター</b><br>
         本サイトでは、アクセス数カウンターを設置しています。<br>
@@ -96,7 +97,8 @@
         <br>
         <br>
         日本時間 2022年03月20日 制定<br>
-        日本時間 2022年04月28日 改定
+        日本時間 2022年04月28日 改定<br>
+        日本時間 2022年05月03日 改定<br>
       </div>
       <div align="center"><?=Get_Last()?></div>
     </div>
