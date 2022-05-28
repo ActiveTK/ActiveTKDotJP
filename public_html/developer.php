@@ -1,7 +1,8 @@
 <?php
 
-  // header("Location: https://profile.activetk.jp/", true, 301);
-  // exit();
+  header("Location: https://profile.activetk.jp/");
+  exit();
+
   define( "Title", "開発者" );
 
 ?>

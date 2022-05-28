@@ -311,7 +311,7 @@
                 <a class="nav-link active p-index__nav_item" href="https://programing-study.activetk.jp/">自習室</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active p-index__nav_item" href="/developer?new">開発者</a>
+                <a class="nav-link active p-index__nav_item" href="/developer?v=2">開発者</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link active p-index__nav_item" href="/contact">お問い合わせ</a>
