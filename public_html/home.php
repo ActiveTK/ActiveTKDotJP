@@ -69,23 +69,25 @@
       <br>
       <?=ViewTool( "URL短縮ツール「rinu.cf」", "https://www.activetk.jp/tools/urlmin", "URLを貼り付け、「短縮」を押すだけで簡単にURLを短縮できます。<br>Googleセーフブラウジングを用いた安全危険判定機能付きです。" )?>
       <?=ViewTool( "位置情報特定ツール", "https://www.activetk.jp/tools/tokutei", "相手にリンクを開かせる事でIPアドレスなどを取得できるツールです。<br>スマホを盗まれた場合や、詐欺にあった場合などに使用してみてください。" )?>
+      <?=ViewTool( "Web Whois", "https://www.activetk.jp/tools/whois", "ドメインのwhois参照により、所有者の情報などを取得できます。" )?>
       <?=ViewTool( "【学習用】暗記ツール", "https://www.activetk.jp/tools/learn", "受験生必見！覚えたい単語などを質問と回答のセットで保存し、何度も繰り返し解くことができるツールです。" )?>
-      <?=ViewTool( "JustClock", "https://www.activetk.jp/tools/justclock", "日時を指定すると、その時刻に音を鳴らします。予定管理などに使用してみてください。" )?>
       <?=ViewTool( "QRコード作成ツール", "https://www.activetk.jp/tools/qrcode", "好きな文字列やURLを指定して2次元QRコードを作成できます。" )?>
-      <?=ViewTool( "NextIP v6", "https://www.activetk.jp/tools/nextip", "NextIPは、Web上で動作するプライバシー重視のプロキシツールです。<br>指定されたウェブサイトへユーザーに代わってHTTPリクエストを送ります。" )?>
+      <?=ViewTool( "HackAll", "https://hackall.cipher.jp/", "ハッキングデモサイトです。我こそは伝説のハッカーだ!という方は是非挑戦してみてください。" )?>
 
       <hr color="#363636" size="2">
       <?=GetAdHere(nonce)?>
       <hr color="#363636" size="2">
 
       <?=ViewTool( "簡易現在時刻ビュワー", "https://www.activetk.jp/tools/time", "画面に大きく現在時刻を表示します。スクリーンセーバーにいかがでしょうか？" )?>
-      <?=ViewTool( "HackAll", "https://hackall.cipher.jp/", "ハッキングデモサイトです。我こそは伝説のハッカーだ!という方は是非挑戦してみてください。" )?>
+      <?=ViewTool( "NextIP v6", "https://www.activetk.jp/tools/nextip", "NextIPは、Web上で動作するプライバシー重視のプロキシツールです。<br>指定されたウェブサイトへユーザーに代わってHTTPリクエストを送ります。" )?>
       <?=ViewTool( "画像形式変換ツール", "https://www.activetk.jp/tools/image", "画像の形式を、「png」から「jpg」のように変更する事ができます。" )?>
       <?=ViewTool( "擬似乱数生成ツール", "https://www.activetk.jp/tools/rand", "暗号学的に安全なランダムなパスワード用の文字列を生成できます。" )?>
+      <?=ViewTool( "JustClock", "https://www.activetk.jp/tools/justclock", "日時を指定すると、その時刻に音を鳴らします。予定管理などに使用してみてください。" )?>
       <?=ViewTool( "ファイル暗号化・複合化ツール", "https://www.activetk.jp/tools/encrypt", "たった一回のクリックで簡単にファイルを暗号化・複合化できます。<br>アルゴリズムには強度の高いAESの256bit(CBCモード)を使用しているので安心してお使いいただけます！" )?>
       <?=ViewTool( "著作物利用許可申請書作成ツール", "https://www.activetk.jp/tools/copyright", "ネット上での著作権侵害が問題になっています。そこで、このツールを作成しました。<br>このツールを使えば3分で著作権の利用許可を申請するテキストを作れます。" )?>
       <?=ViewTool( "URLエンコーダー", "https://www.activetk.jp/tools/url-encode", "指定した文字列をURLエンコードします。" )?>
       <?=ViewTool( "URLデコーダー", "https://www.activetk.jp/tools/url-decode", "指定した文字列をURLデコードします。" )?>
+      <?=ViewTool( "NSLookUP Online", "https://www.activetk.jp/tools/nslookup", "Web上でドメインのDNS参照を行えます。" )?>
 
       <hr color="#363636" size="2">
       <?=GetAdHere(nonce)?>

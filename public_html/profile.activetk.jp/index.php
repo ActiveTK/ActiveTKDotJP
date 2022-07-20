@@ -167,7 +167,7 @@
         </h2>
         <p class="result">サイバーセキュリティやダークウェブなどに<?=com("", "<br>")?>興味がある学生です。</p>
         <p class="result">趣味はプログラミングと法律勉強です。</p>
-        <p class="result">得意な分野はダークウェブの調査から<?=com("", "<br>")?>Bitcoinの追跡まで多岐に渡ります。</p>
+        <p class="result">得意な分野はWeb開発からダークウェブの調査や<?=com("", "<br>")?>Bitcoinの追跡まで多岐に渡ります。</p>
       </div>
       <div id="skill">
         <p class="command">$ /MySkills</p>
@@ -202,7 +202,7 @@
       </div>
       <div id="works">
         <p class="command">$ /Works</p>
-        <p class="result">仕事のご依頼は<a href="about:blank" id="ml2">メール</a>でお願い致します。<?=com("", "<br>")?>料金やお支払い方法はご相談下さい。</p>
+        <p class="result">仕事のご依頼は<a href="mailto:webmaster@activetk.jp" id="ml2">メール</a>でお願い致します。<?=com("", "<br>")?>料金やお支払い方法はご相談下さい。</p>
         <p class="result">Webサイトの制作やアプリ開発、<?=com("", "<br>")?>Bitcoinの追跡などをお受けできます。</p>
         <p class="result">なお、法執行機関からのご依頼は<?=com("", "<br>")?>一律無料でお受けします。</p>
       </div>
@@ -210,11 +210,13 @@
         <p class="command">$ /Accounts</p>
         <p class="result">Twitter <a href="https://twitter.com/ActiveTK5929" target="_blank">@ActiveTK5929</a></p>
         <p class="result">Github <a href="https://github.com/ActiveTK" target="_blank">/ActiveTK</a></p>
-        <p class="result">Mail <a href="about:blank" id="ml">webmaster<span id="att">＠</span>activetk.jp</a></p>
+        <p class="result">Mail <a href="mailto:webmaster@activetk.jp" id="ml">webmaster@activetk.jp</a></p>
+        <p class="result">Keybase <a href="https://keybase.io/activetk" target="_blank">activetk</a></p>
+        <p class="result">Element <a href="https://matrix.to/#/@psnt00:matrix.org" target="_blank">@psnt00:matrix.org</a></p>
       </div>
       <div id="pgp">
         <p class="command">$ /PGP</p>
-<pre style="width:<?=com(30, 90)?>%;" align="left">-----BEGIN PGP PUBLIC KEY BLOCK-----
+<pre style="width:<?=com(30, 90)?>%;text-align:left;" align="left">-----BEGIN PGP PUBLIC KEY BLOCK-----
 Comment: User-ID:	ActiveTK. &lt;webmaster<span id="att3">＠</span>activetk.jp&gt;
 Comment: Created:	2022/03/29 11:13
 Comment: Type:	4,096-bit RSA (secret key available)

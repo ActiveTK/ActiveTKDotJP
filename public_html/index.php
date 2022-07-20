@@ -86,6 +86,15 @@
   else
     $issumaho = true;
 
+  define("Phone", $issumaho);
+
+  function com($ForPC, $ForMobile) {
+    if (Phone)
+      return $ForMobile;
+    else
+      return $ForPC;
+  }
+
   // リクエスト処理
   if ( isset( $_GET["request"] ) && $_GET["request"] != "")
   {
@@ -213,6 +222,8 @@
       exit();
 
     }
+    else if ( request_path == "pgp" )
+      require_once( "./pgp.php" );
     else if ( request_path == "tools/qrcode" )
       require_once( "./Tools/qrcode.php" );
     else if ( request_path == "tools/time" )
@@ -257,6 +268,10 @@
       require_once( "./Tools/str2oomoji.php" );
     else if ( request_path == "tools/str-count" )
       require_once( "./Tools/str-count.php" );
+    else if ( request_path == "tools/whois" )
+      require_once( "./Tools/whois.php" );
+    else if ( request_path == "tools/nslookup" )
+      require_once( "./Tools/nslookup.php" );
     else if ( request_path == "400" )
       require_once( "./Error/400/index.php" );
     else if ( request_path == "403" )
@@ -340,7 +355,7 @@
       <?php /* <a href="/donate" style="color:#4169e1 !important;">寄付</a> */ ?>
       (c) 2022 ActiveTK.</p>
 
-    <p>Onion Mirror: http://apzjiwz4762353egpdpyyg7nyv5gmifv46bwkc6gdvp3ei2e74ejidyd.onion/</p>
+    <?=com("<p>Onion Mirror: http://apzjiwz4762353egpdpyyg7nyv5gmifv46bwkc6gdvp3ei2e74ejidyd.onion/</p>", "")?>
 
   <?php
   }

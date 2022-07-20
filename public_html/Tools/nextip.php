@@ -10,8 +10,10 @@
   // 設定
   $meurl = (((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ) ? "https://" : "http://").$_SERVER['HTTP_HOST']."/tools/nextip";
   $starttitle = "NextIP v6";
-  $decp = "NextIP v6です。フィルタリング回避ができます。システム的にはWeb上で動作するプライバシー重視のプロキシツールです。やり方は簡単！アクセスしたいURLを貼るだけです！！是非使用してみてください！";
+  $decp = "NextIP v6です。フィルタリング回避ができます。システム的にはweb上でcurlを実行しています。やり方は簡単！アクセスしたいURLを貼るだけです！！是非使用してみてください！";
   $startua = "Mozilla/5.0 (Linux; AccessBot 6.0; PHP; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121";
+
+  error_reporting(0);
 
   // クロスオリジン許可
   header('Access-Control-Allow-Origin: *');
@@ -155,6 +157,8 @@
     }
 
     // Basic認証
+    $USERNAME = "";
+    $PASSWORD = "";
     curl_setopt($curl, CURLOPT_USERPWD, "$USERNAME:$PASSWORD");
 
     // 自動リダイレクト
@@ -345,7 +349,7 @@
     <br>
     <div align='center'>
       <h1>NextIP v6 - ActiveTK.jp</h1><br>
-      <p>NextIPは、Web上で動作するプライバシー重視のプロキシツールです。<br>YouTubeやTwitter、Yahoo知恵袋なども閲覧できます。</p>
+      <p>NextIPは、Web上で「curl」を実行できるツールです。<br>YouTubeやTwitter、Yahoo知恵袋なども閲覧できます。</p>
       <form action='' method='POST'>
         <select name="htt" style="height:24px;">
           <option value="none">(None)</option>

@@ -13,14 +13,14 @@
     <meta name="favicon" content="https://www.activetk.jp/icon/index_32_32.ico">
     <meta http-equiv="Content-Style-Type" content="text/css">
     <meta http-equiv="Content-Script-Type" content="text/javascript">
-    <meta name="description" content="位置情報特定ツール v2です。スマホを盗まれてしまった場合などに利用してください。GPS情報やIPアドレスを取得する事が出来ます。やり方は簡単、特定したい相手にリンクをクリックさせるだけ！悪用厳禁!!">
+    <meta name="description" content="位置情報特定ツール(住所特定ツール) v2です。スマホを盗まれてしまった場合などに利用してください。GPS情報やIPアドレスを取得する事が出来ます。やり方は簡単、特定したい相手にリンクをクリックさせるだけ！悪用厳禁!!">
     <meta name="thumbnail" content="https://www.activetk.jp/icon/index.jpg">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="<?=$title?> - ActiveTK.jp">
-    <meta name="twitter:description" content="位置情報特定ツール v2です。スマホを盗まれてしまった場合などに利用してください。GPS情報やIPアドレスを取得する事が出来ます。やり方は簡単、特定したい相手にリンクをクリックさせるだけ！悪用厳禁!!">
+    <meta name="twitter:description" content="位置情報特定ツール(住所特定ツール) v2です。スマホを盗まれてしまった場合などに利用してください。GPS情報やIPアドレスを取得する事が出来ます。やり方は簡単、特定したい相手にリンクをクリックさせるだけ！悪用厳禁!!">
     <meta name="twitter:image:src" content="https://www.activetk.jp/icon/index.jpg">
     <meta property="og:title" content="<?=$title?> - ActiveTK.jp">
-    <meta property="og:description" content="位置情報特定ツール v2です。スマホを盗まれてしまった場合などに利用してください。GPS情報やIPアドレスを取得する事が出来ます。やり方は簡単、特定したい相手にリンクをクリックさせるだけ！悪用厳禁!!">
+    <meta property="og:description" content="位置情報特定ツール(住所特定ツール) v2です。スマホを盗まれてしまった場合などに利用してください。GPS情報やIPアドレスを取得する事が出来ます。やり方は簡単、特定したい相手にリンクをクリックさせるだけ！悪用厳禁!!">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.activetk.jp/tools/tokutei">
     <meta property="og:site_name" content="<?=$title?> - ActiveTK.jp">
@@ -86,7 +86,7 @@
       <br>
       <hr size="1" color="#7fffd4">
       <?php GetAdHere(); ?>
-      <hr size="1" color="#7fffd4">
+      <?php /*
       <h2>【別のドメインへの公開】</h2>
       <p>本ツールは<a href="https://github.com/ActiveTK/Tokutei" target="_blank">オープンソース</a>ですので、ご自身のウェブサーバーに配置して公開する事が可能です。</p>
       <p>ただし、位置情報の取得には<b>httpsが必須</b>ですので、無料のレンタルサーバーでは動作しない可能性がございます。ご注意ください。</p>
@@ -94,15 +94,8 @@
       <div>
         <a href="//af.moshimo.com/af/c/click?a_id=3388985&p_id=2312&pc_id=4967&pl_id=30605&guid=ON" rel="nofollow" referrerpolicy="no-referrer-when-downgrade" target="_blank"><img src="//image.moshimo.com/af-img/1762/000000030605.gif" width="250" height="250" style="border:none;"></a><img src="//i.moshimo.com/af/i/impression?a_id=3388985&p_id=2312&pc_id=4967&pl_id=30605" width="1" height="1" style="border:none;">
         <a href="//af.moshimo.com/af/c/click?a_id=3415664&p_id=2432&pc_id=5315&pl_id=34942&guid=ON" rel="nofollow" referrerpolicy="no-referrer-when-downgrade" target="_blank"><img src="//image.moshimo.com/af-img/0697/000000034942.png" width="300" height="250" style="border:none;"></a><img src="//i.moshimo.com/af/i/impression?a_id=3415664&p_id=2432&pc_id=5315&pl_id=34942" width="1" height="1" style="border:none;">
-        <!--
-        <a href="https://af.moshimo.com/af/c/click?a_id=3388985&p_id=2312&pc_id=4967&pl_id=30611&guid=ON" rel="nofollow" referrerpolicy="no-referrer-when-downgrade" target="_blank">
-          <img src="https://image.moshimo.com/af-img/1762/000000030611.gif" width="728" height="90" style="border:none;">
-        </a>
-        <img src="https://i.moshimo.com/af/i/impression?a_id=3388985&p_id=2312&pc_id=4967&pl_id=30611" width="1" height="1" style="border:none;">
-        <a href="https://rakkoserver.com/?r=FF75020445" target="_blank"><img src="https://rakkoid.com/img/server_banner.png" width="320" height="120"></a>
-        -->
       </div>
-      <?php } ?>
+      <?php */ } ?>
     </div>
     <hr size="1" color="#7fffd4">
     <div align="center"><?=Get_Last()?></div>

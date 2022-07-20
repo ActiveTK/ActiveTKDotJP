@@ -19,3 +19,7 @@ deny from all
 </Files>
 
 AddDefaultCharset UTF-8
+
+#####wpsecurity_xmlrpc#####
+SetEnvIf Request_URI ".*" AllowXmlrpc
+#####end:wpsecurity_xmlrpc#####
