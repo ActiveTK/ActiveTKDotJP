@@ -9,158 +9,203 @@
 
 <url>
   <loc>https://www.activetk.jp/</loc>
-  <lastmod>2022-04-28T11:27:11+00:00</lastmod>
+  <lastmod>2022-07-20T06:31:55+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
   <loc>https://www.activetk.jp/home</loc>
-  <lastmod>2022-04-28T11:27:11+00:00</lastmod>
+  <lastmod>2022-07-20T06:31:55+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.activetk.jp/about</loc>
-  <lastmod>2022-04-28T11:27:11+00:00</lastmod>
+  <lastmod>2022-07-20T06:31:55+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.activetk.jp/license</loc>
-  <lastmod>2022-04-28T11:27:11+00:00</lastmod>
+  <lastmod>2022-07-20T06:31:55+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.activetk.jp/privacy</loc>
-  <lastmod>2022-04-28T11:27:11+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://www.activetk.jp/donate</loc>
-  <lastmod>2022-04-28T11:27:11+00:00</lastmod>
+  <lastmod>2022-07-20T06:31:55+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.activetk.jp/contact</loc>
-  <lastmod>2022-04-28T11:27:11+00:00</lastmod>
+  <lastmod>2022-07-20T06:31:55+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://www.activetk.jp/tools/urlmin</loc>
-  <lastmod>2022-04-28T11:27:11+00:00</lastmod>
+  <lastmod>2022-07-20T06:31:55+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.activetk.jp/tools/tokutei</loc>
-  <lastmod>2022-04-28T11:27:11+00:00</lastmod>
+  <lastmod>2022-07-20T06:31:55+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.activetk.jp/tools/whois</loc>
+  <lastmod>2022-07-20T06:31:55+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.activetk.jp/tools/learn</loc>
-  <lastmod>2022-04-28T11:27:11+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.activetk.jp/tools/justclock</loc>
-  <lastmod>2022-04-28T11:27:11+00:00</lastmod>
+  <lastmod>2022-07-20T06:31:55+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.activetk.jp/tools/qrcode</loc>
-  <lastmod>2022-04-28T11:27:11+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.activetk.jp/tools/nextip</loc>
-  <lastmod>2022-04-28T11:27:11+00:00</lastmod>
+  <lastmod>2022-07-20T06:31:55+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.activetk.jp/tools/time</loc>
-  <lastmod>2022-04-28T11:27:11+00:00</lastmod>
+  <lastmod>2022-07-20T06:31:55+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.activetk.jp/tools/nextip</loc>
+  <lastmod>2022-07-20T06:31:55+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.activetk.jp/tools/image</loc>
-  <lastmod>2022-04-28T11:27:11+00:00</lastmod>
+  <lastmod>2022-07-20T06:31:55+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.activetk.jp/tools/rand</loc>
-  <lastmod>2022-04-28T11:27:11+00:00</lastmod>
+  <lastmod>2022-07-20T06:31:55+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.activetk.jp/tools/justclock</loc>
+  <lastmod>2022-07-20T06:31:55+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.activetk.jp/tools/encrypt</loc>
-  <lastmod>2022-04-28T11:27:11+00:00</lastmod>
+  <lastmod>2022-07-20T06:31:55+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.activetk.jp/tools/copyright</loc>
-  <lastmod>2022-04-28T11:27:11+00:00</lastmod>
+  <lastmod>2022-07-20T06:31:55+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.activetk.jp/tools/url-encode</loc>
-  <lastmod>2022-04-28T11:27:11+00:00</lastmod>
+  <lastmod>2022-07-20T06:31:55+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.activetk.jp/tools/url-decode</loc>
-  <lastmod>2022-04-28T11:27:11+00:00</lastmod>
+  <lastmod>2022-07-20T06:31:55+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>https://www.activetk.jp/tools/base64-encode</loc>
-  <lastmod>2022-04-28T11:27:11+00:00</lastmod>
+  <loc>https://www.activetk.jp/tools/nslookup</loc>
+  <lastmod>2022-07-20T06:31:55+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>https://www.activetk.jp/tools/base64-decode</loc>
-  <lastmod>2022-04-28T11:27:11+00:00</lastmod>
+  <loc>https://www.activetk.jp/tools/str-count</loc>
+  <lastmod>2022-07-20T06:31:55+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>https://www.activetk.jp/tools/info</loc>
-  <lastmod>2022-04-28T11:27:11+00:00</lastmod>
+  <loc>https://www.activetk.jp/tools/str2oomoji</loc>
+  <lastmod>2022-07-20T06:31:55+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
-  <loc>https://www.activetk.jp/tools/english2leet</loc>
-  <lastmod>2022-04-28T11:27:11+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.activetk.jp/tools/leet2english</loc>
-  <lastmod>2022-04-28T11:27:11+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.activetk.jp/tools/paintweb</loc>
-  <lastmod>2022-04-28T11:27:11+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.activetk.jp/tools/iframe</loc>
-  <lastmod>2022-04-28T11:27:11+00:00</lastmod>
-  <priority>0.64</priority>
-</url>
-<url>
-  <loc>https://www.activetk.jp/tools/windowsupdate</loc>
-  <lastmod>2022-04-28T11:27:11+00:00</lastmod>
+  <loc>https://www.activetk.jp/tools/str2komoji</loc>
+  <lastmod>2022-07-20T06:31:55+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.activetk.jp/tools/download</loc>
-  <lastmod>2022-04-28T11:27:11+00:00</lastmod>
+  <lastmod>2022-07-20T06:31:55+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.activetk.jp/tools/hash</loc>
-  <lastmod>2022-04-28T11:27:11+00:00</lastmod>
+  <lastmod>2022-07-20T06:31:55+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.activetk.jp/tools/base64-encode</loc>
+  <lastmod>2022-07-20T06:31:55+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.activetk.jp/tools/base64-decode</loc>
+  <lastmod>2022-07-20T06:31:55+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.activetk.jp/tools/info</loc>
+  <lastmod>2022-07-20T06:31:55+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.activetk.jp/tools/english2leet</loc>
+  <lastmod>2022-07-20T06:31:55+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.activetk.jp/tools/leet2english</loc>
+  <lastmod>2022-07-20T06:31:55+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.activetk.jp/tools/paintweb</loc>
+  <lastmod>2022-07-20T06:31:55+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.activetk.jp/tools/iframe</loc>
+  <lastmod>2022-07-20T06:31:55+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.activetk.jp/tools/windowsupdate</loc>
+  <lastmod>2022-07-20T06:31:55+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://www.activetk.jp/tools/ruijyou</loc>
-  <lastmod>2022-04-28T11:27:11+00:00</lastmod>
+  <lastmod>2022-07-20T06:31:55+00:00</lastmod>
   <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://www.activetk.jp/tools/learn?create-new=true</loc>
+  <lastmod>2022-07-20T06:31:55+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://www.activetk.jp/tools/learn?runas=math_10-20_ruijyou.learn.json</loc>
+  <lastmod>2022-07-20T06:31:55+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://www.activetk.jp/tools/learn?runas=math_pi-50len.learn.json</loc>
+  <lastmod>2022-07-20T06:31:55+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://www.activetk.jp/tools/learn?runas=enjoy_law_shortname.learn.json</loc>
+  <lastmod>2022-07-20T06:31:55+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://www.activetk.jp/tools/learn?runas=enjoy_stpr_members.learn.json</loc>
+  <lastmod>2022-07-20T06:31:55+00:00</lastmod>
+  <priority>0.51</priority>
 </url>
 
 
