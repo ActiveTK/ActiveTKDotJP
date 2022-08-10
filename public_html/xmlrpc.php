@@ -34,6 +34,7 @@
     return $d;
   }
 
+/*
   try{
     mb_language("Japanese"); mb_internal_encoding("UTF-8");
     mb_send_mail( "notification@activetk.jp", "【ハニーポット】xmlrpc.phpへの攻撃を確認しました",
@@ -53,13 +54,15 @@
       "Return-Path: no-reply@activetk.jp\nReply-To: no-reply@activetk.jp\nContent-Transfer-Encoding: BASE64\n",
        "-f no-reply@activetk.jp" );
   } catch (\Throwable $e) { }
+*/
 
 ?>
 <<?="?"?>xml version="1.0"<?="?"?>>
 <methodResponse>
   <params>
     <param>
-      <value><string>null</string></value>
+      <value><string>THIS IS A HONYPOT XMLRPC</string></value>
+      <value><string>Bad News, Your IPaddress has been logged.</string></value>
     </param>
   </params>
 </methodResponse>

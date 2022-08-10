@@ -4,7 +4,6 @@
   $dec = "あなたの暮らしをチョコっと便利に。無料で簡単に使える、様々なWEBツールをご提供させていただきます。安全安心の全オープンソースです！";
 
 ?>
-
 <!DOCTYPE html>
 <html lang="ja" itemscope="" itemtype="http://schema.org/WebPage" dir="ltr">
   <head>

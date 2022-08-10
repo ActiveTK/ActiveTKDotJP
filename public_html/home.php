@@ -87,6 +87,7 @@
       <?=ViewTool( "著作物利用許可申請書作成ツール", "https://www.activetk.jp/tools/copyright", "ネット上での著作権侵害が問題になっています。そこで、このツールを作成しました。<br>このツールを使えば3分で著作権の利用許可を申請するテキストを作れます。" )?>
       <?=ViewTool( "URLエンコーダー", "https://www.activetk.jp/tools/url-encode", "指定した文字列をURLエンコードします。" )?>
       <?=ViewTool( "URLデコーダー", "https://www.activetk.jp/tools/url-decode", "指定した文字列をURLデコードします。" )?>
+      <?=ViewTool( "WebScreenShot", "https://www.activetk.jp/tools/screenshot", "Web上でWebサイトのスクリーンショットを撮影できます。" )?>
       <?=ViewTool( "NSLookUP Online", "https://www.activetk.jp/tools/nslookup", "Web上でドメインのDNS参照を行えます。" )?>
 
       <hr color="#363636" size="2">

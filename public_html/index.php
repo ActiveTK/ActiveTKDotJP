@@ -156,6 +156,24 @@
       require_once( "./Tools/nextip.php" );
       exit();
     }
+    else if ( request_path == "tools_x/webtracking" )
+    {
+      define( "nonce", "" );
+      require_once( "./Tools_X/WebTracking.php" );
+      exit();
+    }
+    else if ( request_path == "tools_x/btctracking" )
+    {
+      define( "nonce", "" );
+      require_once( "./Tools_X/BitcoinTracking.php" );
+      exit();
+    }
+    else if ( request_path == "tools/screenshot" )
+    {
+      define( "nonce", "" );
+      require_once( "./Tools/screenshot.php" );
+      exit();
+    }
 
     // nonce生成
     CreateNonce();

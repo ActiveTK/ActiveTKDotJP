@@ -63,24 +63,24 @@
         <div title="沿革" style="background-color:#90ee90;border-radius:30px;text-align:center;">
           <h3>沿革</h3>
         </div>
-        <div align="left" style="width:50%;overflow-x:visible;overflow-y:visible;">
-          <b>2020/10/24</b> 本サイトを作成、xfreeを使用してactivetk.cfで公開。<br>
-          <b>2020/11/07</b> SNS用のmetaタグを作成。<br>
-          <b>2020/11/21</b> 全てのURLをa-tk.cfに短縮。<br>
-          <b>2020/12/05</b> nonceを有効化。<br>
-          <b>2020/12/07</b> 感想フォームを設置。<br>
-          <b>2020/12/26</b> スパムコメント対策を作成。<br>
-          <b>2021/01/08</b> はてなブックマークのリンクを作成。<br>
-          <b>2021/03/02</b> a-tk.jpの短縮リンクを削除。<br>
-          <b>2021/03/23</b> StarServer(ライト)に移行。https化。<br>
-          <b>2021/04/27</b> Tor拒否を無効化。感想書き込み時は有効のまま。<br>
-          <b>2021/05/03</b> 一部のリンクをrinu.cfに短縮。<br>
-          <b>2021/06/10</b> コメントをSQLで管理するように変更。<br>
-          <b>2021/12/27</b> DDOS攻撃に伴い、アクセスカウンターの方式を変更。<br>
-          <b>2022/01/06</b> サイトのデザインをかなり変更。<br>
-          <b>2022/03/18</b> activetk.jpへ移動。UIの大幅な変更。OSS化。<br>
-          <b>2022/04/16</b> Onion版の「ActiveTK.jp#Onion」を作成。<br>
-          <b>2022/04/30</b> 「ActiveTK.jp」がGoogle アドセンスに合格。<br>
+        <div align="left" style="width:<?=com(50, 90)?>%;overflow-x:visible;overflow-y:visible;">
+          <b>2020/10/24</b> <?=com("", "<br>")?>本サイトを作成、xfreeを使用してactivetk.cfで公開。<br><?=com("", "<br>")?>
+          <b>2020/11/07</b> <?=com("", "<br>")?>SNS用のmetaタグを作成。<br><?=com("", "<br>")?>
+          <b>2020/11/21</b> <?=com("", "<br>")?>全てのURLをa-tk.cfに短縮。<br><?=com("", "<br>")?>
+          <b>2020/12/05</b> <?=com("", "<br>")?>nonceを有効化。<br><?=com("", "<br>")?>
+          <b>2020/12/07</b> <?=com("", "<br>")?>感想フォームを設置。<br><?=com("", "<br>")?>
+          <b>2020/12/26</b> <?=com("", "<br>")?>スパムコメント対策を作成。<br><?=com("", "<br>")?>
+          <b>2021/01/08</b> <?=com("", "<br>")?>はてなブックマークのリンクを作成。<br><?=com("", "<br>")?>
+          <b>2021/03/02</b> <?=com("", "<br>")?>a-tk.jpの短縮リンクを削除。<br><?=com("", "<br>")?>
+          <b>2021/03/23</b> <?=com("", "<br>")?>StarServer(ライト)に移行。https化。<br><?=com("", "<br>")?>
+          <b>2021/04/27</b> <?=com("", "<br>")?>Tor拒否を無効化。感想書き込み時は有効のまま。<br><?=com("", "<br>")?>
+          <b>2021/05/03</b> <?=com("", "<br>")?>一部のリンクをrinu.cfに短縮。<br><?=com("", "<br>")?>
+          <b>2021/06/10</b> <?=com("", "<br>")?>コメントをSQLで管理するように変更。<br><?=com("", "<br>")?>
+          <b>2021/12/27</b> <?=com("", "<br>")?>DDOS攻撃に伴い、アクセスカウンターの方式を変更。<br><?=com("", "<br>")?>
+          <b>2022/01/06</b> <?=com("", "<br>")?>サイトのデザインをかなり変更。<br><?=com("", "<br>")?>
+          <b>2022/03/18</b> <?=com("", "<br>")?>activetk.jpへ移動。UIの大幅な変更。OSS化。<br><?=com("", "<br>")?>
+          <b>2022/04/16</b> <?=com("", "<br>")?>Onion版の「ActiveTK.jp#Onion」を作成。<br><?=com("", "<br>")?>
+          <b>2022/04/30</b> <?=com("", "<br>")?>「ActiveTK.jp」がGoogle アドセンスに合格。<br><?=com("", "<br>")?>
         </div>
         <hr>
       </div>
