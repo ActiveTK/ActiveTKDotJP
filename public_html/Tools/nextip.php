@@ -8,10 +8,10 @@
   /////////////////////////////////////////////////
 
   // 設定
-  $meurl = (((!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ) ? "https://" : "http://").$_SERVER['HTTP_HOST']."/tools/nextip";
-  $starttitle = "NextIP v6";
-  $decp = "NextIP v6です。フィルタリング回避ができます。システム的にはweb上でcurlを実行しています。やり方は簡単！アクセスしたいURLを貼るだけです！！是非使用してみてください！";
-  $startua = "Mozilla/5.0 (Linux; AccessBot 6.0; PHP; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121";
+  $meurl = "https://www.activetk.jp/tools/nextip";
+  $starttitle = "NextIP v6 - フィルタリング回避サイト";
+  $decp = "フィルタリングの回避ができます。ブログやYouTubeの閲覧も可能です！スマホやiPad、ChromeBook、3DSなど機種を問わずご利用頂けます。";
+  $startua = "Mozilla/5.0 (Linux; AccessBot 6.0; PHP; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.4183.121";
 
   error_reporting(0);
 
@@ -30,9 +30,62 @@
       else
       {
         list ($key, $value) = explode(': ', $line);
-        $headers[$key] = $value;
+        $headers[strtolower($key)] = $value;
       }
     return $headers;
+  }
+
+  function rel2abs($rel, $base) {
+    if (empty($rel)) $rel = ".";
+    if (parse_url($rel, PHP_URL_SCHEME) != "" || strpos($rel, "//") === 0) return $rel; //Return if already an absolute URL
+    if ($rel[0] == "#" || $rel[0] == "?") return $base.$rel; //Queries and anchors
+    extract(parse_url($base)); //Parse base URL and convert to local variables: $scheme, $host, $path
+    $path = isset($path) ? preg_replace('#/[^/]*$#', "", $path) : "/"; //Remove non-directory element from path
+    if ($rel[0] == '/') $path = ""; //Destroy path if relative url points to root
+    $port = isset($port) && $port != 80 ? ":" . $port : "";
+    $auth = "";
+    if (isset($user)) {
+      $auth = $user;
+      if (isset($pass)) {
+        $auth .= ":" . $pass;
+      }
+      $auth .= "@";
+    }
+    $abs = "$auth$host$path$port/$rel";
+    for ($n = 1; $n > 0; $abs = preg_replace(array("#(/\.?/)#", "#/(?!\.\.)[^/]+/\.\./#"), "/", $abs, -1, $n)) {} 
+    return $scheme . "://" . $abs;
+  }
+
+  function proxifyCSS($css, $baseURL) {
+    $sourceLines = explode("\n", $css);
+    $normalizedLines = [];
+    foreach ($sourceLines as $line) {
+      if (preg_match("/@import\s+url/i", $line)) {
+        $normalizedLines[] = $line;
+      } else {
+        $normalizedLines[] = preg_replace_callback(
+          "/(@import\s+)([^;\s]+)([\s;])/i",
+          function($matches) use ($baseURL) {
+            return $matches[1] . "url(" . $matches[2] . ")" . $matches[3];
+          },
+          $line);
+      }
+    }
+    $normalizedCSS = implode("\n", $normalizedLines);
+    return preg_replace_callback(
+      "/url\((.*?)\)/i",
+      function($matches) use ($baseURL) {
+        $url = $matches[1];
+        if (strpos($url, "'") === 0) {
+          $url = trim($url, "'");
+        }
+        if (strpos($url, "\"") === 0) {
+          $url = trim($url, "\"");
+        }
+        if (stripos($url, "data:") === 0) return "url(" . $url . ")";
+        return "url(https://www.activetk.jp/tools/nextip?q=" . urlencode(base64_encode(rel2abs($url, $baseURL))) . ")";
+      },
+    $normalizedCSS);
   }
 
   // アクセス
@@ -52,7 +105,7 @@
 
     if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], 'bot') !== false || strpos($_SERVER['HTTP_USER_AGENT'], 'Bot') !== false))
     {
-      header("HTTP/1.1 403 For Hidden");
+      header("HTTP/1.1 403 ForBidden");
       exit();
     }
 
@@ -72,11 +125,13 @@
     else if (isset($_POST["htt"]) && $_POST["htt"] == "https")
       $url = "https://" . $url;
 
+    $url = trim($url);
+
     // セキュリティチェック
     if (!filter_var($url, FILTER_VALIDATE_URL) || !preg_match('|^https?://.*$|', $url))
     {
       header("HTTP/1.1 404 Not Found");
-      die("セキュリティエラーが発生しました。");
+      die("不正な形式のURLです。<br>URLが正しいか(http[s]://から指定しているかなど)をご確認下さい。");
     }
 
     // Googleセーフブラウジングの検証
@@ -123,7 +178,8 @@
     }
 
     // yahoo知恵袋は改造
-    echo "<script nonce='".$nonce."'>window.onload=function(){document.getElementById('msthdtp').style='display:none;';}</script>";
+    if (strpos(strtoupper($url), 'CHIEBUKURO.YAHOO.CO.JP') !== false)
+      echo "<script nonce='".$nonce."'>window.onload=function(){document.getElementById('msthdtp').style='display:none;';}</script>";
 
     // curlオブジェクト作成
     $curl = curl_init($url);
@@ -197,6 +253,14 @@
     // オブジェクト破棄
     curl_close($curl);
 
+    if(isset($_GET["withcurl"]))
+    {
+      header("Content-Type: text/plain;charset=UTF-8");
+      echo htmlspecialchars($header);
+      echo htmlspecialchars($html);
+      die();
+    }
+
     // テキストモード
     if (isset($_POST["mode"]) && $_POST["mode"] == "text") {
       ?>
@@ -208,7 +272,6 @@
           <title>SourceCode of <?=htmlspecialchars($url)?></title>
           <meta name='author' content='ActiveTK.'>
           <meta name='ROBOTS' content='noindex'>
-          <meta name='favicon' content='{$iconpath}'>
           <style>a{color: #00ff00;position: relative;display: inline-block;transition: .3s;}a::after {position: absolute;bottom: 0;left: 50%;content: '';width: 0;height: 2px;background-color: #31aae2;transition: .3s;transform: translateX(-50%);}a:hover::after{width: 100%;}</style>
         </head>
         <body style='background-color:#e6e6fa;color:#363636;overflow-x:hidden;overflow-y:visible;'>
@@ -230,10 +293,13 @@
       $headerx = curl_headers($header);
 
       // ファイルのタイプを指定
-      header("Content-Type: ".$headerx["Content-Type"]);
+      if (isset($headerx["content-type"]))
+        header("Content-Type: ".$headerx["content-type"]);
 
       // HTMLだった場合にのみプレビュー
-      if (strpos($headerx["Content-Type"], 'text/html') === false)
+      if (strpos(strtolower($headerx["content-type"]), 'text/css') !== false)
+        exit(proxifyCSS($html, $url));
+      if (strpos(strtolower($headerx["content-type"]), 'text/html') === false)
         exit($html);
 
       // YouTube
@@ -279,26 +345,45 @@
 <?php
         exit();
       }
-    ?>
+
+    /* 普通に表示 */
+
+    header("X-Robots-Tag: noindex, nofollow");
+
+    preg_match_all( '/src="(.*?)"/i', $html, $match);
+    echo "<!--\n";
+    foreach($match[0] as $match_url)
+    {
+      $matchurl_old = $match_url;
+      $match_url = substr($match_url, 5);
+      $match_url = substr($match_url, 0, -1);
+      if (substr($match_url, 0, 1) != "#" && substr($match_url, 0, 5) != "data:" && substr($match_url, 0, 7) != "mailto:" && strpos( $match_url, "www.activetk.jp" ) === false)
+        $html = @str_replace($matchurl_old, "src=\"https://www.activetk.jp/tools/nextip?q=" . urlencode(base64_encode(rel2abs($match_url, $url))) . "\"", $html);
+    }
+    preg_match_all( '/href="(.*?)"/i', $html, $match2);
+    foreach($match2[0] as $match_url)
+    {
+      $matchurl_old = $match_url;
+      $match_url = substr($match_url, 6);
+      $match_url = substr($match_url, 0, -1);
+      if (substr($match_url, 0, 1) != "#" && substr($match_url, 0, 5) != "data:" && substr($match_url, 0, 7) != "mailto:" && strpos( $match_url, "www.activetk.jp" ) === false)
+        $html = @str_replace($matchurl_old, "href=\"https://www.activetk.jp/tools/nextip?q=" . urlencode(base64_encode(rel2abs($match_url, $url))) . "\"", $html);
+    }
+    echo "-->\n";
+
+      ?>
 <base href="<?=$url?>">
 <meta name="robots" content="noindex, nofollow">
-<script type="text/javascript" nonce="<?=$nonce?>">
-  function NextURL(e){
-    let t=document.createElement("form");t.style="Display: none;",t.action="<?=$meurl?>",t.method="POST",document.body.appendChild(t);
-    let o=document.createElement("input");o.type="text",o.name="q",o.value=e,t.appendChild(o),t.submit()
-  }
-  window.addEventListener("DOMContentLoaded",function(){<?=$at?>let e=document.getElementsByTagName("a"),t=0;for(t=0;t<e.length;t++){let o=null;try{o=e[t].href,e[t].href="javascript:NextURL(`"+e[t].href+"`);",e[t].target="",e[t].rel="noopener noreferrer"}catch(e){}}let o=document.getElementsByTagName("img"),n=0;for(n=0;n<o.length;n++){let t=null;try{"http"==(t=o[n].src).slice(0,4)?o[n].src="<?=$meurl?>?q="+encodeURIComponent(btoa(t)):o[n].src="<?=$meurl?>?q="+encodeURIComponent(btoa(location.protocol+"://"+location.host+"/"+t))}catch(e){}}let l=document.getElementsByTagName("script"),s=0;for(s=0;s<l.length;s++){let t=null;try{(t=l[s].src)&&("http"==t.slice(0,4)?l[s].src="<?=$meurl?>?q="+encodeURIComponent(btoa(t)):l[s].src="<?=$meurl?>?q="+encodeURIComponent(btoa(location.protocol+"://"+location.host+"/"+t)))}catch(e){}}let a=document.getElementsByTagName("link"),c=0;for(c=0;c<a.length;c++)try{let t=a.href;if(("stylesheet"==toLowerCase(a[c].rel)||"text/css"==toLowerCase(a[c].type))&&a[c].href)if("http"==t.slice(0,4)){let e=new XMLHttpRequest,o=document.getElementsByTagName("body")[0];e.open("GET","<?=$meurl?>?q="+encodeURIComponent(btoa(t)),!0),e.send(null),e.onreadystatechange=function(){4==e.readyState&&200==e.status&&(o.style&&""!=o.style?o.style=o.style+e.responseText:o.style=e.responseText)}}else if("//"==t.slice(0,2)){let e=new XMLHttpRequest,o=document.getElementsByTagName("body")[0];e.open("GET","<?=$meurl?>?q="+encodeURIComponent(location.protocol+"://"+btoa(t)),!0),e.send(null),e.onreadystatechange=function(){4==e.readyState&&200==e.status&&(o.style&&""!=o.style?o.style=o.style+e.responseText:o.style=e.responseText)}}else{let e=new XMLHttpRequest,o=document.getElementsByTagName("body")[0];e.open("GET","<?=$meurl?>?q="+encodeURIComponent(btoa(location.protocol+"://"+location.host+"/"+t)),!0),e.send(null),e.onreadystatechange=function(){4==e.readyState&&200==e.status&&(o.style&&""!=o.style?o.style=o.style+e.responseText:o.style=e.responseText)}}}catch(e){}});</script>
-<script defer src="https://rinu.cf/pv/index.php?token=kaihi5cfuse&callback=console.log" nonce="<?=$nonce?>"></script>
 <!-- Main -->
 <?=$html?>
 <!-- /Main -->
-    <?php
-      exit();
+      <?php
+        exit();
     }
   }
 
   $meurl = "https://www.activetk.jp/";
-  $title = "NextIP v6 | ActiveTK.jp";
+  $title = "NextIP v6 - フィルタリング回避サイト - ActiveTK.jp";
 
 ?>
 
@@ -311,15 +396,12 @@
     <title><?php echo $title; ?></title>
     <base href="<?=$meurl?>">
     <meta name="author" content="ActiveTK.">
-    <meta name="ROBOTS" content="ALL">
+    <meta name="robots" content="All">
     <meta name="favicon" content="<?=$meurl?>icon/index_32_32.ico">
-    <meta http-equiv="Content-Style-Type" content="text/css">
-    <meta http-equiv="Content-Script-Type" content="text/javascript">
     <meta name="description" content="<?php echo $decp; ?>">
-    <meta name="copyright" content="Copyright &copy; 2021 ActiveTK. All rights reserved.">
+    <meta name="copyright" content="Copyright &copy; 2023 ActiveTK. All rights reserved.">
     <meta name="thumbnail" content="<?=$meurl?>icon/index.png">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@ActiveTK5929">
     <meta name="twitter:creator" content="@ActiveTK5929">
     <meta name="twitter:title" content="<?php echo $title; ?>">
     <meta name="twitter:description" content="<?php echo $decp; ?>">
@@ -330,10 +412,6 @@
     <meta property="og:url" content="<?=$meurl?>">
     <meta property="og:site_name" content="<?php echo $title; ?>">
     <meta property="og:locale" content="ja_JP">
-    <meta property="og:image" content="<?=$meurl?>icon/index.png">
-    <meta property="og:image:width" content="862">
-    <meta property="og:image:height" content="360">
-    <link rel="canonical" href="<?=$meurl?>">
     <link rel="shortcut icon" href="<?=$meurl?>icon/index_16_16.ico" sizes="16x16">
     <link rel="shortcut icon" href="<?=$meurl?>icon/index_32_32.ico" sizes="32x32">
     <link rel="shortcut icon" href="<?=$meurl?>icon/index_64_64.ico" sizes="64x64">
@@ -348,8 +426,8 @@
   <body style="background-color:#e6e6fa;text:#363636;">
     <br>
     <div align='center'>
-      <h1>NextIP v6 - ActiveTK.jp</h1><br>
-      <p>NextIPは、Web上で「curl」を実行できるツールです。<br>YouTubeやTwitter、Yahoo知恵袋なども閲覧できます。</p>
+      <h1>NextIP v6 - フィルタリング回避サイト</h1><br>
+      <p>NextIPは、Web上で「curl」を実行することによりフィルタリング回避ができるツールです。<br>YouTubeやTwitter、Yahoo知恵袋などの閲覧も可能です。</p>
       <form action='' method='POST'>
         <select name="htt" style="height:24px;">
           <option value="none">(None)</option>
@@ -384,7 +462,7 @@
             <option value="get">GET</option>
             <option value="post">POST</option>
           </select><br>
-          UserAgent : <input type='text' name='ua' size='20' placeholder='UserAgent' value=''><br>
+          UserAgent : <input type='text' name='ua' size='20' placeholder='ユーザーエージェント' value=''><br>
           BASIC認証 : <input type='text' name='user' size="8" placeholder='ユーザー名'>
           <input type='password' name='pass' size="8" placeholder='パスワード'><br>
           プロキシ : <select name="prk">
@@ -393,6 +471,7 @@
           </select><br>
           <input type='text' name='prk-server' size="8" placeholder='サーバー'>
           <input type='text' name='prk-port' size="8" placeholder='ポート'>
+          <br><br>※この回避サイト自体が検閲/規制されている場合、<br><a href="https://www.activetk.jp/contact" target="_blank">お問い合わせ</a>からご連絡下さい。ミラードメインをお教えします。<br>
           </div><br>
       </form>
       <br>
