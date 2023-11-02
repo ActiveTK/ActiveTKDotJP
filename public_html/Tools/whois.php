@@ -1642,10 +1642,13 @@
       return "エラーが発生しました。: ドメインが存在しません。";
     return $res;
   }
-  if (isset($_POST["whois"]))
+  if (isset($_POST["whois"]) || isset($_GET["whoiswithphp"]))
   {
     header("Content-Type: text/plain;charset=UTF-8");
-    echo whois($_POST["whois"]);
+    if (isset($_POST["whois"]))
+      echo whois($_POST["whois"]);
+    else
+      echo whois($_GET["whoiswithphp"]);
     exit();
   }
   if (isset($_POST["iana"]))

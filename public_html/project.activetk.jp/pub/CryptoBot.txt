@@ -1,0 +1,119 @@
+<?php /***/ define( "DEBUG", false ); /***/
+
+  /*!
+   * 仮想通貨の相場取得 / Twitterへの自動ツイート
+   * (c) 2022 ActiveTK. <webmaster@activetk.jp>
+   * Released under the MIT license
+   */
+
+  require_once "/home/activetk/require/Config.php";
+  http_response_code( 200 );
+  header( "Content-Type: text/html;charset=UTF-8" );
+
+  /*******************************************************************/
+
+  /**
+   * APIリクエストにより現在の仮想通貨のレートを取得する関数
+   * 
+   * @param string $path リクエストコマンド
+   * @param string $args API実行の引数
+   * @return string[] 各通貨の現在の相場価格
+   */
+  
+  function APIRequest( $path, $args ) {
+    $url = "https://api.coingecko.com/api/v3" . $path . "?";
+    foreach( $args as $name => $value )
+      $url .= urlencode( $name ) . "=" . urlencode( $value ) . "&";
+    return json_decode( file_get_contents( $url ), true );
+  }
+
+  /*******************************************************************/
+
+  $time = time();
+  $rate = APIRequest( "/simple/price", array("ids"=>"bitcoin,ethereum,monero", "vs_currencies"=>"jpy") );
+  define( "BTC_PLICE", $rate["bitcoin"]["jpy"] );
+  define( "ETH_PLICE", $rate["ethereum"]["jpy"] );
+  define( "XMR_PLICE", $rate["monero"]["jpy"] );
+
+  $lines = array_reverse(
+    explode("\n",
+      str_replace(
+        ["\r\n", "\r", "\n"],
+        "\n",
+        file_get_contents(
+          "/home/activetk/data/ActiveTKDotJP/CryptoChart.log",
+          false,
+          null,
+          filesize(
+            "/home/activetk/data/ActiveTKDotJP/CryptoChart.log"
+          ) - 5000
+        )
+      )
+    )
+  );
+
+  $BTC1H = number_format( BTC_PLICE / json_decode( $lines[1], true )["Plice"]["Bitcoin"] * 100, 2 );
+  $BTC24H = number_format( BTC_PLICE / json_decode( $lines[24], true )["Plice"]["Bitcoin"] * 100, 2 );
+  $ETH1H = number_format( ETH_PLICE / json_decode( $lines[1], true )["Plice"]["Ethereum"] * 100, 2 );
+  $ETH24H = number_format( ETH_PLICE / json_decode( $lines[24], true )["Plice"]["Ethereum"] * 100, 2 );
+  $XMR1H = number_format( XMR_PLICE / json_decode( $lines[1], true )["Plice"]["Monero"] * 100, 2 );
+  $XMR24H = number_format( XMR_PLICE / json_decode( $lines[24], true )["Plice"]["Monero"] * 100, 2 );
+
+  $Text = "【" . date( "Y/m/d H:i:s", $time ) . "時点でのレート】\n" .
+          "(BTC)  " . number_format( BTC_PLICE ) . "円 (1h:" . $BTC1H . "%, 24h:" . $BTC24H . "%)\n" .
+          "(ETH)  " . number_format( ETH_PLICE ) . "円 (1h:" . $ETH1H . "%, 24h:" . $ETH24H . "%)\n" .
+          "(XMR)  " . number_format( XMR_PLICE ) . "円 (1h:" . $XMR1H . "%, 24h:" . $XMR24H . "%)";
+
+  /*******************************************************************/
+
+  // ログファイルに記録
+  $LogData = json_encode( array (
+    "Count" => count( file( "/home/activetk/data/ActiveTKDotJP/CryptoChart.log", FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES ) ) + 1,
+    "Time" => date( "Y/m/d H:i:s", $time ),
+    "UnixTime" => $time,
+    "Plice" => array(
+      "Bitcoin" => BTC_PLICE,
+      "Ethereum" => ETH_PLICE,
+      "Monero" => XMR_PLICE
+    )
+  ), JSON_UNESCAPED_UNICODE );
+
+  file_put_contents( "/home/activetk/data/ActiveTKDotJP/CryptoChart.log", $LogData . "\n", FILE_APPEND );
+
+  /*******************************************************************/
+
+  // デバッグ用
+  if ( DEBUG ) {
+    echo "<p>" . date( "Y/m/d - M (D) H:i:s", $time ) . "</p>";
+    echo "<pre>";
+    var_dump( $rate );
+    echo "</pre>";
+    echo "<p>Bitcoin: ￥" . number_format( BTC_PLICE ) . "</p>";
+    echo "<p>Ethereum: ￥" . number_format( ETH_PLICE ) . "</p>";
+    echo "<p>Monero: ￥" . number_format( XMR_PLICE ) . "</p>";
+  }
+
+  /*******************************************************************/
+
+  // 現在のレートをツイート
+  tweet_bybot( $Text );
+
+  /*******************************************************************/
+
+  // for just me..
+  if ( XMR_PLICE < 20000)
+    Notification2Admin(
+      "早くMonero買え！！！！",
+        "Moneroが2万円切ったぞ？<br>" .
+        "とりあえず買え()<br>" .
+        "<pre align='left'>" . $Text . "</pre>"
+    );
+  else if ( XMR_PLICE > 30000)
+    Notification2Admin(
+      "早くMonero売れ！！！！",
+        "Moneroが3万円超えたぞ？<br>" .
+        "とりあえず売れ()<br>" .
+        "<pre align='left'>" . $Text . "</pre>"
+    );
+
+  /*******************************************************************/

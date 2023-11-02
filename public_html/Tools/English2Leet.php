@@ -7,6 +7,7 @@
   
   if (isset($_POST["English"]) && isset($_POST["instr"]))
   {
+    header("Content-Type: text/plain");
     $repstr = array(
       'a' => '4',
       'b' => '8',

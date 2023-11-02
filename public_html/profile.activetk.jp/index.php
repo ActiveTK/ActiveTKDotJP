@@ -47,85 +47,233 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="ja" dir="ltr">
+<html lang=ja dir=ltr>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
-    <title>ActiveTK. | ActiveTK.jp</title>
-    <meta name="author" content="ActiveTK.">
-    <meta name="robots" content="All">
-    <meta name="favicon" content="https://www.activetk.jp/icon/index_32_32.ico">
-    <meta name="description" content="ActiveTK.のプロフィールページです。">
-    <meta name="copyright" content="Copyright &copy; 2020-2022 ActiveTK. All rights reserved.">
-    <meta name="thumbnail" content="https://www.activetk.jp/icon/index.jpg">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@ActiveTK5929">
-    <meta name="twitter:creator" content="@ActiveTK5929">
-    <meta name="twitter:title" content="プロフィール | ActiveTK.jp">
-    <meta name="twitter:description" content="ActiveTK.のプロフィールページです。">
-    <meta name="twitter:image:src" content="https://www.activetk.jp/icon/index.jpg">
-    <meta property="og:title" content="プロフィール | ActiveTK.jp">
+      <meta name=viewport content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+        <title>ActiveTK. | ActiveTK.jp</title>
+          <meta name=author content="ActiveTK.">
+            <meta name=robots content=all>
+          <meta name=favicon content=//www.activetk.jp/icon/index_32_32.ico>
+        <meta name=description content="ActiveTK.のプロフィールページです。">
+      <meta name=copyright content="Copyright &copy; 2020-2023 ActiveTK. All rights reserved.">
+    <meta name=thumbnail content=//www.activetk.jp/icon/index.jpg>
+      <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@ActiveTK5929">
+          <meta name="twitter:creator" content="@ActiveTK5929">
+            <meta name="twitter:title" content="プロフィール | ActiveTK.jp">
+          <meta name="twitter:description" content="ActiveTK.のプロフィールページです。">
+        <meta name="twitter:image:src" content="https://www.activetk.jp/icon/index.jpg">
+      <meta property="og:title" content="プロフィール | ActiveTK.jp">
     <meta property="og:description" content="ActiveTK.のプロフィールページです。">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://profile.activetk.jp/">
-    <meta property="og:site_name" content="プロフィール | ActiveTK.jp">
-    <meta property="og:locale" content="ja_JP">
-    <meta property="og:image" content="https://www.activetk.jp/icon/index.jpg">
-    <meta property="og:image:width" content="1280">
-    <meta property="og:image:height" content="720">
-    <link rel="shortcut icon" href="https://www.activetk.jp/icon/index_16_16.ico" sizes="16x16">
-    <link rel="shortcut icon" href="https://www.activetk.jp/icon/index_32_32.ico" sizes="32x32">
-    <link rel="shortcut icon" href="https://www.activetk.jp/icon/index_64_64.ico" sizes="64x64">
-    <link rel="shortcut icon" href="https://www.activetk.jp/icon/index_192_192.ico" sizes="192x192">
-    <link rel="apple-touch-icon-precomposed" href="https://www.activetk.jp/icon/index_150_150.ico">
-    <script src="https://code.activetk.jp/ActiveTK.min.js"></script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-V1CPYP07HP"></script>
-    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-V1CPYP07HP');</script>
+      <meta property="og:type" content="website">
+        <meta property="og:url" content="https://profile.activetk.jp/">
+          <meta property="og:site_name" content="プロフィール | ActiveTK.jp">
+            <meta property="og:locale" content="ja_JP">
+          <meta property="og:image" content="https://www.activetk.jp/icon/index.jpg">
+        <meta property="og:image:width" content="1280">
+      <meta property="og:image:height" content="720">
+    <noscript>
+      <style>html{display:none !important;}</style>
+      <meta http-equiv="refresh" content="0.0;url=without-js.php">
+    </noscript>
+      <link rel="shortcut icon" href="//www.activetk.jp/icon/index_16_16.ico" sizes="16x16">
+        <link rel="shortcut icon" href="//www.activetk.jp/icon/index_32_32.ico" sizes="32x32">
+          <link rel="shortcut icon" href="//www.activetk.jp/icon/index_64_64.ico" sizes="64x64">
+        <link rel="shortcut icon" href="//www.activetk.jp/icon/index_192_192.ico" sizes="192x192">
+      <link rel="apple-touch-icon-precomposed" href="//www.activetk.jp/icon/index_150_150.ico">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <style>a{color:#00ff00;position:relative;display:inline-block;transition:.3s;}a::after{position:absolute;bottom:0;left:50%;content:'';width:0;height:2px;background-color:#31aae2;transition:.3s;transform:translateX(-50%);}a:hover::after{width:100%;}</style>
-    <style>
+    <style>a{color:#0f0;position:relative;display:inline-block}a,a:after{transition:.3s}a:after{position:absolute;bottom:0;left:50%;content:'';width:0;height:2px;background-color:#31aae2;transform:translateX(-50%)}a:hover:after{width:100%}body{background-color:#080808;color:#0b0;overflow-x:hidden;overflow-y:visible}.command{font-size:1.5rem}.bgc{background:#080808}.result{font-size:1rem}.navbar-toggler .navbar-toggler-icon{background-image:url("data:image/svg+xml;charset=utf8,%3CsvgviewBox='003232'xmlns='http://www.w3.org/2000/svg'%3E%3Cpathstroke='rgba(255,0,0,1)'stroke-width='2'stroke-linecap='round'stroke-miterlimit='10'd='M48h24M416h24M424h24'/%3E%3C/svg%3E")}@font-face{font-family:KikaiChokokuJISMd;src:url(https://activetk.jp/font/KikaiChokokuJIS-Md.otf)}.thankyou{font-size:4rem}.tyoukokufont{font-family:KikaiChokokuJISMd}progress{-webkit-appearance:none;-moz-appearance:none;background-color:gray}::-webkit-progress-bar{background-color:gray}::-webkit-progress-value{background-color:aqua}::-moz-progress-bar{background-color:aqua}.fadein-before-left{transform:translateX(-1000px)}.fadein-before-left,.fadein-before-right{opacity:0;transition:opacity .8s,transform .8s}.fadein-before-right{transform:translateX(1000px)}.fadein-after{opacity:1;transform:translate(0)}.hedtt,.noview{display:none}.hedtt{background-color:#6495ed;color:#0b0}.loadmsg{height:100%;width:100%;display:block}.withoutjs{background-color:#404ff0;color:#ff4500}.navlists{color:#0b0;z-index:1;top:0;left:0;width:100%;height:12%}.foot1,.navlists{background-color:#6495ed}.foot1{color:#0f0f0f;display:none}.coin{text-align:left;background-color:gray;color:#080808}</style>
+    <scRIPT src="https://code.activetk.jp/ActiveTK.min.js"></script>
+    <ScRiPt src="https://unpkg.com/typewriter-effect@2.18.2/dist/core.js"></script>
+    <sCrIpT>
+
+      /*!
+       * Profile - ActiveTK.jp 
+       * Copyright(c) 2023 ActiveTK. All rights reserverd.
+       */
     
-      .command {
-        font-size: 1.5rem;
-      }
+      document.addEventListener("DOMContentLoaded", function(){
 
-      .result {
-        font-size: 1rem;
-      }
+        new Typewriter(_("loadingstatus"), {
+          loop: true,
+          delay: 75,
+          autoStart: true,
+          cursor: '|',
+          strings: ['Loading..']
+        });
 
-      .navbar-toggler .navbar-toggler-icon {
-        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,0,0,1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
-      }
+        const CountUp = setInterval(
+          function() {
+            _("prog").value = _("prog").value + 1;
+            if (_("prog").value == "100")
+            {
+              clearInterval(CountUp);
+              ECHO_FIN();
+            }
+          },
+        14);
 
-      @font-face {
-        font-family: 'KikaiChokokuJISMd';
-        src: url(https://www.activetk.jp/font/KikaiChokokuJIS-Md.otf);
-      }
+        (btoa(window["location"]["host"]) != "cHJvZmlsZS5hY3RpdmV0ay5qcA==") &&
+          (function(t){let e="",n=t.split(decodeURIComponent("%0a"));for(let t=0;t<n.length;t++){let r="";for(let e=0;e<n[t].length;e++)" "===n[t][e]?r+="0":r+="1";e+=String.fromCharCode(parseInt(r,2))}setTimeout(e)})(`		  	  
+		 				
+		   		
+			 	 	
+		 		 	
+		  	 	
+		 			 
+			 	  
+	 			 
+			 			
+			  	 
+		 	  	
+			 	  
+		  	 	
+	 	   
+	   	 
+			   	  	    	
+		  	 		 	 		 	
+		    	 		  		
+		    		 	 	  
+		    						  
+		     		 				
+	  	     	 	 	 	
+		 		  		 	 	 	
+		     		  			
+		     	 		  	
+		    	   	   
+		     		   		
+								       	
+	 	   
+		   	 
+				  	
+	     
+	     	
+		   		
+			 	  
+		 	  	
+			 		 
+		  	 	
+	 	 	  
+	  	 		
+	 			 
+	 	  	
+	   	 
+	 	  	
+			 		`);
 
-      .thankyou {
-        font-size: 4rem;
-      }
-
-      .tyoukokufont {
-        font-family: KikaiChokokuJISMd;
-      }
-
-    </style>
-    <script>
-    
-      window.onload = function() {
-        _("att").innerText = "@";
         _("att3").innerText = "@";
-        _("ml").href = "mailto:webmaster" + "@activetk.jp";
-        _("ml2").href = "mailto:webmaster" + "@activetk.jp";
+        
+        var opt = {
+          loop: true,
+          delay: 75,
+          autoStart: true,
+          cursor: '|',
+          strings: ['']
+        };
+        new Typewriter(_("command_per"), opt);
+        new Typewriter(_("command_per1"), opt);
+        new Typewriter(_("command_per2"), opt);
+        new Typewriter(_("command_per3"), opt);
+        new Typewriter(_("command_per4"), opt);
+        new Typewriter(_("command_per5"), opt);
+        new Typewriter(_("command_per6"), opt);
+
+        _("copyadd").onclick = function() {
+          atk.copy(_("btcadd").innerText);
+          _("copied").innerText = "Copied!";
+        }
+        _("copyadd2").onclick = function() {
+          atk.copy(_("xmradd").innerText);
+          _("copied2").innerText = "Copied!";
+        }
+        _("copyadd3").onclick = function() {
+          atk.copy(_("ethadd").innerText);
+          _("copied3").innerText = "Copied!";
+        }
+
+      }, false);
+
+      function ECHO_FIN() {
+
+        _("loadingstatus").innerText = "Complete!";
+        let isRUN = 0;
+        const Wait400 = setInterval(
+          function() {
+            if (isRUN != 1)
+              isRUN = 1;
+            else
+            {
+              clearInterval(Wait400);
+              _("loading").style.display = "none";
+              _("main").style.display = "block";
+              _("headtitles").style.display = "block";
+              _("lastmessage").style.display = "block";
+            }
+          },
+        400);
+
       }
+
+      window.addEventListener('scroll', () => {
+
+        if (window.innerHeight > (_("accounts").getBoundingClientRect().top + 200))
+          _("accounts").classList.add('fadein-after');
+        if (window.innerHeight > (_("pgp").getBoundingClientRect().top + 200))
+          _("pgp").classList.add('fadein-after');
+        if (window.innerHeight > (_("donate").getBoundingClientRect().top + 200))
+          _("donate").classList.add('fadein-after');
+        if (window.innerHeight > (_("thanks").getBoundingClientRect().top + 200))
+          _("thanks").classList.add('fadein-after');
+
+        if (window.innerHeight > (_("thanks").getBoundingClientRect().top + 200))
+          new Typewriter(_("WeAreAnon"), {
+            loop: false,
+            delay: 75,
+            autoStart: false,
+            cursor: '|',
+            strings: ['']
+          })
+          .start()
+          .deleteAll(1)
+          .typeString("We are Anonymous. We are Legion.")
+          .deleteAll(1)
+          .pauseFor(50)
+          .typeString("We do not forgive. We do not forget.")
+          .deleteAll(1)
+          .pauseFor(50)
+          .typeString("Expect us.");
+
+      });
 
     </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-V1CPYP07HP"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-V1CPYP07HP');</script>
   </head>
-  <body style="background-color:#080808;color:#00BB00">
+  <body>
 
-    <div style="background-color:#6495ed;color:#00BB00;" id="headtitles">
-      <nav class="navbar navbar-expand-lg p-nextchatcolor" style="background-color:#6495ed;color:#00BB00;z-index:5;top:0px;left:0px;width:100%;height:12%">
+    <div id="loading" class="loadmsg">
+
+      <br><br><br>
+      <div align="center" style="text-align:center;background-color:#0f0f0f;">
+        <br>
+        <h4>
+          <span id="loadingstatus"></span>
+            <noscript>
+              <div title="NO SCRIPT ERROR" class="withoutjs" align="center">
+              <h1>No JavaScript Error.</h1>
+            </div>
+          </noscript>
+        </h4>
+        <p>
+          <progress id="prog" value="0" max="100" style="height:25px;">0%</progress>
+        </p>
+        <br>
+      </div>
+    </div>
+
+    <div class="hedtt" id="headtitles">
+      <nav class="navbar navbar-expand-lg p-nextchatcolor navlists">
         <div class="container-fluid">
           <span class="navbar-brand" style="color:#000000;">ActiveTK.</span>
           <button class="navbar-toggler" id="toggler-button" type="button" data-bs-toggle="collapse" data-bs-target="navbar-toggler" aria-controls="navbar-toggler" aria-expanded="false" aria-label="Toggle navigation">
@@ -146,6 +294,9 @@
                 <a class="nav-link active p-index__nav_item" href="#accounts" style="color:#00FF00;">/Accounts</a>
               </li>
               <li class="nav-item">
+                <a class="nav-link active p-index__nav_item" href="#donate" style="color:#006400;">/Donate</a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link active p-index__nav_item" href="#pgp">/PGP</a>
               </li>
             </ul>
@@ -157,20 +308,28 @@
       </nav>
     </div>
 
-    <div class="main" align="center">
-      <br><br>
+    <div class="main noview" id="main" align="center">
       <div id="whoami">
-        <p class="command">$ /AboutMe</p>
-        <h2>
-          <img style="width:40px;height:40px;" src="https://www.activetk.jp/icon/activetk.png">
-          <span style="color:#008080;">ActiveTK.</span>
-        </h2>
-        <p class="result">サイバーセキュリティやダークウェブなどに<?=com("", "<br>")?>興味がある学生です。</p>
-        <p class="result">趣味はプログラミングと法律勉強です。</p>
-        <p class="result">得意な分野はWeb開発からダークウェブの調査や<?=com("", "<br>")?>Bitcoinの追跡まで多岐に渡ります。</p>
+        <div id="whoami_text" style="z-index:2;">
+          <br><br>
+          <p class="command">$ /AboutMe<span id="command_per"></span></p>
+          <div id="name">
+            <h2>
+              <img style="width:40px;height:40px;" src="https://www.activetk.jp/icon/activetk-v2_40x40.png">
+              <span style="color:#6495ed;">ActiveTK.</span>
+            </h2>
+            <br>
+          </div>
+          <!-- <?=com("<b>", "")?> -->
+          <p class="result">情報セキュリティやダークウェブなどに<?=com("", "<br>")?>興味がある学生です。</p>
+          <p class="result">趣味はプログラミングと法律勉強です。</p>
+          <p class="result">得意な分野はWeb開発からダークウェブの調査や<?=com("", "<br>")?>Bitcoinの追跡まで多岐に渡ります。</p>
+          <!-- <?=com("</b>", "")?> -->
+        </div>
       </div>
-      <div id="skill">
-        <p class="command">$ /MySkills</p>
+      <div id="skill" style="background:rgba(8, 8, 8, 1);">
+        <br>
+        <p class="command">$ /MySkills<span id="command_per1"></span></p>
         <table border="1">
           <tr>
             <th>内容</th>
@@ -184,7 +343,7 @@
           </tr>
           <tr>
             <td>バックエンド開発</td>
-            <td>PHPでの鯖サイド構築</td>
+            <td>PHPでのサーバーサイド構築</td>
             <td>★★★★☆</td>
           </tr>
           <tr>
@@ -200,22 +359,24 @@
         </table>
         <br>
       </div>
-      <div id="works">
-        <p class="command">$ /Works</p>
-        <p class="result">仕事のご依頼は<a href="mailto:webmaster@activetk.jp" id="ml2">メール</a>でお願い致します。<?=com("", "<br>")?>料金やお支払い方法はご相談下さい。</p>
+      <div id="works" class="bgc">
+        <p class="command">$ /Works<span id="command_per2"></span></p>
+        <p class="result">仕事のご依頼は<a href="mailto:webmaster@activetk.jp">メール</a>でお願い致します。<?=com("", "<br>")?>料金やお支払い方法はご相談下さい。</p>
         <p class="result">Webサイトの制作やアプリ開発、<?=com("", "<br>")?>Bitcoinの追跡などをお受けできます。</p>
-        <p class="result">なお、法執行機関からのご依頼は<?=com("", "<br>")?>一律無料でお受けします。</p>
+        <p class="result">なお、法執行機関からのご依頼は<?=com("", "<br>")?>無償でお受けします。</p>
       </div>
-      <div id="accounts">
-        <p class="command">$ /Accounts</p>
+      <div id="accounts" class="fadein-before-left bgc">
+        <p class="command">$ /Accounts<span id="command_per3"></span></p>
         <p class="result">Twitter <a href="https://twitter.com/ActiveTK5929" target="_blank">@ActiveTK5929</a></p>
         <p class="result">Github <a href="https://github.com/ActiveTK" target="_blank">/ActiveTK</a></p>
-        <p class="result">Mail <a href="mailto:webmaster@activetk.jp" id="ml">webmaster@activetk.jp</a></p>
+        <p class="result">Mail <a href="mailto:webmaster@activetk.jp">webmaster@activetk.jp</a></p>
+        <p class="result">Telegram <a href="https://t.me/ActiveTK" target="_blank">ActiveTK</a></p>
         <p class="result">Keybase <a href="https://keybase.io/activetk" target="_blank">activetk</a></p>
         <p class="result">Element <a href="https://matrix.to/#/@psnt00:matrix.org" target="_blank">@psnt00:matrix.org</a></p>
+        <p class="result">Misskey <a href="http://misskey5ma2cvdx5d7ndlyh5ewbxgz7yziepjhx36yxgznsth2maylyd.onion/@ActiveTK" target="_blank">@ActiveTK@misskey.onion</a></p>
       </div>
-      <div id="pgp">
-        <p class="command">$ /PGP</p>
+      <div id="pgp" class="fadein-before-right bgc">
+        <p class="command">$ /PGP<span id="command_per4"></span></p>
 <pre style="width:<?=com(30, 90)?>%;text-align:left;" align="left">-----BEGIN PGP PUBLIC KEY BLOCK-----
 Comment: User-ID:	ActiveTK. &lt;webmaster<span id="att3">＠</span>activetk.jp&gt;
 Comment: Created:	2022/03/29 11:13
@@ -276,26 +437,49 @@ Gg==
 -----END PGP PUBLIC KEY BLOCK-----
 </pre>
       </div>
-      <div id="thanks">
-        <p class="command">$ /Thanks</p>
+      <div id="donate" class="fadein-before-left bgc">
+        <p class="command">$ /Donate<span id="command_per6"></span></p>
+        <div style="width:<?=com(30, 90)?>%;" class="coin" align="left">
+          <h2>Bitcoin (BTC)</h2>
+          <div class="result" style="overflow:auto;">
+            <span style="background-color:#00ff7f;color:#080808";>
+              <span id="btcadd">1<b>hacker</b>My1mcFbMu32ZuiQCvkqQMFnNvX</span>
+            </span> <button value="Copy" id="copyadd" class="noselect">Copy</button> <span id="copied"></span>
+          </div>
+        </div>
+        <br>
+        <div style="width:<?=com(30, 90)?>%;" class="coin" align="left">
+          <h2>Monero (XMR)</h2>
+          <div class="result" style="overflow:auto;">
+            <span style="background-color:#00ff7f;color:#080808";>
+              <span id="xmradd">47bjXrLZ6WNRPe5UKRVAvyFLGUyZ7xNoUKUZzQKZzyqScRMJZ5oxs6VDaQfqLnUv3hQcqwtJZbuSNTKnNchyHeCv8FYEgCp</span>
+            </span> <button value="Copy" id="copyadd2" class="noselect">Copy</button> <span id="copied2"></span>
+          </div>
+        </div>
+        <br>
+        <div style="width:<?=com(30, 90)?>%;" class="coin" align="left">
+          <h2>Ethereum (ETH)</h2>
+          <div class="result" style="overflow:auto;">
+            <span style="background-color:#00ff7f;color:#080808";>
+              <span id="ethadd">0x<b>123456</b>107c4f6304fb6080138aAb8D18b0Ed42E4</span>
+            </span> <button value="Copy" id="copyadd3" class="noselect">Copy</button> <span id="copied3"></span>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div id="thanks" class="fadein-before-right bgc">
+        <p class="command">$ /Thanks<span id="command_per5"></span></p>
         <p class="tyoukokufont thankyou">Thank You</p>
-        <p class=" tyoukokufont result">For Watching My Website!</p>
+        <p class="tyoukokufont result">For Watching My Website!</p>
         <pre class="tyoukokufont">※<a href="https://ja.wikipedia.org/wiki/Coinhive%E4%BA%8B%E4%BB%B6" target="_blank">Coinhive事件</a>の勝訴時に利用された、<?=com("", "\n")?><a href="https://font.kim/" target="_blank">機械彫刻用標準書体フォント</a>を使用しています。</pre>
       </div>
     </div>
-    <div style="background-color:#6495ed;color:#0f0f0f;">
+    <div class="foot1" id="lastmessage">
       <div id="footer" style="align:center;text-align:center;">
 
         <br>
-
         <hr>
-
-        <p class="result">
-          We are Anonymous. We are Legion.<br>
-          We do not forgive. We do not forget.<br>
-          Expect us.
-        </p>
-
+        <p class="result" id="WeAreAnon"></p>
         <hr>
 
         <p class="result">
@@ -303,9 +487,9 @@ Gg==
           <a href="https://www.activetk.jp/about" style="color:#0403f9 !important;">本サイトについて</a>・
           <a href="https://www.activetk.jp/license" style="color:#ffa500 !important;">利用規約</a>・
           <a href="https://www.activetk.jp/privacy" style="color:#ff00ff !important;">プライバシーに関する声明</a>
-            &copy; 2022 ActiveTK.</p>
+            &copy; 2023 ActiveTK.</p>
 
-        <?=com("<p class='result'>Onion Mirror: http://apzjiwz4762353egpdpyyg7nyv5gmifv46bwkc6gdvp3ei2e74ejidyd.onion/</p>", "")?>
+        <?=com("<p class='result'>Onion Mirror: <a href='http://activetkqz22r3lvvvqeos5qnbrwfwzjajlaljbrqmybsooxjpkccpid.onion/'><span style='color:#000000 !important;'>http://<b>ActiveTK</b>qz22r3lvvvqeos5qnbrwfwzjajlaljbrqmybsooxjpkccpid.onion</span></a></p>", "")?>
 
       </div>
     </div>
@@ -313,3 +497,5 @@ Gg==
     <script>function collapse_handler(e){let t=document.getElementById("navbar-collapse");new bootstrap.Collapse(t,{toggle:!0})}document.addEventListener("DOMContentLoaded",()=>{document.getElementById("toggler-button").addEventListener("click",collapse_handler,!1)});</script>
   </body>
 </html>
+
+<!-- /*! For cURL Users: https://curl.activetk.jp/ */ -->

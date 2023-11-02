@@ -49,7 +49,7 @@
           <b>ご迷惑をおかけしてしまい、申し訳ございません。</b><br>
           <b>このエラーは、お探しのページが存在しない、又は既に削除されている場合に発生します。</b><br><br>
           <a href="/home" class="btn btn--lime btn--cubic btn--shadow">ホームへ戻る</a>
-          <a href="/report?data=<?=rawurlencode(json_encode($ErrorInfo))?>" class="btn btn--orange btn--cubic btn--shadow">エラーを報告</a>
+          <a href="https://www.activetk.jp/report?data=<?=rawurlencode(json_encode($ErrorInfo))?>" class="btn btn--orange btn--cubic btn--shadow">エラーを報告</a>
         </div>
       </div>
       <hr size="1" color="#7fffd4">
@@ -58,7 +58,7 @@
 
     <script type="text/javascript" src="https://code.activetk.jp/particles.min.js" nonce="<?=$nonce?>"></script>
 
-    <script  nonce="<?=$nonce?>">
+    <script nonce="<?=$nonce?>">
     
     particlesJS("animearea",{particles:{number:{value:40,density:{enable:true,value_area:200}},shape:{type:"star",stroke:{width:0,color:"#ffcc00"}},color:{value:"#ffffff"},opacity:{value:1,random:false,anim:{enable:false,speed:10,opacity_min:0.1,sync:false}},size:{value:5,random:true,anim:{enable:false,speed:40,size_min:0.1,sync:false}},line_linked:{enable:true,distance:150,color:"#ffffff",opacity:0.4,width:1},move:{speed:12,straight:false,direction:"none",out_mode:"bounce"}},interactivity:{detect_on:"canvas",events:{onhover:{enable:true,mode:"repulse"},onclick:{enable:true,mode:"push"}},modes:{grab:{distance:400,line_linked:{opacity:1}},repulse:{distance:200},bubble:{distance:400,size:40,opacity:8,duration:2,speed:3},push:{particles_nb:4},remove:{particles_nb:2}}},retina_detect:true,resize:true});
 

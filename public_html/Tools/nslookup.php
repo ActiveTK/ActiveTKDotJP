@@ -24,6 +24,12 @@
     exit(lookup($_POST["nslookup"]));
   }
 
+  if (isset($_GET["withcurl"]) && isset($_GET["q"]) && is_string($_GET["q"]) && !empty($_GET["q"]))
+  {
+    header("Content-Type: text/plain;charset=UTF-8");
+    exit(htmlspecialchars(lookup(urldecode(base64_decode($_GET["q"])))));
+  }
+
 ?>
 <!DOCTYPE html>
 <html lang="ja" itemscope="" itemtype="http://schema.org/WebPage" dir="ltr">

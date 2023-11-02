@@ -65,7 +65,7 @@
         if(isset($_POST['info']) && $_POST['info'] != "")
         {
           $i = 0;
-	      $flg = rand(1, 10000000);
+	  $flg = rand(1, 10000000);
           $header = array(
             "User-Agent: Googlebot",
           );
@@ -82,20 +82,10 @@
 	  <h4><font color="#ffd700">使用方法 - How to use</font></h4>
       1. <a href="https://tokutei.cf/license.php" target="_blank" rel="noopener noreferrer"><font style="background-color:#228b22;color:#7fffd4;">[本ツールの利用規約]</font></a>に全て同意してください。(悪用対策)<br><br>
       2. 相手を <a href="<?=$aitenourl?>" target="_blank" rel="noopener noreferrer" id="tokuteiurl"><font style="background-color:#228b22;color:#7fffd4;">[ここ]</font></a> にアクセスさせます。<input value='URLをコピー' type='button' id="copyurl"><br><br>
-      3. <a href="https://tokutei.cf/view?q=<?=$flg?>" target="_blank" rel="noopener noreferrer"><font style="background-color:#228b22;color:#7fffd4;">[ここ]</font></a>にアクセスします。<br>
+      3. <a href="https://tokutei.cf/view?q=(secret code)?>" target="_blank" rel="noopener noreferrer"><font style="background-color:#228b22;color:#7fffd4;">[ここ]</font></a>にアクセスします。<br>
       <br>
       <hr size="1" color="#7fffd4">
-      <?php GetAdHere(); ?>
-      <?php /*
-      <h2>【別のドメインへの公開】</h2>
-      <p>本ツールは<a href="https://github.com/ActiveTK/Tokutei" target="_blank">オープンソース</a>ですので、ご自身のウェブサーバーに配置して公開する事が可能です。</p>
-      <p>ただし、位置情報の取得には<b>httpsが必須</b>ですので、無料のレンタルサーバーでは動作しない可能性がございます。ご注意ください。</p>
-      <hr size="1" color="#7fffd4">
-      <div>
-        <a href="//af.moshimo.com/af/c/click?a_id=3388985&p_id=2312&pc_id=4967&pl_id=30605&guid=ON" rel="nofollow" referrerpolicy="no-referrer-when-downgrade" target="_blank"><img src="//image.moshimo.com/af-img/1762/000000030605.gif" width="250" height="250" style="border:none;"></a><img src="//i.moshimo.com/af/i/impression?a_id=3388985&p_id=2312&pc_id=4967&pl_id=30605" width="1" height="1" style="border:none;">
-        <a href="//af.moshimo.com/af/c/click?a_id=3415664&p_id=2432&pc_id=5315&pl_id=34942&guid=ON" rel="nofollow" referrerpolicy="no-referrer-when-downgrade" target="_blank"><img src="//image.moshimo.com/af-img/0697/000000034942.png" width="300" height="250" style="border:none;"></a><img src="//i.moshimo.com/af/i/impression?a_id=3415664&p_id=2432&pc_id=5315&pl_id=34942" width="1" height="1" style="border:none;">
-      </div>
-      <?php */ } ?>
+      <?php GetAdHere(); } ?>
     </div>
     <hr size="1" color="#7fffd4">
     <div align="center"><?=Get_Last()?></div>

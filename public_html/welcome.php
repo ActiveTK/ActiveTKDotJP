@@ -66,8 +66,12 @@
       </div>
       <br>
       <?=Get_Last()?>
+      <div style="background-color:#6495ed;color:#0f0f0f;">
+        <br><br>
+      </div>
     </div>
     <script nonce="<?=nonce?>" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script nonce="<?=nonce?>">function collapse_handler(e){let t=document.getElementById("navbar-collapse");new bootstrap.Collapse(t,{toggle:!0})}document.addEventListener("DOMContentLoaded",()=>{document.getElementById("toggler-button").addEventListener("click",collapse_handler,!1)});</script>
   </body>
 </html>
+<!-- /*! For cURL Users: https://curl.activetk.jp/ */ -->

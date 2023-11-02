@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+  <head>
+
+    <title>SSLS - パスワードの重複を許さない最恐のセキュリティ</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="robots" content="ご自由にどうぞ。でも、できればインデックスはしないで欲しいな；
+          あ、アーカイブについてはarchive.today以外はOKです！">
+
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ja_JP">
+
+    <link href="lib/css/bootstrap.min.css" rel="stylesheet">
+    <link href="src/scripts/index.css" rel="stylesheet">
+
+    <script src="lib/js/ActiveTK.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=MML_SVG" async></script>
+    <script src="src/scripts/index.js"></script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-V1CPYP07HP"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-V1CPYP07HP');</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2939270978924591" crossorigin="anonymous"></script>
+
+  </head>
+  <body>
+
+    <div align="center">
+
+        <div>
+
+            <br>
+
+            <div class="container marketing">
+                <br>
+
+                <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+                    <h1 class="display-4" id="about"><span style="color:#f06770;">SSLS</span> - パスワードの重複を許さない最恐のセキュリティ</h1>
+                </div>
+
+                <div class="row featurette">
+                    <form class="form" onsubmit="return Used();">
+                        <h3><b>【アカウントを作成】</b></h3>
+                        <br>
+                        <div class="group">
+                            <input type="text" class="in"><span class="highlight"></span><span class="bar"></span>
+                            <label class="la">UserName</label>
+                        </div>
+                        <div class="group">
+                            <input type="password" id="pw" class="in"><span class="highlight"></span><span class="bar"></span>
+                            <label class="la">Passwd</label>
+                        </div>
+                        <p id="used" style="display: none; color: #ff4500; "></p>
+                        <button type="button" class="button buttonBlue" onclick="Used();">
+                            新規作成
+                            <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
+                        </button>
+                    </form>
+                </div>
+
+                <hr class="featurette-divider">
+            </div>
+
+            <div class="container marketing width90" style="background-color:#e6e6fa;">
+
+                <hr class="featurette-divider">
+
+                <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center" id="userscomment">
+                    <h1 class="display-4"><b>お問い合わせ</b></h1>
+                    <p class="lead">管理者へのお問い合わせは、以下のフォームからお願い致します。</p>
+                </div>
+
+                <div class="row">
+
+                    <form action='' method='POST' id="contact" align="center">
+                        お名前又はニックネーム: <input type='text' name='contact_name' style="height:20px;width:200px;" placeholder='お名前' required>(必須)<br>
+                        ご連絡先のメールアドレス: <input type='email' name='contact_mail' style="height:20px;width:200px;" placeholder='メールアドレス' pattern=".+\.[a-zA-Z0-9][a-zA-Z0-9-]{0,61}[a-zA-Z0-9]" required>(必須)<br><br>
+                        【お問い合わせ内容】<br>
+                        <textarea name="contact_data" placeholder="質問・意見・文句・苦情・クレーム・宣伝・スパム等の内容をこちらへ入力してください。" style="height: 200px; width: 320px;"></textarea><br>
+                        <pre>※本フォーム内に、個人情報を入力しないでください。</pre>
+                        <br>
+                        <input type="checkbox" name="license_readme" value="ok" style="height:20px;width:20px;" required> 私は、日本国憲法の<a href="https://elaws.e-gov.go.jp/document?lawid=321CONSTITUTION_19470503_000000000000000" target="_blank">条文</a>を読み、理解しました。(必須)<br><br>
+                        <br>
+                        <input type="submit" style="height:60px;width:140px;" value="送信">
+                        <br>
+                        報告された情報は<a href="https://elaws.e-gov.go.jp/document?lawid=415AC0000000057" target="_blank">個人情報保護法</a>に従って処理されます。<br>
+                        また、入力されたメールアドレスが本件以外に使用される可能性は
+
+                        <math>
+                            <munder>
+                                <mi>lim</mi>
+                                <mrow>
+                                    <mi>n</mi>
+                                    <mo>→</mo>
+                                    <mi>∞</mi>
+                                </mrow>
+                            </munder>
+                            <mfrac>
+                                <mn>1</mn>
+                                <mi>n</mi>
+                            </mfrac>
+                        </math>
+
+                        です。
+                    </form>
+
+                </div>
+
+                <br>
+
+                <hr class="featurette-divider">
+
+            </div>
+
+        </div>
+
+        <div class="container marketing">
+            <footer class="pt-4 my-md-5 pt-md-5 border-top">
+                <div class="row">
+                    <div class="col-12 col-md">
+                        <small class="d-block mb-3 text-muted">(c) 2023 ActiveTK.</small>
+                    </div>
+                    <div class="col-6 col-md">
+                        <h5>サイトマップ</h5>
+                        <ul class="list-unstyled text-small">
+                            <li><a class="text-muted" href="#about">サイト概要</a></li>
+                            <li><a class="text-muted" href="https://github.com/ActiveTK/SSLS">Githubリポジトリ</a></li>
+                            <li><a class="text-muted" href="#contact">お問い合わせ</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-6 col-md">
+                        <h5>その他</h5>
+                        <ul class="list-unstyled text-small">
+                            <li><a class="text-muted" href="https://elaws.e-gov.go.jp/document?lawid=321CONSTITUTION_19470503_000000000000000">利用規約</a></li>
+                            <li><a class="text-muted" href="https://elaws.e-gov.go.jp/document?lawid=415AC0000000057">個人情報保護法</a></li>
+                            <li><a class="text-muted" href="https://profile.activetk.jp/">開発者</a></li>
+                        </ul>
+                    </div>
+                    <span style="font-size:1px;" align="right">Ĉi tiu retejo estas falsa kaj havas nenion komunan kun realaj gravuloj.</span>
+                </div>
+            </footer>
+        </div>
+
+        <br><br>
+
+    </div>
+
+  </body>
+</html>

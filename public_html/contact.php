@@ -28,6 +28,9 @@
       die("<p>私はロボットではありませんにチェックを入れてください。</p>");
     }
 
+    if ($dec != "ツールに関する質問" && $dec != "ツールの追加の要望" && $dec != "バグの報告" && $dec != "法的なご相談" && $dec != "その他")
+      die("<p>スパムと判定されました。</p>");
+
     $LogFile = "/home/activetk/data/ActiveTKDotJP/Contact.log";
 
     $debuginfo = array();

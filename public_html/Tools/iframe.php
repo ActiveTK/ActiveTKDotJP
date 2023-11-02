@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <?php
   define( "Title", "Iframe君" );
@@ -26,7 +25,6 @@
     <meta property="og:title" content="<?=Title?> | ActiveTK.jp">
     <meta property="og:description" content="<?=$dec?>">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.activetk.jp/">
     <meta property="og:site_name" content="<?=Title?> | ActiveTK.jp">
     <meta property="og:locale" content="ja_JP">
     <meta property="og:image" content="https://www.activetk.jp/icon/index.jpg">

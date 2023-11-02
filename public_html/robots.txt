@@ -1,1 +1,3 @@
 Sitemap: https://www.activetk.jp/sitemap.xml
+User-agent: Megalodon
+Disallow: /

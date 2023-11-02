@@ -2,7 +2,7 @@
   $title = "base64デコーダー | ActiveTK.jp";
   $dec = "base64デコーダーです。";
   $root = "https://www.activetk.jp/";
-  $url = "{$root}tools/url-decode";
+  $url = "{$root}tools/base64-decode";
 ?>
 <!DOCTYPE html>
 <html lang="ja" itemscope="" itemtype="http://schema.org/WebPage" dir="ltr">

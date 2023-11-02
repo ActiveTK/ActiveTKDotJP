@@ -2,7 +2,7 @@
   $title = "文字列の大文字化 | ActiveTK.jp";
   $dec = "文字列を大文字にする事ができます。";
   $root = "https://www.activetk.jp/";
-  $url = "{$root}tools/str2komoji";
+  $url = "{$root}tools/str2oomoji";
 ?>
 <!DOCTYPE html>
 <html lang="ja" itemscope="" itemtype="http://schema.org/WebPage" dir="ltr">

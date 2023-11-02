@@ -1,0 +1,127 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
+using System.Threading;
+
+internal class ParseTwitterLeaked
+{
+    static void Main()
+    {
+        decimal totalrecords = 0, totalrecords2 = 0, totalfilesize = 0, filesizecount = 0, FileCount = 0, EndedThreadCount = 0;
+        Dictionary<string, decimal> emaildomains = new Dictionary<string, decimal>(), createyear = new Dictionary<string, decimal>();
+        var sw = new System.Diagnostics.Stopwatch();
+        sw.Start();
+        foreach (string path in Directory.GetFiles("C:\\データへのパス\\Twitter\\twitter", "*.txt", SearchOption.AllDirectories))
+        {
+            FileCount++;
+            new Thread(new ThreadStart(() => {
+                Console.WriteLine("[START] File=>" + path);
+                using (var p = File.Open(path, FileMode.Open, FileAccess.Read))
+                    totalfilesize += p.Length;
+                foreach (string line in File.ReadLines(path))
+                {
+                    totalrecords++;
+                    filesizecount += line.Length + 2;
+                    bool muched = false;
+                    foreach (var matchedrecord in from Match m in Regex.Matches(line, @"Email: (?<addr>.*?) - Name: (?<name>.*?) - ScreenName: (?<screenname>.*?) - Followers: (?<followers>.*?) - Created At: (?<createdate>.*?) \+0000 (?<createyear>.{4}?)") where m.Success select m.Groups)
+                    {
+                        muched = true;
+                        totalrecords2++;
+                        int count = 0;
+                        foreach (var record in matchedrecord)
+                        {
+                            count++;
+                            if (count == 2) // メールアドレス
+                            {
+                                string domain = Cut(record.ToString(), '@')[1].ToLower();
+                                try
+                                {
+                                    if (emaildomains.ContainsKey(domain))
+                                        emaildomains[domain]++;
+                                    else
+                                        emaildomains[domain] = 1;
+                                }
+                                catch (Exception e)
+                                {
+                                    emaildomains[domain] = 1;
+                                    Console.WriteLine("[WARN] (" + Path.GetFileName(path) + ") " + domain + ": " + e);
+                                }
+                            }
+                            else if (count == 7) // 作成年
+                            {
+                                string year = record.ToString();
+                                if (year == "1970")
+                                    Console.WriteLine("[WARN] (" + Path.GetFileName(path) + ") Found Error Record(time): " + line);
+                                try
+                                {
+                                    if (createyear.ContainsKey(year))
+                                        createyear[year]++;
+                                    else
+                                        createyear[year] = 1;
+                                }
+                                catch
+                                {
+                                    createyear[year] = 1;
+                                }
+                            }
+                        }
+                    }
+                    if (!muched)
+                        Console.WriteLine("[WARN] (" + Path.GetFileName(path) + ") Found Error Record(type): " + line);
+                }
+                Console.WriteLine("[END] File=>" + path);
+                EndedThreadCount++;
+            })).Start();
+        }
+        Thread.Sleep(2000);
+        while (true)
+        {
+            Thread.Sleep(600);
+            Console.Write("[STATUS] Size=" + Math.Floor(filesizecount / 1024 / 1024) + "MB(Total:" + Math.Floor(totalfilesize / 1024 / 1024) + "MB), Line=" + totalrecords +
+                             ", Speed=" + Math.Floor(totalrecords / sw.ElapsedMilliseconds * 1000) + "/s" + new string(' ', 5));
+            Console.CursorLeft = 0;
+            if (FileCount == EndedThreadCount)
+                break;
+        }
+        Console.WriteLine();
+        Thread.Sleep(200);
+        Console.WriteLine("[RESULT]");
+        Console.WriteLine("  Total Record Count: " + totalrecords);
+        Console.WriteLine("  Total Good Record: " + totalrecords2);
+        Console.WriteLine("  Total Error Record: " + (totalrecords - totalrecords2));
+        Console.WriteLine("  Total Data Length: " + totalfilesize);
+        Console.WriteLine("  Email Domains(Top20): ");
+        int i = 0;
+        foreach (KeyValuePair<string, decimal> item in emaildomains.OrderByDescending(x => x.Value))
+        {
+            i++;
+            if (i > 20) break;
+            Console.WriteLine("    [{0}] => {1} ({2}%)", item.Key, item.Value, Math.Floor(item.Value / totalrecords2 * 100));
+        }
+        i = 0;
+        Console.WriteLine("  Create Years: ");
+        foreach (KeyValuePair<string, decimal> item in createyear.OrderByDescending(x => x.Value))
+        {
+            i++;
+            if (i > 20) break;
+            Console.WriteLine("    [{0}] => {1} ({2}%)", item.Key, item.Value, Math.Floor(item.Value / totalrecords2 * 100));
+        }
+        Console.ReadLine();
+    }
+    public static string[] Cut(object strings, char cutword)
+    {
+        if (0 <= ((string)strings).IndexOf(cutword)) { }
+        else strings = strings + cutword.ToString();
+        object command = strings, hikisuu = "";
+        try
+        {
+            int d = ((string)strings).IndexOf(cutword);
+            command = ((string)strings).Remove(d);
+            hikisuu = ((string)strings).Remove(0, d + 1);
+        }
+        catch { }
+        return new string[2] { command.ToString(), hikisuu.ToString() };
+    }
+}

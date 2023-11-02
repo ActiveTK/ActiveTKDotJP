@@ -1,0 +1,5 @@
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule (.*) index.php/?%{QUERY_STRING}&request=$1 [L]
+
+AddDefaultCharset UTF-8

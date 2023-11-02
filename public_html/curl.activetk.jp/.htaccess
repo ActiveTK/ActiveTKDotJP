@@ -1,0 +1,13 @@
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{HTTP_HOST} ^curl\.activetk\.jp$
+RewriteRule (.*) index.php/?%{QUERY_STRING}&request=$1 [L]
+
+<Files ~ "^(\.)">
+deny from all
+</Files>
+<Files ~ "(\.old)$">
+deny from all
+</Files>
+
+AddDefaultCharset UTF-8

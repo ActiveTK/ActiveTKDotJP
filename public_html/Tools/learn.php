@@ -251,8 +251,14 @@
     
       window.QuestionNum = -1;
       window.CorrectAnsCount = 0;
-      window.Questions = [<?php foreach($data["Data"] as $question => $correctans) echo '"' . htmlspecialchars($question) . '", '; ?>"__FLAG__END"];
-      window.Answers = [<?php foreach($data["Data"] as $question => $correctans) echo '"' . htmlspecialchars($correctans) . '", '; ?>"__FLAG__END"];
+      <?php
+        $listof = array();
+        foreach($data["Data"] as $question => $correctans)
+          $listof[] = array('Question'=>$question, 'CorrectAns'=>$correctans);
+        shuffle($listof);
+      ?>
+      window.Questions = [<?php foreach($listof as $value) echo '"' . htmlspecialchars($value["Question"]) . '", '; ?>"__FLAG__END"];
+      window.Answers = [<?php foreach($listof as $value) echo '"' . htmlspecialchars($value["CorrectAns"]) . '", '; ?>"__FLAG__END"];
       function GetNextQuestion() {
         window.QuestionNum++;
         return window.Questions[window.QuestionNum];
@@ -468,9 +474,15 @@
       <p>算数・数学</p>
       <li><a href="?runas=math_10-20_ruijyou.learn.json" target="_blank">10～20の累乗</a></li>
       <li><a href="?runas=math_pi-50len.learn.json" target="_blank">円周率50桁</a></li>
+      <p>理科</p>
+      <li><a href="?runas=sience_jhs.learn.json" target="_blank">中学理科 火山</a></li>
+      <p>社会</p>
+      <li><a href="?runas=history_jhs-1.learn.json" target="_blank">中学歴史 ①</a></li>
+      <li><a href="?runas=history_jhs-2.learn.json" target="_blank">中学歴史 ②</a></li>
       <p>その他「ゲーム」「アニメ」「娯楽」「趣味」など</p>
-       <li><a href="?runas=enjoy_law_shortname.learn.json" target="_blank">法律名略語クイズ</a></li>
+      <li><a href="?runas=enjoy_law_shortname.learn.json" target="_blank">法律名略語クイズ</a></li>
       <li><a href="?runas=enjoy_stpr_members.learn.json" target="_blank">すとぷりメンバー当てクイズ！</a></li>
+      <li><a href="?runas=web_rem.learn.json" target="_blank">Web暗記</a></li>
     </div>
     <br>
     <hr size="1" color="#7fffd4">

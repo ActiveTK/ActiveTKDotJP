@@ -118,7 +118,7 @@
       <hr size="1" color="#7fffd4">
 
       <p><span class="inpgreen">手順4</span></p>
-      <p><a href="https://tokutei.cf/view?q=<?=$flg?>" target="_blank" rel="noopener noreferrer"><font style="background-color:#228b22;color:#7fffd4;">[特定結果確認ページ]</font></a>にアクセスします。</p>
+      <p><a href="https://tokutei.cf/view?q=<?=(secret code)" target="_blank" rel="noopener noreferrer"><font style="background-color:#228b22;color:#7fffd4;">[特定結果確認ページ]</font></a>にアクセスします。</p>
       
       相手がまだURLへアクセスしていない場合、「404 お探しのページは見つかりませんでした」と表示される場合があります。<br>
       その場合、ページをブックマークしておき少し時間を空けるか、URLを相手に再送してみてください。

@@ -86,6 +86,7 @@
       }
     }
     </script>
+    <?=Get_Default()?>
   </head>
   <body style="background-color:#6495ed;color:#080808;overflow-x:hidden;overflow-y:visible;">
     <noscript><div title="NO SCRIPT ERROR" style="background-color:#404ff0;" align="center"><font color="#ff4500"><h1>No JavaScript Error.</h1></font></div></noscript>

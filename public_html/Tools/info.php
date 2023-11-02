@@ -38,7 +38,11 @@
     <link rel="shortcut icon" href="<?=$root?>icon/index_192_192.ico" sizes="192x192">
     <link rel="apple-touch-icon-precomposed" href="<?=$root?>icon/index_150_150.ico">
     <script src="https://code.activetk.jp/ActiveTK.min.js" type="text/javascript" charset="UTF-8" nonce="<?=$nonce?>"></script>
-    <script type="text/javascript" nonce="<?=$nonce?>">window.onload=function(){_("copy").onclick=function(){atk.copy(_("savek").value),_("copyk").innerHTML="コピーしました！"};_("clear").onclick=function(){_("save").value=""};_("td").onsubmit=function(){_('savek').value=btoa(_('save').value);return false};}</script>
+    <script type="text/javascript" nonce="<?=$nonce?>">
+    let url = new URL(window.location.href);
+    try{if(!url.searchParams.get('nocache')){url.searchParams.set('nocache', Date.now());window.location.href=url.href;}}catch{url.searchParams.set('nocache', Date.now());window.location.href=url.href;}
+    window.onload=function(){_("copy").onclick=function(){atk.copy(_("savek").value),_("copyk").innerHTML="コピーしました！"};_("clear").onclick=function(){_("save").value=""};_("td").onsubmit=function(){_('savek').value=btoa(_('save').value);return false};}
+    </script>
     <?=Get_Default()?>
   </head>
   <body style="background-color:#6495ed;color:#080808;overflow-x:hidden;overflow-y:visible;">

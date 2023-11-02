@@ -34,7 +34,6 @@
     <meta property="og:title" content="【パスワード用】疑似乱数生成ツール - ActiveTK.jp">
     <meta property="og:description" content="パスワード用途にも安心して使える、疑似乱数生成ツールです。">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.activetk.jp/tools/QL-MAKE.php">
     <meta property="og:site_name" content="【パスワード用】疑似乱数生成ツール - ActiveTK.jp">
     <meta property="og:locale" content="ja_JP">
     <meta property="og:image" content="https://www.activetk.jp/icon/index.jpg">

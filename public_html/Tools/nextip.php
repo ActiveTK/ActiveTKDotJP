@@ -35,6 +35,8 @@
     return $headers;
   }
 
+  //Converts relative URLs to absolute ones, given a base URL.
+  //Modified version of code found at http://nashruddin.com/PHP_Script_for_Converting_Relative_to_Absolute_URL
   function rel2abs($rel, $base) {
     if (empty($rel)) $rel = ".";
     if (parse_url($rel, PHP_URL_SCHEME) != "" || strpos($rel, "//") === 0) return $rel; //Return if already an absolute URL
@@ -51,9 +53,9 @@
       }
       $auth .= "@";
     }
-    $abs = "$auth$host$path$port/$rel";
-    for ($n = 1; $n > 0; $abs = preg_replace(array("#(/\.?/)#", "#/(?!\.\.)[^/]+/\.\./#"), "/", $abs, -1, $n)) {} 
-    return $scheme . "://" . $abs;
+    $abs = "$auth$host$path$port/$rel"; //Dirty absolute URL
+    for ($n = 1; $n > 0; $abs = preg_replace(array("#(/\.?/)#", "#/(?!\.\.)[^/]+/\.\./#"), "/", $abs, -1, $n)) {} //Replace '//' or '/./' or '/foo/../' with '/'
+    return $scheme . "://" . $abs; //Absolute URL is ready.
   }
 
   function proxifyCSS($css, $baseURL) {
@@ -82,7 +84,7 @@
         if (strpos($url, "\"") === 0) {
           $url = trim($url, "\"");
         }
-        if (stripos($url, "data:") === 0) return "url(" . $url . ")";
+        if (stripos($url, "data:") === 0) return "url(" . $url . ")"; //The URL isn't an HTTP URL but is actual binary data. Don't proxify it.
         return "url(https://www.activetk.jp/tools/nextip?q=" . urlencode(base64_encode(rel2abs($url, $baseURL))) . ")";
       },
     $normalizedCSS);
@@ -330,7 +332,7 @@
 
         <br>
 
-        <iframe width="85%" height="90%" src="https://www.youtube-nocookie.com/embed/<?=$videocode?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe width="854" height="480" src="https://www.youtube-nocookie.com/embed/<?=$videocode?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
 
       <br><br><br>
@@ -358,7 +360,10 @@
       $match_url = substr($match_url, 5);
       $match_url = substr($match_url, 0, -1);
       if (substr($match_url, 0, 1) != "#" && substr($match_url, 0, 5) != "data:" && substr($match_url, 0, 7) != "mailto:" && strpos( $match_url, "www.activetk.jp" ) === false)
+      {
         $html = @str_replace($matchurl_old, "src=\"https://www.activetk.jp/tools/nextip?q=" . urlencode(base64_encode(rel2abs($match_url, $url))) . "\"", $html);
+        // echo "Replace {$match_url}→" . "https://www.activetk.jp/tools/nextip?q=" . urlencode(base64_encode(rel2abs($match_url, $url))) . "\n";
+      }
     }
     preg_match_all( '/href="(.*?)"/i', $html, $match2);
     foreach($match2[0] as $match_url)
@@ -367,7 +372,10 @@
       $match_url = substr($match_url, 6);
       $match_url = substr($match_url, 0, -1);
       if (substr($match_url, 0, 1) != "#" && substr($match_url, 0, 5) != "data:" && substr($match_url, 0, 7) != "mailto:" && strpos( $match_url, "www.activetk.jp" ) === false)
+      {
         $html = @str_replace($matchurl_old, "href=\"https://www.activetk.jp/tools/nextip?q=" . urlencode(base64_encode(rel2abs($match_url, $url))) . "\"", $html);
+        // echo "Replace {$match_url}→" . "https://www.activetk.jp/tools/nextip?q=" . urlencode(base64_encode(rel2abs($match_url, $url))) . "\n";
+      }
     }
     echo "-->\n";
 
@@ -379,6 +387,21 @@
 <!-- /Main -->
       <?php
         exit();
+/*
+    ?>
+<base href="<?=$url?>">
+<meta name="robots" content="noindex, nofollow">
+<script type="text/javascript" nonce="<?=$nonce?>">
+  function NextURL(e){
+    let t=document.createElement("form");t.style="Display: none;",t.action="<?=$meurl?>",t.method="POST",document.body.appendChild(t);
+    let o=document.createElement("input");o.type="text",o.name="q",o.value=e,t.appendChild(o),t.submit()
+  }
+  window.addEventListener("DOMContentLoaded",function(){<?=$at?>let e=document.getElementsByTagName("a"),t=0;for(t=0;t<e.length;t++){let o=null;try{o=e[t].href,e[t].href="javascript:NextURL(`"+e[t].href+"`);",e[t].target="",e[t].rel="noopener noreferrer"}catch(e){}}let o=document.getElementsByTagName("img"),n=0;for(n=0;n<o.length;n++){let t=null;try{"http"==(t=o[n].src).slice(0,4)?o[n].src="<?=$meurl?>?q="+encodeURIComponent(btoa(t)):o[n].src="<?=$meurl?>?q="+encodeURIComponent(btoa(location.protocol+"://"+location.host+"/"+t))}catch(e){}}let l=document.getElementsByTagName("script"),s=0;for(s=0;s<l.length;s++){let t=null;try{(t=l[s].src)&&("http"==t.slice(0,4)?l[s].src="<?=$meurl?>?q="+encodeURIComponent(btoa(t)):l[s].src="<?=$meurl?>?q="+encodeURIComponent(btoa(location.protocol+"://"+location.host+"/"+t)))}catch(e){}}let a=document.getElementsByTagName("link"),c=0;for(c=0;c<a.length;c++)try{let t=a.href;if(("stylesheet"==toLowerCase(a[c].rel)||"text/css"==toLowerCase(a[c].type))&&a[c].href)if("http"==t.slice(0,4)){let e=new XMLHttpRequest,o=document.getElementsByTagName("body")[0];e.open("GET","<?=$meurl?>?q="+encodeURIComponent(btoa(t)),!0),e.send(null),e.onreadystatechange=function(){4==e.readyState&&200==e.status&&(o.style&&""!=o.style?o.style=o.style+e.responseText:o.style=e.responseText)}}else if("//"==t.slice(0,2)){let e=new XMLHttpRequest,o=document.getElementsByTagName("body")[0];e.open("GET","<?=$meurl?>?q="+encodeURIComponent(location.protocol+"://"+btoa(t)),!0),e.send(null),e.onreadystatechange=function(){4==e.readyState&&200==e.status&&(o.style&&""!=o.style?o.style=o.style+e.responseText:o.style=e.responseText)}}else{let e=new XMLHttpRequest,o=document.getElementsByTagName("body")[0];e.open("GET","<?=$meurl?>?q="+encodeURIComponent(btoa(location.protocol+"://"+location.host+"/"+t)),!0),e.send(null),e.onreadystatechange=function(){4==e.readyState&&200==e.status&&(o.style&&""!=o.style?o.style=o.style+e.responseText:o.style=e.responseText)}}}catch(e){}});</script>
+<script defer src="https://rinu.cf/pv/index.php?token=kaihi5cfuse&callback=console.log" nonce="<?=$nonce?>"></script>
+<!-- Main -->
+<?=$html?>
+<!-- /Main -->
+    <?php */
     }
   }
 

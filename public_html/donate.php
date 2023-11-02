@@ -2,6 +2,9 @@
 
   define( "Title", "寄付" );
 
+  header("HTTP/1.1 404 NotFound");
+  die();
+
 ?>
 
 <!DOCTYPE html>

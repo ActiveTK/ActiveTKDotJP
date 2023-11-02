@@ -1,5 +1,5 @@
 <?php
-  $title = "ハッシュ(md5、sha1、sha256、sha364、sha512)計算ツール | ActiveTK.jp";
+  $title = "ハッシュ(md5、sha1、sha256、sha384、sha512)計算ツール | ActiveTK.jp";
   $dec = "オンラインで様々な種類のハッシュを計算します。JavaScriptで処理されるのでサーバーにアップロードする必要が無く、安全です。";
   $root = "https://www.activetk.jp/";
   $url = "{$root}tools/hash";
@@ -100,7 +100,7 @@ var CybozuLabs={MD5:{int2hex8_Fx:function(t){return this.int2hex8(65536*t[1]+t[0
   <body style="background-color:#6495ed;color:#080808;overflow-x:hidden;overflow-y:visible;">
     <noscript><div title="NO SCRIPT ERROR" style="background-color:#404ff0;" align="center"><font color="#ff4500"><h1>No JavaScript Error.</h1></font></div></noscript>
     <div align="center" id="home">
-        <h1>ハッシュ(md5、sha3-256、sha3-364、sha3-512)計算ツール | ActiveTK.jp</h1>
+        <h1>ハッシュ(md5、sha3-256、sha3-384、sha3-512)計算ツール | ActiveTK.jp</h1>
         <form action="" method="POST" id="td">
           <textarea rows="14" id="save" style="margin: 0px; height: 140px; width: 542px;" placeholder="// ハッシュ化したい文字列を入力してください"></textarea>
           <br>

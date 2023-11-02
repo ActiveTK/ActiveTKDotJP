@@ -1,0 +1,327 @@
+<?php
+
+  /*!
+   * Tor2Web的なやつ
+   * (c) 2022 ActiveTK.
+   */
+
+  header( "X-Frame-Options: deny" );
+  header( "X-XSS-Protection: 1; mode=block" );
+  header( "X-Content-Type-Options: nosniff" );
+  header( "X-Permitted-Cross-Domain-Policies: none" );
+  header( "Referrer-Policy: same-origin" );
+  header( "Access-Control-Allow-Origin: *" );
+
+  $headers = getallheaders();
+  if (!isset($headers["CF-Connecting-IP"]))
+  {
+    http_response_code( 403 );
+    exit("cf経由でアクセスして下さい。");
+  }
+  $ip = $headers["CF-Connecting-IP"];
+  unset($headers);
+
+  if (isset($_POST["q"]))
+  {
+    $url = $_POST["q"];
+
+    // HTTPヘッダーインジェクション対策
+    $url = trim($url);
+    $url = str_replace(array("\r\n", "\r", "\n"), "", $url);
+
+    if (!filter_var($url, FILTER_VALIDATE_URL) || !preg_match('|^https?://.*$|', $url))
+    {
+      header("HTTP/1.1 404 Not Found");
+      die("セキュリティエラーが発生しました。");
+    }
+
+    // URIとして解析して再構成
+    $urldetail = parse_url($url);
+    $url_new = $urldetail["host"];
+    if (isset($urldetail["path"]))
+      $url_new .= $urldetail["path"];
+    if (isset($urldetail["query"]))
+      $url_new .= "?" . $urldetail["query"];
+
+    // リダイレクト
+    header("Location: https://tor2web.activetk.jp/" . $url_new);
+    exit();
+  }
+
+  if ( isset( $_GET["request"] ) && !empty( $_GET["request"] ) )
+    define( "request_path", $_GET["request"] );
+  else if ( isset($_GET["q"]) )
+  {
+    $url = urldecode(base64_decode($_GET["q"]));
+
+    // HTTPヘッダーインジェクション対策
+    $url = trim($url);
+    $url = str_replace(array("\r\n", "\r", "\n"), "", $url);
+
+    if (!filter_var($url, FILTER_VALIDATE_URL) || !preg_match('|^https?://.*$|', $url))
+    {
+      header("HTTP/1.1 404 Not Found");
+      die("セキュリティエラーが発生しました。");
+    }
+
+    // URIとして解析して再構成
+    $urldetail = parse_url($url);
+    $url_new = $urldetail["host"];
+    if (isset($urldetail["path"]))
+      $url_new .= $urldetail["path"];
+    if (isset($urldetail["query"]))
+      $url_new .= "?" . $urldetail["query"];
+
+    define( "request_path", $url_new );
+
+  }
+  else
+  {
+
+    $title = "Tor2Web的なやつ - ActiveTK.jp";
+
+?>
+
+<!DOCTYPE html>
+<html lang="ja" itemscope="" itemtype="http://schema.org/WebPage" dir="ltr">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <title><?php echo $title; ?></title>
+    <meta name="robots" content="All">
+  </head>
+  <body style="background-color:#e6e6fa;text:#363636;">
+    <br>
+    <div align='center'>
+      <h1><?=$title?></h1>
+      <p>通常のブラウザから「.onion」ドメインのウェブサイトへアクセスできます。<br>サイト内のJavaScriptは自動で無効化されます。</p><br>
+      <form action='' method='POST'>
+        <input type='text' name='q' placeholder='ここにURLを入力して下さい・・ex http://hogehoge.onion/' style="height:20px;width:500px;"><br><br>
+        <input type='submit' value='アクセス' style="height:60px;width:140px;">
+      </form>
+      <br><br>
+      <p>
+        <a href="https://www.activetk.jp/home" style="color:#00ff00 !important;">ホーム</a>・
+        <a href="https://www.activetk.jp/about" style="color:#0403f9 !important;">本サイトについて</a>・
+        <a href="https://www.activetk.jp/license" style="color:#ffa500 !important;">利用規約</a>・
+        <a href="https://www.activetk.jp/privacy" style="color:#ff00ff !important;">プライバシー</a>・
+        <a href="https://profile.activetk.jp/" style="color:#0403f9 !important;">開発者</a>
+        (c) 2022 ActiveTK.
+      </p>
+      <p>Onion Mirror:   <a href='http://activetkqz22r3lvvvqeos5qnbrwfwzjajlaljbrqmybsooxjpkccpid.onion/'>    <span style='color:#000000 !important;'>http://<b>ActiveTK</b>qz22r3lvvvqeos5qnbrwfwzjajlaljbrqmybsooxjpkccpid.onion</span>  </a></p>
+       
+    </div>
+  </body>
+</html>
+    <?php
+    exit();
+  }
+
+  // クローラー禁止
+  header("X-Robots-Tag: noindex,nofollow,noarchive");
+  if (isset($_SERVER['HTTP_USER_AGENT']) && (strpos($_SERVER['HTTP_USER_AGENT'], 'bot') !== false || strpos($_SERVER['HTTP_USER_AGENT'], 'Bot') !== false))
+  {
+    header("HTTP/1.1 403 ForBidden");
+    exit();
+  }
+
+  // アクセス
+  $url = "http://" . request_path;
+  if (!filter_var($url, FILTER_VALIDATE_URL) || !preg_match('|^https?://.*$|', $url))
+  {
+    header("HTTP/1.1 404 Not Found");
+    die("セキュリティエラーが発生しました。");
+  }
+
+  // js無効化
+  header("Content-Security-Policy: script-src 'nonce-tor2webJSBlocker' 'strict-dynamic'");
+
+  // curlオブジェクト作成
+  $curl = curl_init($url);
+
+  // ヘッダー部分も取得
+  curl_setopt($curl, CURLOPT_HEADER, true);
+  curl_setopt($curl, CURLINFO_HEADER_OUT, true);
+
+  curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'GET');
+  curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+  curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+
+  curl_setopt($curl, CURLOPT_USERAGENT, "Mozilla/5.0 (X11; Linux i686; rv:10.0) Gecko/20100101 Firefox/10.0");
+
+  // Torを経由
+  curl_setopt($curl, CURLOPT_PROXY, '127.0.0.1:9050');
+  curl_setopt($curl, CURLOPT_PROXYTYPE, CURLPROXY_SOCKS5_HOSTNAME);
+
+  // 自動リダイレクト
+  curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
+  curl_setopt($curl, CURLOPT_MAXREDIRS, 10);
+  curl_setopt($curl, CURLOPT_AUTOREFERER, true);
+
+  // タイムアウト
+  curl_setopt($curl, CURLOPT_TIMEOUT, 300);
+
+  // 実行
+  $html = curl_exec($curl);
+
+  // ヘッダー取得
+  $head = curl_getinfo($curl, CURLINFO_HEADER_OUT);
+  $info = curl_getinfo($curl);
+
+  if (isset($_POST["baseurl"]) && $_POST["baseurl"] == "last")
+    $url = curl_getinfo($curl, CURLINFO_EFFECTIVE_URL);
+
+  // エラー処理
+  if($errno = curl_errno($curl)) {
+    $error_message = curl_strerror($errno);
+    header("HTTP/1.1 404 Not found");
+    echo "cURL error ({$errno}):\n {$error_message}";
+    curl_close($curl);
+    exit;
+  }
+
+  // ヘッダー部分
+  $header = htmlspecialchars(substr($html, 0, $info["header_size"]));
+
+  // 本文部分
+  $html = substr($html, $info["header_size"]);
+
+  // オブジェクト破棄
+  curl_close($curl);
+
+  // ヘッダーを配列にする
+  function curl_headers($response){
+    $headers = array();
+    foreach (explode("\r\n", $response) as $i => $line)
+      if ($i === 0)
+        $headers['HTTP'] = $line;
+      else
+      {
+        list ($key, $value) = explode(': ', $line);
+        $headers[strtolower($key)] = $value;
+      }
+    return $headers;
+  }
+  $headerx = curl_headers($header);
+
+  // ファイルのタイプを指定
+  if (isset($headerx["content-type"]))
+    header("Content-Type: ".$headerx["content-type"]);
+
+  // HTMLだった場合にのみプレビュー
+  if (strpos(strtolower($headerx["content-type"]), 'text/html') === false)
+    exit($html);
+
+  // URLをTor2Webに置き換え
+  function URI_move_t2w($url)
+  {
+    // URIとして解析して再構成
+    $urldetail = parse_url($url);
+    $url_new = "https://tor2web.activetk.jp/" . $urldetail["host"];
+    if (isset($urldetail["path"]))
+      $url_new .= $urldetail["path"];
+    if (isset($urldetail["query"]))
+      $url_new .= "?" . $urldetail["query"];
+
+    return $url_new;
+  }
+  preg_match_all('/((?:https?|ftp):\/\/[-_.!~*\'()a-zA-Z0-9;\/?:@&=+$,%#]+)/i', $html, $match);
+  foreach($match[0] as $match_url)
+    $html = @str_replace($match_url, URI_move_t2w($match_url), $html);
+
+  // echo '<base href="https://tor2web.activetk.jp/' . htmlspecialchars(request_path) . '">' . "\n";
+  echo '<base href="' . htmlspecialchars($url) . "\">\n";
+  echo '<meta name="robots" content="noindex, nofollow">' . "\n";
+?>
+<script type="text/javascript" nonce="tor2webJSBlocker">
+
+function NextURL(e) {
+  let t = document.createElement("form");
+  t.style = "display:none;", t.action = "", t.method = "POST", document.body.appendChild(t);
+  let o = document.createElement("input");
+  o.type = "text", o.name = "q", o.value = e, t.appendChild(o), t.submit()
+}
+
+window.addEventListener("DOMContentLoaded", function () {
+  var baseddomain = "https://tor2web.activetk.jp/<?=parse_url($url)["host"]?>";
+  let e = document.getElementsByTagName("a"),
+    t = 0;
+  for (t = 0; t < e.length; t++) {
+    let o = null;
+    try {
+      o = e[t].href, e[t].onclick = function () {
+        NextURL(this.href);
+        return false;
+      };
+      e[t].target = "", e[t].rel = "noopener noreferrer"
+    } catch (e) {}
+  }
+  let o = document.getElementsByTagName("img"),
+    n = 0;
+  for (n = 0; n < o.length; n++) {
+    let t = null;
+    try {
+      if (o[n].src.slice(0, 4) == "http")
+        o[n].src = "https://tor2web.activetk.jp/?q=" + encodeURIComponent(btoa(t));
+      else if (o[n].src.slice(0, 4) == "data") { }
+      else if (o[n].src.slice(0, 2) == "/")
+        o[n].src = baseddomain + o[n].src;
+      else
+        o[n].src = "https://tor2web.activetk.jp/?q=" + encodeURIComponent(btoa(location.protocol + "://" + location.host + "/" + t))
+    } catch (e) {}
+  }
+  let a = document.getElementsByTagName("link"),
+    c = 0;
+  for (c = 0; c < a.length; c++)
+  {
+    try {
+      let t = a[c].href;
+      a[c].href = "";
+      if ("stylesheet" == a[c].rel.toLowerCase() || "text/css" == a[c].type.toLowerCase())
+      {
+        if ("http" == t.slice(0, 4)) {
+          let e = new XMLHttpRequest, o = document.getElementsByTagName("body")[0];
+          e.open("GET", "https://tor2web.activetk.jp/?q=" + encodeURIComponent(btoa(t)), !0), e.send(null), e.onreadystatechange = function () {
+            if (4 == e.readyState && 200 == e.status)
+            {
+              var link = document.createElement('link');
+              link.href = 'data:text/css;base64,' + btoa(e.responseText);
+              link.rel = 'stylesheet';
+              link.type = 'text/css';
+              document.getElementsByTagName('head')[0].appendChild(link);
+            }
+          }
+        } else if ("//" == t.slice(0, 2)) {
+          let e = new XMLHttpRequest, o = document.getElementsByTagName("body")[0];
+          e.open("GET", "https://tor2web.activetk.jp/?q=" + encodeURIComponent("http:" + btoa(t)), !0), e.send(null), e.onreadystatechange = function () {
+            if (4 == e.readyState && 200 == e.status)
+            {
+              var link = document.createElement('link');
+              link.href = 'data:text/css;base64,' + btoa(e.responseText);
+              link.rel = 'stylesheet';
+              link.type = 'text/css';
+              document.getElementsByTagName('head')[0].appendChild(link);
+            }
+          }
+        } else {
+          let e = new XMLHttpRequest, o = document.getElementsByTagName("body")[0];
+          e.open("GET", baseddomain + t, !0), e.send(null), e.onreadystatechange = function () {
+            if (4 == e.readyState && 200 == e.status)
+            {
+              var link = document.createElement('link');
+              link.href = 'data:text/css;base64,' + btoa(e.responseText);
+              link.rel = 'stylesheet';
+              link.type = 'text/css';
+              document.getElementsByTagName('head')[0].appendChild(link);
+            }
+          }
+        }
+      }
+    } catch (e) {}
+  }
+});
+
+</script>
+<?php
+  exit($html);

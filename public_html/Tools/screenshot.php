@@ -7,6 +7,7 @@
 
   if (isset($_POST["archive"]))
   {
+    header("Content-Type: text/plain");
     $data = GetScreenShot($_POST["archive"]);
     if ($data === false)
       echo "";

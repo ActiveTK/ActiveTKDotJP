@@ -1,0 +1,3 @@
+AddType text/plain .c
+AddType text/plain .cs
+AddType text/plain .py

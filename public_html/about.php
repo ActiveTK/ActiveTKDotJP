@@ -1,6 +1,7 @@
 <?php
 
   define( "Title", "サービス概要" );
+  $dec = "サービス概要です。";
 
 ?>
 
@@ -15,7 +16,7 @@
     <meta name="robots" content="All">
     <meta name="favicon" content="https://www.activetk.jp/icon/index_32_32.ico">
     <meta name="description" content="<?=$dec?>">
-    <meta name="copyright" content="Copyright &copy; 2020-2022 ActiveTK. All rights reserved.">
+    <meta name="copyright" content="Copyright &copy; 2020-2023 ActiveTK. All rights reserved.">
     <meta name="thumbnail" content="https://www.activetk.jp/icon/index.jpg">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@ActiveTK5929">
@@ -64,23 +65,34 @@
           <h3>沿革</h3>
         </div>
         <div align="left" style="width:<?=com(50, 90)?>%;overflow-x:visible;overflow-y:visible;">
-          <b>2020/10/24</b> <?=com("", "<br>")?>本サイトを作成、xfreeを使用してactivetk.cfで公開。<br><?=com("", "<br>")?>
-          <b>2020/11/07</b> <?=com("", "<br>")?>SNS用のmetaタグを作成。<br><?=com("", "<br>")?>
-          <b>2020/11/21</b> <?=com("", "<br>")?>全てのURLをa-tk.cfに短縮。<br><?=com("", "<br>")?>
-          <b>2020/12/05</b> <?=com("", "<br>")?>nonceを有効化。<br><?=com("", "<br>")?>
-          <b>2020/12/07</b> <?=com("", "<br>")?>感想フォームを設置。<br><?=com("", "<br>")?>
-          <b>2020/12/26</b> <?=com("", "<br>")?>スパムコメント対策を作成。<br><?=com("", "<br>")?>
-          <b>2021/01/08</b> <?=com("", "<br>")?>はてなブックマークのリンクを作成。<br><?=com("", "<br>")?>
-          <b>2021/03/02</b> <?=com("", "<br>")?>a-tk.jpの短縮リンクを削除。<br><?=com("", "<br>")?>
-          <b>2021/03/23</b> <?=com("", "<br>")?>StarServer(ライト)に移行。https化。<br><?=com("", "<br>")?>
-          <b>2021/04/27</b> <?=com("", "<br>")?>Tor拒否を無効化。感想書き込み時は有効のまま。<br><?=com("", "<br>")?>
-          <b>2021/05/03</b> <?=com("", "<br>")?>一部のリンクをrinu.cfに短縮。<br><?=com("", "<br>")?>
-          <b>2021/06/10</b> <?=com("", "<br>")?>コメントをSQLで管理するように変更。<br><?=com("", "<br>")?>
-          <b>2021/12/27</b> <?=com("", "<br>")?>DDOS攻撃に伴い、アクセスカウンターの方式を変更。<br><?=com("", "<br>")?>
-          <b>2022/01/06</b> <?=com("", "<br>")?>サイトのデザインをかなり変更。<br><?=com("", "<br>")?>
-          <b>2022/03/18</b> <?=com("", "<br>")?>activetk.jpへ移動。UIの大幅な変更。OSS化。<br><?=com("", "<br>")?>
-          <b>2022/04/16</b> <?=com("", "<br>")?>Onion版の「ActiveTK.jp#Onion」を作成。<br><?=com("", "<br>")?>
-          <b>2022/04/30</b> <?=com("", "<br>")?>「ActiveTK.jp」がGoogle アドセンスに合格。<br><?=com("", "<br>")?>
+          <b>2020/10/24　</b> <?=com("", "<br>")?>本サイトを作成し、xfreeを使用してactivetk.cfで公開。<br><?=com("", "<br>")?>
+          <b>2020/12/07　</b> <?=com("", "<br>")?>感想フォームを設置。<br><?=com("", "<br>")?>
+          <b>2021/03/23　</b> <?=com("", "<br>")?>サーバーをスターサーバー(ライト)に移行。https化。<br><?=com("", "<br>")?>
+          <b>2021/06/10　</b> <?=com("", "<br>")?>コメントをSQLで管理するように変更。<br><?=com("", "<br>")?>
+          <b>2021/12/27　</b> <?=com("", "<br>")?>DDoS攻撃に伴って、アクセスカウンターの方式を変更。<br><?=com("", "<br>")?>
+          <b>2022/01/06　</b> <?=com("", "<br>")?>サイトのデザインを大幅に変更。<br><?=com("", "<br>")?>
+          <b>2022/03/18　</b> <?=com("", "<br>")?>ドメインをactivetk.jpに改め、生HTMLからbootstrapへ変更。ソースコードを公開。<br><?=com("", "<br>")?>
+          <b>2022/04/16　</b> <?=com("", "<br>")?>Onionミラーの「ActiveTK.jp#Onion」を作成。<br><?=com("", "<br>")?>
+          <b>2022/04/30　</b> <?=com("", "<br>")?>「ActiveTK.jp」がGoogle アドセンスに合格。<br><?=com("", "<br>")?>
+          <b>2022/08/13　</b> <?=com("", "<br>")?>「ActiveTK.jp#Onion」のURLを変更。<br><?=com("", "<br>")?>
+          <b>2022/12/30　</b> <?=com("", "<br>")?>ブログである「ActiveTK's Note」を作成。<br><?=com("", "<br>")?>
+          <b>2023/03/07　</b> <?=com("", "<br>")?>curl版のActiveTK.jpを作成。<br><?=com("", "<br>")?>
+          <b>2023/09/23　</b> <?=com("", "<br>")?>「ActiveTK's Note」のフレームワークをbootstrapからtailwindに変更。<br><?=com("", "<br>")?>
+        </div>
+        <div title="オススメのサイト" style="background-color:#90ee90;border-radius:30px;text-align:center;">
+          <h3>相互リンク / お勧めのサイト</h3>
+        </div>
+        <div align="left" style="width:<?=com(50, 90)?>%;overflow-x:visible;overflow-y:visible;">
+          <p><li><a href="https://rinu.cf/tsumuri" style="color: #017022;">tsumuri's website</a> tsumuriさんが作成・更新しているサイトで、ブログやWeb上で動作するアプリがあります！</li></p>
+          <p><li><a href="https://rinu.cf/256server" style="color: #017022;">256server</a> 256大好き!さんが管理しているサイトで、便利なWebツールがあります！自宅鯖らしい！！</li></p>
+          <p><li><a href="https://nyanlabo.com/" style="color: #017022;">にゃんでもラボ</a> 魔理沙っちさんが管理しているブログで、wp運営のノウハウやWeb技術がまとめられています！</li></p>
+          <p><li><a href="https://www.choko1229.net/" style="color: #017022;">ちょこのうぇぶさいと！</a> choko1229さんが管理しているブログで、マインクラフトの日記があります！</li></p>
+          <p><li><a href="https://xely.net/" style="color: #017022;">Xely | Never Stop Evolving.</a> あくてぃばるさんが管理しているサイトで、便利なWebツールが大量にあります！</li></p>
+          <p><li><a href="https://xn--08j8cqe.jp/" style="color: #017022;">けびん</a> けびんさんのプロフィールページです！</li></p>
+          <p><li><a href="https://p-nutsk.github.io/" style="color: #017022;">P_nutsKのページ</a> ScratcherのP_nutsKさんが管理しているサイトです！</li></p>
+          <p><li><a href="https://www.kobakoo.com/" style="color: #017022;">kobako0O.com</a> kbkさんが管理しているサイトで、ブログなどがあります！</li></p>
+          <p><li><a href="https://ichiru-game.com/" style="color: #017022;">いちるブログ</a> ichiruさんが管理しているブログで、PHPの記事やWeb関連技術の投稿があります！</li></p>
+          <p><li><a href="https://wasabii.net/" style="color: #017022;">Wasabi Lab.</a> 高校生のわさびさんが管理しているブログで、WordPressの運営ノウハウがまとまっています！</li></p>
         </div>
         <hr>
       </div>

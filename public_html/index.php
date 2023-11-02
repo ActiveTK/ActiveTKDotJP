@@ -1,8 +1,8 @@
-<?php
+<?php define( "LOAD_START_TIME", microtime(true) );
 
   /*!
    *  Home - ActiveTK.jp
-   *  (c) 2022 ActiveTK.
+   *  (c) 2022-2023 ActiveTK.
    */
 
   // 設定ファイル読み込み
@@ -28,11 +28,26 @@
     header( "Location: https://www.activetk.jp{$_SERVER['REQUEST_URI']}" );
     die();
   }
-  header( "X-Frame-Options: deny" );
+
+  if ( !isset($_GET["request"]) || strtolower( $_GET["request"]) != "tools/crypto" )
+    header( "X-Frame-Options: deny" );
+
+  header( 'Access-Control-Allow-Origin: "https://note.activetk.jp https://bitcoin.activetk.jp"' );
+
   header( "X-XSS-Protection: 1; mode=block" );
   header( "X-Content-Type-Options: nosniff" );
   header( "X-Permitted-Cross-Domain-Policies: none" );
   header( "Referrer-Policy: same-origin" );
+
+  if ( isset( $_SERVER["HTTP_ORIGIN"] ) && $_SERVER["HTTP_ORIGIN"] == "https://ha.cker.jp" )
+  {
+    header_remove( "content-security-policy" );
+    header_remove( "access-control-allow-origin" );
+    header( "access-control-allow-origin: *" );
+  }
+
+  if (!isset($_SERVER['HTTP_USER_AGENT']))
+    $_SERVER['HTTP_USER_AGENT'] = "";
 
   // スクリプト用のNonce生成関数
   function CreateNonce() {
@@ -44,11 +59,18 @@
     header( "Content-Security-Policy: script-src 'nonce-" . nonce . "' 'strict-dynamic' 'unsafe-eval';" );
   }
 
+  // キャッシュを許可
+  function AllowCacheToBrowser() {
+    header( 'Expires: ' . gmdate( 'D, d M Y H:i:s T', time() + 1800 ) );
+    header( 'Cache-Control: public, max-age=1800' );
+    header( 'Pragma: ' );
+  }
+
   // 管理者への通知
   function NotificationAdmin( string $title = "", string $str = "" ) {
     try{
       $body = '<body style="background-color:#e6e6fa;text:#363636;"><div align="center"><p>【' . htmlspecialchars($title) . '】</p><hr color="#363636" size="2">'. $str .
-      '<br><hr color="#363636" size="2"><font style="background-color:#06f5f3;">Copyright &copy; 2022 ActiveTK. All rights reserved.</font></div></body>';
+      '<br><hr color="#363636" size="2"><font style="background-color:#06f5f3;">Copyright &copy; 2023 ActiveTK. All rights reserved.</font></div></body>';
       mb_language("Japanese");
       mb_internal_encoding("UTF-8");
       define( "MAIL_SUBJECT", $title);
@@ -88,12 +110,69 @@
 
   define("Phone", $issumaho);
 
+  // UI for PC || Mobile
+  function comUI(string $MessageForPC = "", string $MessageForMobile = "") {
+    if (empty($MessageForPC))
+      return "<div class='Msg4MB'>{$MessageForMobile}</div>";
+    else if (empty($MessageForMobile))
+      return "<div class='Msg4PC'>{$MessageForPC}</div>";
+    return "<div class='Msg4PC'>{$MessageForPC}</div>" .
+           "<div class='Msg4MB'>{$MessageForMobile}</div>";
+  }
   function com($ForPC, $ForMobile) {
     if (Phone)
       return $ForMobile;
     else
       return $ForPC;
   }
+
+  // 圧縮
+  function sanitize_output($buffer) {
+
+    foreach(headers_list() as $line)
+    {
+      list($title, $data) = explode(": ", $line, 2);
+      if (strtolower($title) == 'content-type' && false === strpos($data, 'text/html'))
+        return $buffer;
+    }
+
+    $buffer = preg_replace_callback('/<pre.*?<\/pre>/is', function($matches) {
+      return '_______here___pre__start' . base64_encode(urlencode($matches[0])) . '_______here___pre__end';
+    }, $buffer);
+    $buffer = preg_replace_callback('/<script.*?<\/script>/is', function($matches) {
+      return '_______here___scr__start' . base64_encode(urlencode($matches[0])) . '_______here___scr__end';
+    }, $buffer);
+    $buffer = preg_replace_callback('/<textarea.*?<\/textarea>/is', function($matches) {
+      return '_______here___txt__start' . base64_encode(urlencode($matches[0])) . '_______here___txt__end';
+    }, $buffer);
+
+    $buffer = preg_replace(array('/\>[^\S]+/s', '/[^\S]+\</s', '/(\s)+/s' ), array('>', '<', '\\1'), $buffer);
+
+    $buffer = preg_replace_callback('/_______here___pre__start.*?_______here___pre__end/is', function($matches) {
+      return urldecode(base64_decode(substr(substr($matches[0], 24), 0, -22)));
+    }, $buffer);
+    $buffer = preg_replace_callback('/_______here___scr__start.*?_______here___scr__end/is', function($matches) {
+      return urldecode(base64_decode(substr(substr($matches[0], 24), 0, -22)));
+    }, $buffer);
+    $buffer = preg_replace_callback('/_______here___txt__start.*?_______here___txt__end/is', function($matches) {
+      return urldecode(base64_decode(substr(substr($matches[0], 24), 0, -22)));
+    }, $buffer);
+
+    $buffer = str_replace("<!--__br_space__-->", " \n", $buffer);
+
+    if (substr($buffer, 0, 15) == "<!DOCTYPE html>")
+      $buffer = substr($buffer, 15);
+
+    $render = (microtime(true) - LOAD_START_TIME);
+    $date = (new DateTime('now', new DateTimeZone('GMT')))->format('Y-m-d H:i:sP');
+
+    $buffer = "<!DOCTYPE html><!--\n\n  ActiveTK.jp / (c) 2023 ActiveTK.\n\n  Server-Side Time: " . $render .
+      "s\n  Cached Date: " . $date . "\n  ↑なんかこんな感じの表記ってカッコイイよね(厨二病という名の15歳)\n\n-->" . $buffer . "\n";
+
+    return $buffer;
+  }
+
+  ob_start("sanitize_output");
 
   // リクエスト処理
   if ( isset( $_GET["request"] ) && $_GET["request"] != "")
@@ -112,6 +191,11 @@
     {
       define( "nonce", "" );
       require_once( "./Tools/justclock.php" );
+      exit();
+    }
+    else if ( request_path == "tools" )
+    {
+      header( "Location: /home" );
       exit();
     }
     else if ( request_path == "tools/urlmin" )
@@ -150,28 +234,69 @@
       require_once( "./Tools/windowsupdate.php" );
       exit();
     }
+    else if ( request_path == "tools/webrecorder" )
+    {
+      define( "nonce", "" );
+      require_once( "./Tools/record.php" );
+      exit();
+    }
     else if ( request_path == "tools/nextip" )
     {
       define( "nonce", "" );
       require_once( "./Tools/nextip.php" );
       exit();
     }
-    else if ( request_path == "tools_x/webtracking" )
+    else if ( request_path == "tools/next" )
     {
-      define( "nonce", "" );
-      require_once( "./Tools_X/WebTracking.php" );
+      header( "Location: https://www.activetk.jp/tools/nextip" );
       exit();
     }
-    else if ( request_path == "tools_x/btctracking" )
+    else if ( request_path == "tools/crypto" )
     {
       define( "nonce", "" );
-      require_once( "./Tools_X/BitcoinTracking.php" );
+      require_once( "./Tools/crypto.php" );
       exit();
     }
     else if ( request_path == "tools/screenshot" )
     {
       define( "nonce", "" );
       require_once( "./Tools/screenshot.php" );
+      exit();
+    }
+    else if ( request_path == "tools/markdown" )
+    {
+      define( "nonce", "" );
+      require_once( "./Tools/markdown.php" );
+      exit();
+    }
+    else if ( request_path == "tools/twitter-leaked200" )
+    {
+      define( "nonce", "" );
+      require_once( "./Tools/twitter-leaked200.php" );
+      exit();
+    }
+    else if ( request_path == "tools/moshikasite" )
+    {
+      define( "nonce", "" );
+      require_once( "./Tools/moshikasite.php" );
+      exit();
+    }
+    else if ( request_path == "tools/study-logger" )
+    {
+      define( "nonce", "" );
+      require_once( "./Tools/study-logger.php" );
+      exit();
+    }
+    else if ( request_path == "tools/yt-not-well-known" )
+    {
+      define( "nonce", "" );
+      require_once( "./Tools/yt-not-well-known.php" );
+      exit();
+    }
+    else if ( request_path == "tools/pictsquare-leaked" )
+    {
+      define( "nonce", "" );
+      require_once( "./Tools/pictSQUARE-leaked.php" );
       exit();
     }
 
@@ -193,6 +318,8 @@
       require_once( "./developer.php" );
     else if ( request_path == "donate" )
       require_once( "./donate.php" );
+    else if ( request_path == "warrant-canary" )
+      require_once( "./warrant-canary.php" );
     else if ( request_path == "report" )
     {
       if ( isset( $_GET["fin"] ) )
@@ -264,20 +391,14 @@
       require_once( "./Tools/leet2english.php" );
     else if ( request_path == "tools/paintweb" )
       require_once( "./Tools/paintweb.php" );
-    else if ( request_path == "tools/download" )
-      require_once( "./Tools/download.php" );
     else if ( request_path == "tools/encrypt" )
       require_once( "./Tools/encrypt.php" );
     else if ( request_path == "tools/info" )
       require_once( "./Tools/info.php" );
-    else if ( request_path == "tools/speedtest" )
-      require_once( "./Tools/speedtest.php" );
     else if ( request_path == "tools/hash" )
       require_once( "./Tools/hash.php" );
     else if ( request_path == "tools/ruijyou" )
       require_once( "./Tools/ruijyou.php" );
-    else if ( request_path == "tools/downchecker" )
-      require_once( "./Tools/downchecker.php" );
     else if ( request_path == "tools/learn" )
       require_once( "./Tools/learn.php" );
     else if ( request_path == "tools/str2komoji" )
@@ -290,6 +411,24 @@
       require_once( "./Tools/whois.php" );
     else if ( request_path == "tools/nslookup" )
       require_once( "./Tools/nslookup.php" );
+    else if ( request_path == "tools/copyprotect" )
+      require_once( "./Tools/copyprotect.php" );
+    else if ( request_path == "tools/sin-cos-tan" )
+      require_once( "./Tools/sin-cos-tan.php" );
+    else if ( request_path == "tools/beki-integration" )
+      require_once( "./Tools/beki-integration.php" );
+    else if ( request_path == "public/prime" )
+      require_once( "./public/prime.php" );
+    else if ( request_path == "tools/string-copy-disable" )
+      require_once( "./Tools/string-copy-disable.php" );
+    else if ( request_path == "tools/white-encode" )
+      require_once( "./Tools/white-encode.php" );
+    else if ( request_path == "tools/white-decode" )
+      require_once( "./Tools/white-decode.php" );
+    else if ( request_path == "tools/binomial-theorem" )
+      require_once( "./Tools/binomial-theorem.php" );
+    else if ( request_path == "tools/roman" )
+      require_once( "./Tools/roman.php" );
     else if ( request_path == "400" )
       require_once( "./Error/400/index.php" );
     else if ( request_path == "403" )
@@ -305,7 +444,6 @@
   }
   else
   {
-    // nonce生成
     CreateNonce();
     $nonce = nonce;
     require_once( "./welcome.php" );
@@ -335,13 +473,9 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link active p-index__nav_item" href="/privacy">プライバシー</a>
-              </li><?php /*
-              <li class="nav-item">
-                <a class="nav-link active p-index__nav_item" href="/donate">寄付</a>
               </li>
-              */ ?>
               <li class="nav-item">
-                <a class="nav-link active p-index__nav_item" href="https://programing-study.activetk.jp/">自習室</a>
+                <a class="nav-link active p-index__nav_item" href="https://note.activetk.jp/">Note</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link active p-index__nav_item" href="/developer?v=2">開発者</a>
@@ -364,16 +498,21 @@
   // 著作権表示
   function Get_Last() {
   ?>
-
-    <p>
-      <a href="/home" style="color:#00ff00 !important;">ホーム</a>・
-      <a href="/about" style="color:#0403f9 !important;">本サイトについて</a>・
-      <a href="/license" style="color:#ffa500 !important;">利用規約</a>・
-      <a href="/privacy" style="color:#ff00ff !important;">プライバシーに関する声明</a>・
-      <?php /* <a href="/donate" style="color:#4169e1 !important;">寄付</a> */ ?>
-      (c) 2022 ActiveTK.</p>
-
-    <?=com("<p>Onion Mirror: http://apzjiwz4762353egpdpyyg7nyv5gmifv46bwkc6gdvp3ei2e74ejidyd.onion/</p>", "")?>
+      <p>
+        <a href="/home" style="color:#00ff00 !important;">ホーム</a>・<!--__br_space__-->
+        <a href="/about" style="color:#0403f9 !important;">本サイトについて</a>・<!--__br_space__-->
+        <a href="/license" style="color:#ffa500 !important;">利用規約</a>・<!--__br_space__-->
+        <a href="/privacy" style="color:#ff00ff !important;">プライバシー</a>・<!--__br_space__-->
+        <a href="https://profile.activetk.jp/" style="color:#0403f9 !important;">開発者</a><!--__br_space__-->
+        (c) 2023 ActiveTK.
+      </p>
+      <?=comUI(
+        "<p>Onion Mirror: <!--__br_space__-->" .
+        "  <a href='http://activetkqz22r3lvvvqeos5qnbrwfwzjajlaljbrqmybsooxjpkccpid.onion/'>" .
+        "    <span style='color:#000000 !important;'>http://<b>ActiveTK</b>qz22r3lvvvqeos5qnbrwfwzjajlaljbrqmybsooxjpkccpid.onion</span>".
+        "  </a>" .
+        "</p>", "")
+      ?>
 
   <?php
   }
@@ -381,12 +520,16 @@
   // 共通コード取得
   function Get_Default() {
     ?>
+    <meta http-equiv="onion-location" content="http://activetkqz22r3lvvvqeos5qnbrwfwzjajlaljbrqmybsooxjpkccpid.onion/">
+    <style>.Msg4PC{display:inline-block;}.Msg4MB{display:inline-block;}@media screen and (max-width:480px){.Msg4PC{display:none;}}@media screen and (min-width:481px){.Msg4MB{display:none;}}</style>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-V1CPYP07HP"<?php if (defined('nonce') && !empty(nonce)) echo ' nonce="' . nonce . '"'; ?>></script>
     <script<?php if (defined('nonce') && !empty(nonce)) echo ' nonce="' . nonce . '"'; ?>>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-V1CPYP07HP');</script>
     <?php if (!isset($_GET["ahb"]) || $_GET["ahb"] != "r") { ?>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2939270978924591" crossorigin="anonymous"<?php if (defined('nonce') && !empty(nonce)) echo ' nonce="' . nonce . '"'; ?>></script>
-    <script src="/js/iframe_tracker.js"<?php if (defined('nonce') && !empty(nonce)) echo ' nonce="' . nonce . '"'; ?>></script>
-    <script src="/js/ads_hunting-blocker.js"<?php if (defined('nonce') && !empty(nonce)) echo ' nonce="' . nonce . '"'; ?>></script>
+    <script defer src="/js/iframe_tracker.js"<?php if (defined('nonce') && !empty(nonce)) echo ' nonce="' . nonce . '"'; ?>></script>
+    <script defer src="/js/ads_hunting-blocker.js"<?php if (defined('nonce') && !empty(nonce)) echo ' nonce="' . nonce . '"'; ?>></script>
+    <script defer <?php if (defined('nonce') && !empty(nonce)) echo ' nonce="' . nonce . '"'; ?>>(btoa(window.location.host) != "d3d3LmFjdGl2ZXRrLmpw" && btoa(window.location.host) != "d3d3LmFjdGl2ZXRrLmpwLg==") && document.write(atk.decode(atob("JUU3JTg0JUExJUU2JTk2JUFEJUUzJTgyJUIzJUUzJTgzJTk0JUUzJTgzJUJDJUUzJTgxJUFGJUU5JTgxJTk1JUU2JUIzJTk1JUUzJTgxJUE3JUUzJTgxJTk5JUUzJTgyJTg4JUUzJTgxJUEzJUVGJUJDJTgx")));</script>
+    <script defer src="/js/KonamiCode.min.js?v=5"<?php if (defined('nonce') && !empty(nonce)) echo ' nonce="' . nonce . '"'; ?>></script>
     <?php }
   }
 
@@ -404,7 +547,7 @@
     if ( $TypeOfAd == 0 )
     {
       ?>
-        <div class="ad">
+        <div class="ad" id="ad">
           <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2939270978924591" data-ad-slot="8240315429" data-ad-format="auto" data-full-width-responsive="true"></ins>
           <script<?=$TheNonceStr?>>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
         </div>
